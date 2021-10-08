@@ -171,8 +171,8 @@ class SeasonModel(models.Model):
     series = models.ForeignKey(SeriesModel,on_delete=models.CASCADE,null=True)
     thumbnail = models.ImageField(upload_to='thumbnails',null=True,blank=True)
     release_date = models.DateField(null=True,blank=True,default=date.today)
-    season_number = models.IntegerField(null=True,blank=True,default=1)
-    episode_count = models.IntegerField(null=True,blank=True,default=1)
+    season_number = models.IntegerField(null=True,blank=True,default=0)
+    episode_count = models.IntegerField(null=True,blank=True,default=0)
     complete = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
 
@@ -187,7 +187,7 @@ class EpisodeModel(models.Model):
     thumbnail = models.ImageField(upload_to='thumbnails',null=True,blank=True)
     slug = models.SlugField(max_length=250,null=True,blank=True,editable=False)
     season = models.ForeignKey(SeasonModel,on_delete=models.CASCADE,null=True)
-    episode = models.IntegerField(null=True,blank=True,default=1)
+    episode = models.IntegerField(null=True,blank=True,default=0)
     description = models.TextField(null=True,blank=True)
     rating = models.FloatField(null=True,blank=True)
     runtime = models.CharField(max_length=250,null=True,blank=True)
@@ -209,9 +209,10 @@ class EpisodeModel(models.Model):
     def save(self, *args, **kwargs):
         if not self.slug:
             self.slug = slugify(str(self.season.series)+ "-"+ str(datetime.now()))
-        season = SeasonModel.objects.get(id = self.season_id)
-        season.episode_count = self.season.episodemodel_set.count()
-        season.save()
+        if not self.id:
+            season = SeasonModel.objects.get(id = self.season_id)
+            season.episode_count = self.season.episodemodel_set.count()+1
+            season.save()
         super(EpisodeModel, self).save(*args, **kwargs)
 
 
