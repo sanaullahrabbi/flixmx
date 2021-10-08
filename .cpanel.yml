@@ -1,5 +1,5 @@
 ---
 deployment:
   tasks:
-    - export DEPLOYPATH=/home/ftpflix1/testflixmxfiles/
+    - export DEPLOYPATH=/home/ftpflix1/flixmxroot/
     - /bin/cp * $DEPLOYPATH
