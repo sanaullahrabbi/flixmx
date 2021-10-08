@@ -1,0 +1,155 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %}{{obj.series.title}} (Season {{obj.season_number}}) | Flixmx{% endblock title %}
+{% block description %}{{obj.series.description|truncatechars:500}}{% endblock description %}
+
+{% block twittertitle %}{{obj.series.title}} (Season {{obj.season_number}}) | Flixmx{% endblock twittertitle %}
+{% block twitterdescription %}{{obj.series.description|truncatechars:500}}{% endblock twitterdescription %}
+{% block twitterimg %}{% if obj.series.tmdb_thumbnail %}{{obj.series.tmdb_thumbnail}}{% elif obj.series.thumbnail %}{{ SITE_URL }}{{obj.series.thumbnail.url}}{% endif %}{% endblock twitterimg %}
+
+{% block ogtitle %}{{obj.series.title}} (Season {{obj.season_number}}) | Flixmx{% endblock ogtitle %}
+{% block ogtype %}{{obj.series.type}}{% endblock ogtype%}
+{% block ogimage %}{% if obj.series.tmdb_thumbnail %}{{obj.series.tmdb_thumbnail}}{% elif obj.series.thumbnail %}{{ SITE_URL }}{{obj.series.thumbnail.url}}{% endif %}{% endblock ogimage %}
+{% block ogdescription %}{{obj.series.description|truncatechars:500}}{% endblock ogdescription %}
+
+{% block content %}
+<div class="container episode-main">
+    <div id="primary-slider" class="splide">
+
+        <div class="splide__track">
+            <ul class="splide__list">
+                {% for episode in episodes %}
+                <li class="splide__slide">
+                    <img src="{% if obj.thumbnail %}{{ obj.thumbnail.url }}{% elif obj.series.tmdb_poster %}{{ obj.series.tmdb_poster}}{% else %}{{obj.series.poster.url}}{% endif %}"
+                        loading="lazy">
+                    <div class="content">
+                        <h2>{{obj.series.title}} : Season {{obj.season_number}} , Episode {{episode.episode}}</h2>
+                        <h1 class="title">{{episode.title}}</h1>
+
+                        <p>{{episode.description}}</p>
+                        <div class="item-action">
+                            <a href="{{episode.watch_link}}" class="btn btn-hover"><i
+                                    class="fas fa-caret-right fa-md"></i><span>Watch now</span></a>
+                            <div class="dropdowncontain">
+                                <div class="btn btn-hover downloadbtn">
+                                    <i class="fas fa-caret-right fa-md qIcon"></i>
+                                    <span> Download now</span>
+                                </div>
+                                <div class="qSelect">
+                                    <ul>
+                                        {% if episode.direct_download or episode.gdrive_download_link or episode.onedrive_download_link %}
+                                        {% if episode.direct_download %}
+                                        <li>
+                                            <a href="{{episode.direct_download}}">Direct Download</a>
+                                        </li>
+                                        {% endif %}
+                                        {% if episode.gdrive_download_link %}
+                                        <li>
+                                            <a href="{{episode.gdrive_download_link}}">Google Drive</a>
+                                        </li>
+                                        {% endif %}
+
+                                        {% if episode.onedrive_download_link %}
+                                        <li>
+                                            <a href="{{episode.onedrive_download_link}}">OneDrive</a>
+                                        </li>
+                                        {% endif %}
+                                        {% else %}
+                                        <li>
+                                            <a>No Link Available</a>
+                                        </li>
+                                        {% endif %}
+
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="subtitle">
+                            <h3>
+                                <a href="{{episode.subtitle_link}}">Download Subtitle</a>
+                            </h3>
+                        </div>
+                    </div>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+    <div id="secondary-slider" class="splide">
+        <div class="content" style="padding: 2rem 0;">
+            <h2>Episodes</h2>
+        </div>
+        <div class="splide__track">
+            <ul class="splide__list">
+                {% for episode in episodes %}
+                <li class="splide__slide">
+                    <img src="{% if episode.thumbnail %}{{ episode.thumbnail.url }}{% else %}{{obj.series.thumbnail.url}}{% endif %}"
+                        loading="lazy" alt="">
+                    <div class="ep-num">
+                        <h1>{{episode.episode}}</h1>
+                    </div>
+                    <div class="movie-infos">
+                        <div class="movie-info">
+                            <i class="fas fa-star"></i>
+                            <span>{{episode.rating}}</span>
+                        </div>
+                        <div class="movie-info">
+                            <i class="fas fa-clock"></i>
+                            <span>{{episode.runtime}}</span>
+                        </div>
+                    </div>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- Recommend Section -->
+<div class="section">
+    <div class="container">
+        <div class="section-header">
+            You may also like
+        </div>
+        <div class="splide slider__content" id="">
+            <div class="splide__track">
+                <ul class="splide__list">
+                    <!-- ITEM -->
+                    {% for i in recobjs|slice:":50" %}
+                    <li class="splide__slide">
+                        <a href="{% url 'details_season' pk=i.id %}" class="movie-item">
+                            <div class="play-btn">
+                                <i class="fad fa-play"></i>
+                            </div>
+                            <div class="card-overlay"></div>
+                            <img data-splide-lazy="{% if i.thumbnail %}{{ i.thumbnail.url }}{% elif i.series.tmdb_thumbnail %}{{i.series.tmdb_thumbnail}}{% elif i.series.thumbnail %}{{i.series.thumbnail.url}}{% endif %}"
+                                alt="thumbnail">
+                            <div class="movie-item-content">
+                                <div class="movie-item-title">
+                                    {{i.series.title}} - Season {{i.season_number}}
+                                </div>
+                                <div class="movie-infos">
+                                    <div class="movie-info">
+                                        <i class="fas fa-star"></i>
+                                        <span>Episodes : {{i.episode_count}}</span>
+                                    </div>
+                                    <div class="movie-info">
+                                        <i class="fas fa-clock"></i>
+                                        <span>Status : {% if i.complete %} Completed {% else %} Running
+                                            {% endif %}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    {% endfor %}
+                    <!-- END ITEM -->
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Recommend Section -->
+{% endblock content %}

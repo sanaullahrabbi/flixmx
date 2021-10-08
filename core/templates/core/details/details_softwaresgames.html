@@ -1,0 +1,193 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %}{{obj.title}} | Flixmx{% endblock title %}
+{% block description %}{{obj.description|truncatechars:500}}{% endblock description %}
+
+{% block twittertitle %}{{obj.title}} | Flixmx{% endblock twittertitle %}
+{% block twitterdescription %}{{obj.description|truncatechars:500}}{% endblock twitterdescription %}
+{% block twitterimg %}{% if obj.tmdb_thumbnail %}{{obj.tmdb_thumbnail}}{% elif obj.thumbnail %}{{ SITE_URL }}{{obj.thumbnail.url}}{% endif %}{% endblock twitterimg %}
+
+{% block ogtitle %}{{obj.title}} | Flixmx{% endblock ogtitle %}
+{% block ogtype %}{{obj.category}}{% endblock ogtype%}
+{% block ogimage %}{% if obj.tmdb_thumbnail %}{{obj.tmdb_thumbnail}}{% elif obj.thumbnail %}{{ SITE_URL }}{{obj.thumbnail.url}}{% endif %}{% endblock ogimage %}
+{% block ogdescription %}{{obj.description|truncatechars:500}}{% endblock ogdescription %}
+
+{% block content %}
+<div class="movie-details-main">
+    <div class="movie-details-container">
+        <div class="col-4 thumbnail">
+            <img src="{% if obj.thumbnail %}{{obj.thumbnail.url}}{% endif %}" alt="movie-poster">
+        </div>
+        <div class="col-8 details">
+            <div class="item-content-title">
+                {{obj.title}}
+            </div>
+            <div class="movie-infos">
+                <div class="movie-info">
+                    <i class="fas fa-star"></i>
+                    <span>{{obj.platform|title}}</span>
+                </div>
+                <div class="movie-info">
+                    <i class="fas fa-file-alt"></i>
+                    <span>{{obj.size}}</span>
+                </div>
+                <div class="movie-info">
+                    <i class="fas fa-list-alt"></i>
+                    <span>{{obj.category|title}}</span>
+                </div>
+                {% if obj.rated %}
+                <div class="movie-info">
+                    <i class="fas fa-percentage"></i>
+                    <span>{{obj.rated}}</span>
+                </div>
+                {% endif %}
+            </div>
+            <br>
+            {% if obj.genre.all %}
+            <div class="row genrecontainer">
+                <div class="col-12">
+                    <h4><span>Genre :</span>
+                        {% for genre in obj.genre.all %}
+                        <a
+                            href="{% url 'genres' genrename=genre.genre_name|lower %}">{{ genre.genre_name }}</a>{% if not forloop.last %},{% endif %}
+                        {% endfor %}
+                    </h4>
+                </div>
+            </div>
+            {% endif %}
+            <div class="row">
+                <div class="col-12">
+                    <h4><span>Release Date :</span> {{obj.release_date}}</h4>
+                </div>
+            </div>
+            {% if obj.developer %}
+            <div class="row">
+                <div class="col-12">
+                    <h4><span>Developer :</span> {{obj.developer}}</h4>
+                </div>
+            </div>
+            {% endif %}
+            <br>
+            <div class="row descript">
+                <div class="col-12">
+                    {{obj.description|safe}}
+                </div>
+            </div>
+            <div class=" item-action">
+                <div class="dropdowncontain">
+                    <div class="btn btn-hover downloadbtn">
+                        <i class="fas fa-caret-right fa-md qIcon"></i>
+                        <span> Download now</span>
+                    </div>
+                    <div class="qSelect">
+                        <ul>
+                            {% if obj.direct_download %}
+                            <li><a href="{{obj.direct_download}}">Direct Download</a></li>
+                            {% endif %}
+                            {% if obj.gdrive_download_link %}
+                            <li>
+                                <a href="{{ obj.gdrive_download_link }}">Google Drive</a>
+                            </li>
+                            {% endif %}
+                            {% if obj.onedrive_download_link %}
+                            <li>
+                                <a href="{{ obj.onedrive_download_link }}">OneDrive </a>
+                            </li>
+                            {% endif %}
+                            {% if obj.torrent %}
+                            <li><a href="{{obj.torrent}}">Torrent</a></li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container extraInfo">
+        {% if obj.min_sys_req %}
+        <div class="col-12">
+            <h3>Minimum System Requirements</h3>
+            {{obj.min_sys_req}}
+        </div>
+        {% endif %}
+        {% if obj.rec_sys_req %}
+        <div class="col-12">
+            <h3>Recommended System Requirements</h3>
+            {{obj.rec_sys_req}}
+        </div>
+        {% endif %}
+        {% if obj.general_notes %}
+        <div class="col-12">
+            <h3>General Notes</h3>
+            {{obj.general_notes}}
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+<!-- Recommend Section -->
+<div class="section">
+    <div class="container">
+        <div class="section-header">
+            You may also like
+        </div>
+        <div class="splide slider__content" id="">
+            <div class="splide__track">
+                <ul class="splide__list">
+                    <!-- ITEM -->
+                    {% for i in recobjs|slice:":50" %}
+                    <li class="splide__slide">
+                        <a href="{% url 'details_softwaresGames' category=i.category pk=i.slug %}" class="movie-item">
+                            <div class="play-btn">
+                                <i class="fad fa-info-circle"></i>
+                            </div>
+                            {% if i.info1 %}
+                            <div class="info1">
+                                {{i.info1}}
+                            </div>
+                            {% endif %}
+                            {% if i.info2 %}
+                            <div class="info2">
+                                {{i.info2}}
+                            </div>
+                            {% endif %}
+                            <div class="card-overlay"></div>
+                            <img data-splide-lazy="{% if i.tmdb_thumbnail %}{{i.tmdb_thumbnail}}{% elif i.thumbnail %}{{i.thumbnail.url}}{% endif %}"
+                                alt="thumbnail">
+                            <div class="movie-item-content">
+                                <div class="movie-item-title">
+                                    {{i.title}}
+                                </div>
+                                <div class="movie-infos">
+                                    <div class="movie-info">
+                                        <i class="fas fa-star"></i>
+                                        <span>{{i.platform|title}}</span>
+                                    </div>
+                                    <div class="movie-info">
+                                        <i class="fas fa-list-alt"></i>
+                                        <span>{{i.category|title}}</span>
+                                    </div>
+                                    <div class="movie-info">
+                                        <i class="fas fa-file-alt"></i>
+                                        <span>{{i.size}}</span>
+                                    </div>
+                                    {% if i.rated %}
+                                    <div class="movie-info">
+                                        <i class="fas fa-percentage"></i>
+                                        <span>{{i.rated}}</span>
+                                    </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    {% endfor %}
+                    <!-- END ITEM -->
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Recommend Section -->
+{% endblock content %}

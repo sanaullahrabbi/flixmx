@@ -1,0 +1,5 @@
+Django
+Pillow
+six
+whitenoise
+tmdbv3api

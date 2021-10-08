@@ -1,0 +1,1 @@
+from flixmx.wsgi import application

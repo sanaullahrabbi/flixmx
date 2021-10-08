@@ -1,0 +1,297 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% load customtags %}
+
+
+{% block title %}{{obj.title}} | Flixmx{% endblock title %}
+{% block description %}{{obj.description|truncatechars:500}}{% endblock description %}
+
+{% block twittertitle %}{{obj.title}} | Flixmx{% endblock twittertitle %}
+{% block twitterdescription %}{{obj.description|truncatechars:500}}{% endblock twitterdescription %}
+{% block twitterimg %}{% if obj.tmdb_thumbnail %}{{obj.tmdb_thumbnail}}{% elif obj.thumbnail %}{{ SITE_URL }}{{obj.thumbnail.url}}{% endif %}{% endblock twitterimg %}
+
+{% block ogtitle %}{{obj.title}} | Flixmx{% endblock ogtitle %}
+{% block ogtype %}{{obj.type}}{% endblock ogtype%}
+{% block ogimage %}{% if obj.tmdb_thumbnail %}{{obj.tmdb_thumbnail}}{% elif obj.thumbnail %}{{ SITE_URL }}{{obj.thumbnail.url}}{% endif %}{% endblock ogimage %}
+{% block ogdescription %}{{obj.description|truncatechars:500}}{% endblock ogdescription %}
+
+{% block content %}
+<div id="watchModal" class="">
+    <div class="trailer-section">
+        <span id="closeModal">&times;</span>
+        <iframe src={{obj.trailer_link}} title="YouTube video player" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen></iframe>
+    </div>
+</div>
+<div class="movie-details-main">
+    <div class="movie-details-container">
+        <div class="col-4 thumbnail">
+            <img src="{% if obj.tmdb_thumbnail %}{{obj.tmdb_thumbnail}}{% elif obj.thumbnail %}{{obj.thumbnail.url}}{% endif %}"
+                alt="thumbnail" loading="lazy">
+        </div>
+        <div class="col-8 details">
+            <div class="item-content-title">
+                {{obj.title}}
+            </div>
+            <div class="movie-infos">
+                <div class="movie-info">
+                    <i class="fas fa-star"></i>
+                    <span>{{obj.rating}}</span>
+                </div>
+                <div class="movie-info">
+                    <i class="fas fa-clock"></i>
+                    <span>{{obj.runtime}}</span>
+                </div>
+                <div class="movie-info">
+                    <i class="fas fa-list-alt"></i>
+                    <span>{{obj.type|title}}</span>
+                </div>
+                {% if obj.rated %}
+                <div class="movie-info">
+                    <i class="fas fa-percentage"></i>
+                    <span>{{obj.rated}}</span>
+                </div>
+                {% endif %}
+            </div>
+            <br>
+            <div class="row genrecontainer">
+                <div class="col-title">
+                    <h4><span>Genres :</span></h4>
+                </div>
+                <div class="col-details">
+                    <h4>{% for genre in obj.genre.all %}
+                        <a
+                            href="{% url 'genres' genrename=genre.genre_name|lower %}">{{ genre.genre_name }}</a>{% if not forloop.last %},{% endif %}
+                        {% endfor %}
+                    </h4>
+                </div>
+            </div>
+            <div class="row genrecontainer">
+                <div class="col-title">
+                    <h4><span>Directors :</span></h4>
+                </div>
+                <div class="col-details">
+                    <h4>{% for dirct in obj.director|splitVal:"," %}
+                        <a href="">{{dirct}}</a>{% if not forloop.last %},{% endif %}
+                        {% endfor %}
+                    </h4>
+                </div>
+            </div>
+            {% if obj.writers %}
+            <div class="row genrecontainer">
+                <div class="col-title">
+                    <h4><span>Writers :</span></h4>
+                </div>
+                <div class="col-details">
+                    <h4>{% for writer in obj.writers|splitVal:"," %}
+                        <a href="">{{writer}}</a>{% if not forloop.last %},{% endif %}
+                        {% endfor %}
+                    </h4>
+                </div>
+            </div>
+            {% endif %}
+            <div class="row genrecontainer">
+                <div class="col-title">
+                    <h4><span>Starring :</span></h4>
+                </div>
+                <div class="col-details">
+                    <h4>{% for star in obj.starring|splitVal:"," %}
+                        <a href="">{{star}}</a>{% if not forloop.last %},{% endif %}
+                        {% endfor %}
+                    </h4>
+                </div>
+            </div>
+            <br>
+            <div class="row descript">
+                <div class="col-12">
+                    <h4 style="margin-bottom: 0.5rem;"><span>Plot :</span></h4>
+                    {{obj.description|safe}}
+                </div>
+            </div>
+            <div class="item-action">
+                <a class="btn btn-hover" id="openwatch">
+                    <i class="fas fa-caret-right fa-md"></i>
+                    <span>Watch trailer</span>
+                </a>
+                <a href="{% if obj.watch_link %}{{obj.watch_link}}{% endif %}" class="btn btn-hover">
+                    <i class="fas fa-caret-right fa-md"></i>
+                    <span>Watch now</span>
+                </a>
+                <div class="dropdowncontain">
+                    <div class="btn btn-hover downloadbtn">
+                        <i class="fas fa-caret-right fa-md qIcon"></i>
+                        <span> Download now</span>
+                    </div>
+                    <div class="qSelect">
+                        <ul>
+                            {% if obj.direct_download_480p or obj.direct_download_720p or obj.direct_download_1080p or obj.direct_download_4K or obj.direct_download_dual_audio or obj.direct_download_hindi_dubbed %}
+                            <li><a>Direct Download</a>
+                                <div class="dropdown-2">
+                                    {% if obj.direct_download_480p %}
+                                    <a href="{{obj.direct_download_480p}}">480p</a>
+                                    {% endif %}
+                                    {% if obj.direct_download_720p %}
+                                    <a href="{{obj.direct_download_720p}}">720p</a>
+                                    {% endif %}
+                                    {% if obj.direct_download_1080p %}
+                                    <a href="{{obj.direct_download_1080p}}">1080p</a>
+                                    {% endif %}
+                                    {% if obj.direct_download_4K %}
+                                    <a href="{{obj.direct_download_4K}}">4K</a>
+                                    {% endif %}
+                                    {% if obj.direct_download_dual_audio %}
+                                    <a href="{{obj.direct_download_dual_audio}}">Dual Audio</a>
+                                    {% endif %}
+                                    {% if obj.direct_download_hindi_dubbed %}
+                                    <a href="{{obj.direct_download_hindi_dubbed}}">Hindi Dubbed</a>
+                                    {% endif %}
+                                </div>
+                            </li>
+                            {% endif %}
+                            {% if obj.gdrive_quality_480p or obj.gdrive_quality_720p or obj.gdrive_quality_1080p or obj.gdrive_quality_4K or obj.gdrive_download_hindi_dubbed or obj.gdrive_download_dual_audio  %}
+                            <li><a>Google Drive</a>
+                                <div class="dropdown-2">
+                                    {% if obj.gdrive_quality_480p %}
+                                    <a href="{{obj.gdrive_quality_480p}}">480p</a>
+                                    {% endif %}
+                                    {% if obj.gdrive_quality_720p %}
+                                    <a href="{{obj.gdrive_quality_720p}}">720p</a>
+                                    {% endif %}
+                                    {% if obj.gdrive_quality_1080p %}
+                                    <a href="{{obj.gdrive_quality_1080p}}">1080p</a>
+                                    {% endif %}
+                                    {% if obj.gdrive_quality_4K %}
+                                    <a href="{{obj.gdrive_quality_4K}}">4K</a>
+                                    {% endif %}
+                                    {% if obj.gdrive_download_dual_audio %}
+                                    <a href="{{obj.gdrive_download_dual_audio}}">Dual Audio</a>
+                                    {% endif %}
+                                    {% if obj.gdrive_download_hindi_dubbed %}
+                                    <a href="{{obj.gdrive_download_hindi_dubbed}}">Hindi Dubbed</a>
+                                    {% endif %}
+                                </div>
+                                {% endif %}
+                            </li>
+                            {% if obj.onedrive_quality_480p or obj.onedrive_quality_720p or obj.onedrive_quality_1080p or obj.onedrive_quality_4K or obj.onedrive_download_hindi_dubbed or obj.onedrive_download_dual_audio  %}
+                            <li><a>OneDrive </a>
+                                <div class="dropdown-2">
+                                    {% if obj.onedrive_quality_480p %}
+                                    <a href="{{obj.onedrive_quality_480p}}">480p</a>
+                                    {% endif %}
+                                    {% if obj.onedrive_quality_720p %}
+                                    <a href="{{obj.onedrive_quality_720p}}">720p</a>
+                                    {% endif %}
+                                    {% if obj.onedrive_quality_1080p %}
+                                    <a href="{{obj.onedrive_quality_1080p}}">1080p</a>
+                                    {% endif %}
+                                    {% if obj.onedrive_quality_4K %}
+                                    <a href="{{obj.onedrive_quality_4K}}">4K</a>
+                                    {% endif %}
+                                    {% if obj.onedrive_download_dual_audio %}
+                                    <a href="{{obj.onedrive_download_dual_audio}}">Dual Audio</a>
+                                    {% endif %}
+                                    {% if obj.onedrive_download_hindi_dubbed %}
+                                    <a href="{{obj.onedrive_download_hindi_dubbed}}">Hindi Dubbed</a>
+                                    {% endif %}
+                                </div>
+                            </li>
+                            {% endif %}
+                            {% if obj.torrent %}
+                            <li><a href="{{obj.torrent}}">Torrent</a></li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container extraInfo">
+        <div class="col-12">
+            <h3>Synopsys</h3>
+            {{obj.synopsys}}
+        </div>
+        <div class="subtitle">
+            <h3>
+                <a href="{{obj.subtitle_link}}">Download Subtitle</a>
+            </h3>
+        </div>
+        <div class="col-12" style="white-space:normal;">
+            <div
+                style="color: #333;font-size: 0.875rem;font-weight: 700;background: #fff;padding: 5px 10px;margin: 5px 0;display: inline-block;">
+                Added
+                By : {% if obj.created_by.first_name %}{{obj.created_by.first_name}} {% endif %}
+                {% if obj.created_by.last_name %}{{obj.created_by.last_name}}{% endif %}</div>
+
+            <div style="font-weight: 600;">Last Edit By :
+                {% if obj.last_update.first_name %}{{obj.last_update.first_name}}
+                {% endif %}
+                {% if obj.last_update.last_name %}{{obj.last_update.last_name}}{% endif %}</div>
+        </div>
+    </div>
+</div>
+
+<!-- Recommend Section -->
+<div class="section">
+    <div class="container">
+        <div class="section-header">
+            You may also like
+        </div>
+        <div class="splide slider__content" id="">
+            <div class="splide__track">
+                <ul class="splide__list">
+                    <!-- ITEM -->
+                    {% for i in recobjs|slice:":50" %}
+                    <li class="splide__slide">
+                        <a href="{% url 'details_movie' pk=i.slug %}" class="movie-item">
+                            <div class="play-btn">
+                                <i class="fad fa-play"></i>
+                            </div>
+                            {% if i.info1 %}
+                            <div class="info1">
+                                {{i.info1}}
+                            </div>
+                            {% endif %}
+                            {% if i.info2 %}
+                            <div class="info2">
+                                {{i.info2}}
+                            </div>
+                            {% endif %}
+                            <div class="card-overlay"></div>
+                            <img data-splide-lazy="{% if i.tmdb_thumbnail %}{{i.tmdb_thumbnail}}{% elif i.thumbnail %}{{i.thumbnail.url}}{% endif %}"
+                                alt="thumbnail">
+                            <div class="movie-item-content">
+                                <div class="movie-item-title">
+                                    {{i.title}}
+                                </div>
+                                <div class="movie-infos">
+                                    <div class="movie-info">
+                                        <i class="fas fa-star"></i>
+                                        <span>{{i.rating}}</span>
+                                    </div>
+                                    <div class="movie-info">
+                                        <i class="fas fa-clock"></i>
+                                        <span>{{i.runtime}}</span>
+                                    </div>
+                                    <div class="movie-info">
+                                        <i class="fas fa-list-alt"></i>
+                                        <span>{{i.type|title}}</span>
+                                    </div>
+                                    {% if i.rated %}
+                                    <div class="movie-info">
+                                        <span>{{i.rated}}</span>
+                                    </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    {% endfor %}
+                    <!-- END ITEM -->
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Recommend Section -->
+{% endblock content %}

@@ -1,0 +1,371 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="{% static 'images/favicon.png' %}" type="image/png" sizes="16x16">
+    <title>{% block title %}{% endblock title %}</title>
+    <meta name="robots" content="index,follow,noarchive">
+    <meta name="description" content="{% block description %}Flixmx is an online video streaming & downloading platform that offers a wide variety of TV
+    series, movies, anime, documentaries, apps & games and more from here & around the world. All our content are uploaded
+    in Google Drive, One Drive link. So, you can download easily from our website. This is Flixmx, let&apos;s
+    play.{% endblock description %}">
+    <meta name="keywords" content="">
+    <meta name="author" content="">
+    <link rel="canonical" href="{{ request.build_absolute_uri }}">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="{% block twittertitle %}{% endblock twittertitle %}">
+    <meta name="twitter:description" content="{% block twitterdescription %}Flixmx is an online video streaming & downloading platform that offers a wide variety of TV
+    series, movies, anime, documentaries, apps & games and more from here & around the world. All our content are uploaded
+    in Google Drive, One Drive link. So, you can download easily from our website. This is Flixmx, let&apos;s
+    play.{% endblock twitterdescription %}">
+    <meta property="twitter:site" content="{{ request.get_host }}">
+    <meta property="twitter:domain" content="{{ SITE_URL }}">
+    <meta property="twitter:image:src"
+        content="{% block twitterimg %}{% static 'flixmx.jpg' %}{% endblock twitterimg %}">
+
+    <meta property="og:locale" content="en_US">
+    <meta property="og:title" content="{% block ogtitle %}{% endblock ogtitle %}">
+    <meta property="og:image:width" content="300">
+    <meta property="og:image:height" content="425">
+    <meta property="og:image:type" content="image/jpeg">
+    <meta property="og:site_name" content="Flixmx | Watch & Download Movies,TV-Series">
+    <meta property="og:url" content="{{ request.build_absolute_uri }}">
+    <meta property="og:type" content="{% block ogtype %}{% endblock ogtype%}">
+    <meta property="og:description" content="{% block ogdescription %}Flixmx is an online video streaming & downloading platform that offers a wide variety of TV
+    series, movies, anime, documentaries, apps & games and more from here & around the world. All our content are uploaded
+    in Google Drive, One Drive link. So, you can download easily from our website. This is Flixmx, let&apos;s
+    play.{% endblock ogdescription %}">
+    <meta property="og:image" content="{% block ogimage %}{% static 'flixmx.jpg' %}{% endblock ogimage %}">
+
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="robots" content="max-image-preview:large">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <!-- SPLIDE CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@2.4.21/dist/css/splide.min.css">
+    <!-- APP CSS -->
+    <link rel="stylesheet" href="{% static 'assets/css/grid.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/app.css' %}">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.15.0/css/all.css" />
+
+    {% include 'core/style.html' %}
+</head>
+
+<body>
+    <!-- Preload  -->
+    {% include 'preload.html' %}
+    <!-- End Preload -->
+    <div class="nav-wrapper">
+        <div class="nav">
+            <a href="/" class="logo">
+                <!--<i class='bx bx-movie-play bx-tada main-color'></i>Ftpfl<span class="main-color">i</span>x-->
+                <img src="{% static 'logo.png' %}" alt="logo.png" class="brand-logo">
+            </a>
+            <ul class="menu-items" id="nav-menu">
+                <li class="dropdown">
+                    <a class="menu-item expand-btn"><span>Movies</span><i
+                            class="fas fa-angle-right main-navitem-icon"></i></a>
+                    <ul class="dropdown-menu expandable">
+                        <li><a href="{% url 'movies' type='english' %}" class="menu-item">English</a></li>
+                        <li class="dropdown-right">
+                            <a class="menu-item expand-btn">Indian<i class="fas fa-angle-right"></i></a>
+                            <ul class="menu-right expandable">
+                                <li><a href="{% url 'movies' type='hindi' %}" class="menu-item">Hindi</a></li>
+                                <li><a href="{% url 'movies' type='tamil' %}" class="menu-item">Tamil</a></li>
+                                <li><a href="{% url 'movies' type='malayalam' %}" class="menu-item">Malayalam</a></li>
+                                <li><a href="{% url 'movies' type='telegu' %}" class="menu-item">Telegu</a></li>
+                                <li><a href="{% url 'movies' type='kannada' %}" class="menu-item">Kannada</a></li>
+                                <li><a href="{% url 'movies' type='indian_bangla' %}" class="menu-item">Bengali</a></li>
+                        </li>
+                    </ul>
+                </li>
+                <li class="dropdown-right">
+                    <a class="menu-item expand-btn">Foreign<i class="fas fa-angle-right"></i></a>
+                    <ul class="menu-right expandable">
+                        <div class="menu-items-part-container">
+                            <div class="menu-items-part">
+                                <li><a href="{% url 'movies' type='korean' %}" class="menu-item">Korean</a></li>
+                                <li><a href="{% url 'movies' type='spanish' %}" class="menu-item">Spanish</a></li>
+                                <li><a href="{% url 'movies' type='japanese' %}" class="menu-item">Japanese</a></li>
+                                <li><a href="{% url 'movies' type='turkish' %}" class="menu-item">Turkish</a></li>
+                                <li><a href="{% url 'movies' type='chinese' %}" class="menu-item">Chinese</a></li>
+                                <li><a href="{% url 'movies' type='indonesian' %}" class="menu-item">Indonesian</a></li>
+                            </div>
+                            <div class="menu-items-part">
+                                <li><a href="{% url 'movies' type='iranian' %}" class="menu-item">Iranian</a></li>
+                                <li><a href="{% url 'movies' type='french' %}" class="menu-item">French</a></li>
+                                <li><a href="{% url 'movies' type='german' %}" class="menu-item">German</a></li>
+                                <li><a href="{% url 'movies' type='russian' %}" class="menu-item">Russian</a></li>
+                                <li><a href="{% url 'movies' type='thai' %}" class="menu-item">Thai</a></li>
+                                <li><a href="{% url 'movies' type='others' %}" class="menu-item">Others</a></li>
+                            </div>
+                        </div>
+                    </ul>
+                </li>
+
+                <li class="dropdown-right">
+                    <a class="menu-item expand-btn">Classic<i class="fas fa-angle-right"></i></a>
+                    <ul class="menu-right expandable">
+                        <li><a href="{% url 'classic' type='hollywood' %}" class="menu-item">Hollywood</a></li>
+                        <li><a href="{% url 'classic' type='bollywood' %}" class="menu-item">Bollywood</a></li>
+                        <li><a href="{% url 'classic' type='foreign' %}" class="menu-item">Foreign</a></li>
+                        <li><a href="{% url 'classic' type='horror' %}" class="menu-item">Horror</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown-right">
+                    <a class="menu-item expand-btn">Special Category<i class="fas fa-angle-right"></i></a>
+                    <ul class="menu-right expandable">
+                        <li><a href="{% url 'bsub' %}" class="menu-item">BSub</a></li>
+                        <li><a href="{% url 'hindidubbed' %}" class="menu-item">Hindi Dubbed</a></li>
+                        <li><a href="{% url 'dualaudio' %}" class="menu-item">Dual Audio</a></li>
+                        <li><a href="{% url 'satyajitray' %}" class="menu-item">Satyajit Ray</a></li>
+                        <li><a href="{% url 'jamesbond' %}" class="menu-item">James Bond</a>
+                        </li>
+                        <li><a href="{% url 'imdbtop' %}" class="menu-item">Imdb Top 250</a>
+                        </li>
+                        <li><a href="{% url 'oscarwinning' %}" class="menu-item">Oscar Winning</a></li>
+                        <li><a href="{% url 'superhero' %}" class="menu-item">Superhero</a></li>
+                    </ul>
+                </li>
+            </ul>
+            </li>
+            <li class="dropdown">
+                <a class="menu-item expand-btn"><span>Genres</span><i
+                        class="fas fa-angle-right main-navitem-icon"></i></a>
+                <ul class="dropdown-menu expandable">
+                    <div class="menu-items-part-container">
+                        {% for genres in genresList %}
+                        <div class="menu-items-part">
+                            {% for genre in genres %}
+                            <li><a href="{% url 'genres' genrename=genre.genre_name|lower %}"
+                                    class="menu-item">{{genre.genre_name}}</a></li>
+                            {% endfor %}
+                        </div>
+                        {% endfor %}
+                    </div>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a class="menu-item expand-btn"><span>Animations</span><i
+                        class="fas fa-angle-right main-navitem-icon"></i></a>
+                <ul class="dropdown-menu expandable">
+                    <li><a href="{% url 'movies' type='animation' %}" class="menu-item">Movies</a></li>
+                    <li><a href="{% url 'series' type='animation' %}" class="menu-item">Series</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a class="menu-item expand-btn"><span>Anime</span><i
+                        class="fas fa-angle-right main-navitem-icon"></i></a>
+                <ul class="dropdown-menu expandable">
+                    <li><a href="{% url 'movies' type='anime' %}" class="menu-item">Movies</a></li>
+                    <li><a href="{% url 'series' type='anime' %}" class="menu-item">Series</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a class="menu-item expand-btn"><span>Tv & Web Series</span><i
+                        class="fas fa-angle-right main-navitem-icon"></i></a>
+                <ul class="dropdown-menu expandable">
+                    <li><a href="{% url 'series' type='english' %}" class="menu-item">English</a></li>
+                    <li><a href="{% url 'series' type='foreign' %}" class="menu-item">Foreign</a></li>
+                    <li><a href="{% url 'series' type='indian' %}" class="menu-item">Indian</a></li>
+                    <li><a href="{% url 'series' type='korean' %}" class="menu-item">K-Dramas</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a class="menu-item expand-btn"><span>Softwares & Games</span><i
+                        class="fas fa-angle-right main-navitem-icon"></i></a>
+                <ul class="dropdown-menu expandable">
+                    <li><a href="{% url 'softwaresGames' category='softwares' %}" class="menu-item">Softwares</a></li>
+                    <li><a href="{% url 'softwaresGames' category='games' %}" class="menu-item">Games</a></li>
+                    <li class="dropdown-right">
+                        <a class="menu-item expand-btn">Extras<i class="fas fa-angle-right"></i></a>
+                        <ul class="menu-right expandable">
+                            <li><a href="{% url 'softwaresGames' category='ebooks' %}" class="menu-item">eBooks</a></li>
+                            <li><a href="{% url 'softwaresGames' category='tutorials' %}"
+                                    class="menu-item">Tutorials</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li class="signin__mobile">
+                <a href="https://blog.flixmx.com/login" class="btn fill_btn">
+                    <span>Sign In</span>
+                </a>
+            </li>
+            </ul>
+            <!-- MOBILE MENU TOGGLE -->
+            <div class="ham__search">
+                <!-- <input type="checkbox" id="show-search"> -->
+                <label for="show-search" class="search-icon"><i class="fas fa-search"></i></label>
+                <form action="{% url 'search' %}" method="get" class="search-box">
+                    <div>
+                        <input type="text" name="title" placeholder="Type Something to Search..." required
+                            autocomplete="off" id="id_search" autofocus>
+                        <button type="submit" class="go-icon"><i class="fas fa-long-arrow-alt-right"></i></button>
+                    </div>
+                </form>
+                <div class="searched-content">
+                    <ul></ul>
+                </div>
+                <div class="hamburger" id="hamburger">
+                    <div class="bar"></div>
+                </div>
+                <a href="https://blog.flixmx.com/login" class="btn signin__desktop fill_btn" id="signin__desktop">
+                    <span>Sign In</span>
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- End Nav -->
+    {% block content %}
+    {% endblock content %}
+    <!-- Footer -->
+    <footer class="section">
+        <div class="container">
+            <div class="row">
+                <div class="col-5 col-md-6 col-sm-12">
+                    <div class="content">
+                        <a href="/" class="logo">
+                            <!-- <i class='bx bx-movie-play bx-tada main-color'></i>Flix<span class="main-color">m</span>x -->
+                            <img src="{% static 'logo.png' %}" alt="logo.png" class="brand-logo">
+
+                        </a>
+                        <p>
+                            Flixmx is an online video streaming & downloading platform that offers a wide variety of
+                            TV
+                            series, movies, anime, documentaries, apps & games and more from here & around the world.
+                            All our content are uploaded in "Google Drive", "One Drive" link. So, you can download
+                            easily from our website. This is Flixmx, let's play.
+                        </p>
+                        <div class="social-list">
+                            <a href="https://www.facebook.com/flixmxofficial" target="_blank" class="social-item">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="https://www.twitter.com/flixmxofficial" target="_blank" class="social-item">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="https://www.instagram.com/flixmx" target="_blank" class="social-item">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-7 col-md-6 col-sm-12">
+                    <div class="row">
+                        <div class="col-4 col-md-6 col-sm-6">
+                            <div class="content">
+                                <p><b>Browse</b></p>
+                                <ul class="footer-menu">
+                                    <li><a href="{% url 'aboutus' %}">About us</a></li>
+                                    <li><a href="{% url 'privacy' %}">Privacy policy</a></li>
+                                    <li><a href="{% url 'contactus' %}">Contact us</a></li>
+                                    <li><a href="#">Pricing plans</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-4 col-md-6 col-sm-6">
+                            <div class="content">
+                                <p><b>Help</b></p>
+                                <ul class="footer-menu">
+                                    <li><a href="{% url 'aboutus' %}">About us</a></li>
+                                    <li><a href="{% url 'privacy' %}">Privacy policy</a></li>
+                                    <li><a href="{% url 'contactus' %}">Contact us</a></li>
+                                    <li><a href="#">Pricing plans</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-4 col-md-6 col-sm-6">
+                            <div class="content">
+                                <p><b>Download app</b></p>
+                                <ul class="footer-menu">
+                                    <li>
+                                        <a href="#">
+                                            <img src="{% static 'images/google-play.png' %}" alt="">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <img src="{% static 'images/app-store.png' %}" alt="">
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- End Footer  -->
+
+
+    <!-- back to top -->
+    <span class="btp-container" id="btpbutton"><i class="fas fa-chevron-up"></i></span>
+
+    <!-- Messenger Chat Plugin Code -->
+    <div id="fb-root"></div>
+
+    <!-- Your Chat Plugin code -->
+    <div id="fb-customer-chat" class="fb-customerchat">
+    </div>
+
+    <!-- Copyright  -->
+    <div class="copyright">
+        Copyright 2021 <a href="/" target="_blank">flixmx.com</a>
+    </div>
+    <!-- End Copyright -->
+
+
+    <!-- Script -->
+    <!-- Jquery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- Splide -->
+    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@2.4.21/dist/js/splide.min.js"></script>
+    <!-- Waypoint -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
+    <!-- FONT-AWSOME -->
+    <!-- <script src="{% static 'assets/js/fontawesome.js' %}"></script> -->
+    <!-- APP SCRIPT -->
+    <script src="{% static 'assets/js/helper_function.js' %}"></script>
+    <script src="{% static 'assets/js/app.js' %}"></script>
+    {% block script %}
+    {% endblock script %}
+    <!-- End Script -->
+
+    <script>
+        window.addEventListener('load', function () {
+            $('.preload').fadeOut('slow')
+            $('body').css('overflow', 'visible')
+
+            var chatbox = document.getElementById('fb-customer-chat');
+            chatbox.setAttribute("page_id", "1750632178374600");
+            chatbox.setAttribute("attribution", "biz_inbox");
+
+            window.fbAsyncInit = function () {
+                FB.init({
+                    xfbml: true,
+                    version: 'v12.0'
+                });
+            };
+
+            (function (d, s, id) {
+                var js, fjs = d.getElementsByTagName(s)[0];
+                if (d.getElementById(id)) return;
+                js = d.createElement(s);
+                js.id = id;
+                js.src = 'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js';
+                fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));
+        })
+    </script>
+</body>
+
+</html>

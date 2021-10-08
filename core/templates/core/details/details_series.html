@@ -1,0 +1,235 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %}{{obj.title}} | Flixmx{% endblock title%}
+{% block description %}{{obj.description|truncatechars:500}}{% endblock description %}
+
+{% block twittertitle %}{{obj.title}} | Flixmx{% endblock twittertitle %}
+{% block twitterdescription %}{{obj.description|truncatechars:500}}{% endblock twitterdescription %}
+{% block twitterimg %}{% if obj.tmdb_thumbnail %}{{obj.tmdb_thumbnail}}{% elif obj.thumbnail %}{{ SITE_URL }}{{obj.thumbnail.url}}{% endif %}{% endblock twitterimg %}
+
+{% block ogtitle %}{{obj.title}} | Flixmx{% endblock ogtitle %}
+{% block ogtype %}{{obj.type}}{% endblock ogtype%}
+{% block ogimage %}{% if obj.tmdb_thumbnail %}{{obj.tmdb_thumbnail}}{% elif obj.thumbnail %}{{ SITE_URL }}{{obj.thumbnail.url}}{% endif %}{% endblock ogimage %}
+{% block ogdescription %}{{obj.description|truncatechars:500}}{% endblock ogdescription %}
+
+{% block content %}
+<div id="watchModal" class="">
+    <div class="trailer-section">
+        <span id="closeModal">&times;</span>
+        <iframe width="560" height="315" src={{obj.trailer_link}} title="YouTube video player" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen></iframe>
+    </div>
+</div>
+<div class="movie-details-main">
+    <div class="movie-details-container">
+        <div class="col-4 thumbnail">
+            <img src="{% if obj.tmdb_thumbnail %}{{obj.tmdb_thumbnail}}{% elif obj.thumbnail %}{{obj.thumbnail.url}}{% endif %}"
+                alt="thumbnail" loading="lazy">
+        </div>
+        <div class="col-8 details">
+            <div class="item-content-title">
+                {{obj.title}}
+            </div>
+            <div class="movie-infos">
+                <div class="movie-info">
+                    <i class="fas fa-star"></i>
+                    <span>{{obj.rating}}</span>
+                </div>
+                <div class="movie-info">
+                    <i class="fas fa-list-alt"></i>
+                    <span>{{obj.type|title}}</span>
+                </div>
+                <div class="movie-info">
+                    <i class="far fa-calendar-alt"></i>
+                    <span>{% if not obj.end_date %} ( {{obj.release_date|date:"Y"}} )
+                        {% else %}( {{obj.release_date|date:"Y"}} - {{obj.end_date|date:"Y"}} ){% endif %}</span>
+                </div>
+                {% if obj.rated %}
+                <div class="movie-info">
+                    <i class="fas fa-percentage"></i>
+                    <span>{{obj.rated}}</span>
+                </div>
+                {% endif %}
+            </div>
+            <br>
+            <div class="row genrecontainer">
+                <div class="col-12">
+                    <h4><span>Genres :</span>
+                        {% for genre in obj.genre.all %}
+                        <a
+                            href="{% url 'genres' genrename=genre.genre_name|lower %}">{{ genre.genre_name }}</a>{% if not forloop.last %},{% endif %}
+                        {% endfor %}
+                    </h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <h4><span>Directors :</span> {{obj.director}}</h4>
+                </div>
+            </div>
+            {% if obj.writers %}
+            <div class="row">
+                <div class="col-12">
+                    <h4><span>Writers :</span> {{obj.writers}}</h4>
+                </div>
+            </div>
+            {% endif %}
+            <div class="row">
+                <div class="col-12">
+                    <h4><span>Starring :</span> {{obj.starring}}</h4>
+                </div>
+            </div>
+            <br>
+            <div class="row descript">
+                <div class="col-12">
+                    {{obj.description}}
+                </div>
+            </div>
+            <div class="item-action">
+                <a class="btn btn-hover" id="openwatch">
+                    <i class="fas fa-caret-right fa-md"></i>
+                    <span>Watch trailer</span>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="container extraInfo">
+        <div class="col-12">
+            <h3>Synopsys</h3>
+            {{obj.synopsys}}
+        </div>
+    </div>
+</div>
+
+
+<!-- SEASON -->
+<div class="section">
+    <div class="container">
+        {% if not seasons %}
+        <div class="section-header">
+            No seasons Found !!!
+        </div>
+        {% else %}
+        <div class="section-header">
+            Seasons
+        </div>
+        <div class="splide slider__content" id="">
+            <div class="splide__track">
+                <ul class="splide__list">
+                    <!-- ITEM -->
+                    {% for i in seasons %}
+                    <li class="splide__slide">
+                        <a href="{% url 'details_season' pk=i.id %}" class="movie-item">
+                            <div class="play-btn">
+                                <i class="fad fa-play"></i>
+                            </div>
+                            {% if i.info1 %}
+                            <div class="info1">
+                                {{i.info1}}
+                            </div>
+                            {% endif %}
+                            {% if i.info2 %}
+                            <div class="info2">
+                                {{i.info2}}
+                            </div>
+                            {% endif %}
+                            <div class="card-overlay"></div>
+                            <img data-splide-lazy="{% if i.thumbnail %}{{ i.thumbnail.url }}{% elif obj.tmdb_thumbnail %}{{obj.tmdb_thumbnail}}{% elif obj.thumbnail %}{{obj.thumbnail.url}}{% endif %}"
+                                alt="thumbnail">
+                            <div class="movie-item-content">
+                                <div class="movie-item-title">
+                                    Season {{i.season_number}}
+                                </div>
+                                <div class="movie-infos">
+                                    <div class="movie-info">
+                                        <i class="fas fa-star"></i>
+                                        <span>Episodes : {{i.episode_count}}</span>
+                                    </div>
+                                    <div class="movie-info">
+                                        <i class="fad fa-stream"></i>
+                                        <span>Status : {% if i.complete %} Completed {% else %} Running
+                                            {% endif %}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    {% endfor %}
+                    <!-- END ITEM -->
+                </ul>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</div>
+<!-- End SEASON -->
+
+
+<!-- Recommend Section -->
+<div class="section">
+    <div class="container">
+        <div class="section-header">
+            You may also like
+        </div>
+        <div class="splide slider__content" id="">
+            <div class="splide__track">
+                <ul class="splide__list">
+                    <!-- ITEM -->
+                    {% for i in recobjs|slice:":50" %}
+                    <li class="splide__slide">
+                        <a href="{% url 'details_series' pk=i.slug %}" class="movie-item">
+                            <div class="play-btn">
+                                <i class="fad fa-play"></i>
+                            </div>
+                            {% if i.info1 %}
+                            <div class="info1">
+                                {{i.info1}}
+                            </div>
+                            {% endif %}
+                            {% if i.info2 %}
+                            <div class="info2">
+                                {{i.info2}}
+                            </div>
+                            {% endif %}
+                            <div class="card-overlay"></div>
+                            <img data-splide-lazy="{% if i.tmdb_thumbnail %}{{i.tmdb_thumbnail}}{% elif i.thumbnail %}{{i.thumbnail.url}}{% endif %}"
+                                alt="thumbnail">
+                            <div class="movie-item-content">
+                                <div class="movie-item-title">
+                                    {{i.title}}
+                                </div>
+                                <div class="movie-infos">
+                                    <div class="movie-info">
+                                        <i class="fas fa-star"></i>
+                                        <span>{{i.rating}}</span>
+                                    </div>
+                                    {% if i.rated %}
+                                    <div class="movie-info">
+                                        <span>{{i.rated}}</span>
+                                    </div>
+                                    {% endif %}
+                                    <div class="movie-info">
+                                        <i class="fas fa-list-alt"></i>
+                                        <span>{{i.type|title}}</span>
+                                    </div>
+                                    <div class="movie-info">
+                                        <i class="far fa-calendar-alt"></i>
+                                        <span>{% if not i.end_date %} ( {{i.release_date|date:"Y"}} )
+                                            {% else %}( {{i.release_date|date:"Y"}} - {{i.end_date|date:"Y"}}
+                                            ){% endif %}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    {% endfor %}
+                    <!-- END ITEM -->
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Recommend Section -->
+{% endblock content %}

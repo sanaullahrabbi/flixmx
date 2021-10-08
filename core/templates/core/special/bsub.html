@@ -1,0 +1,133 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %}BSub - Movies | Flixmx{% endblock title %}
+
+{% block twittertitle %}}BSub - Movies | Flixmx{% endblock twittertitle %}
+
+{% block ogtitle %}}BSub - Movies | Flixmx{% endblock ogtitle %}
+
+{% block ogtype %}bsub{% endblock ogtype%}
+
+{% block content %}
+
+<div class="section" style="max-width: 1920px; margin: 0 auto;">
+    <div class="container">
+        <div class="section-header">
+            bsub - movies
+            <div class="totalobj">
+                <span class="total">Total - {{totalobj}}</span>
+            </div>
+        </div>
+        <div class="recContent_main">
+            <!-- MOVIE ITEM -->
+            {% for i in bsubmovies %}
+            <a href="{% url 'details_movie' pk=i.movie_content.slug %}" class="recContent col-3">
+                {% if i.movie_content.info1 %}
+                <div class="info1">
+                    {{i.movie_content.info1}}
+                </div>
+                {% endif %}
+                {% if i.movie_content.info2 %}
+                <div class="info2">
+                    {{i.movie_content.info2}}
+                </div>
+                {% endif %}
+                <div class="card-overlay"></div>
+                <img src="{% if i.movie_content.tmdb_thumbnail %}{{i.movie_content.tmdb_thumbnail}}{% elif i.movie_content.thumbnail %}{{i.movie_content.thumbnail.url}}{% endif %}"
+                    alt="thumbnail" loading="lazy">
+                <div class="movie-item-content">
+                    <div class="movie-item-title">
+                        {{i.movie_content.title}}
+                    </div>
+                    <div class="movie-infos">
+                        <div class="movie-info">
+                            <i class="fas fa-star"></i>
+                            <span>{{i.movie_content.rating}}</span>
+                        </div>
+                        <div class="movie-info">
+                            <i class="fas fa-clock"></i>
+                            <span>{{i.movie_content.runtime}}</span>
+                        </div>
+                        <div class="movie-info">
+                            <i class="fas fa-list-alt"></i>
+                            <span>{{i.movie_content.type|title}}</span>
+                        </div>
+                        {% if i.movie_content.rated %}
+                        <div class="movie-info">
+                            <i class="fas fa-percentage"></i>
+                            <span>{{i.movie_content.rated}}</span>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+<div class="container">
+    <ul class="pagination justify-content-center">
+        {% if bsubmovies.number != 1 %}
+        <li class="page-item">
+            <a class="page-link" href="?page=1">&laquo;</a>
+        </li>
+        {% else %}
+        <li class="page-item disabled">
+            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">&laquo;</a>
+        </li>
+        {% endif %}
+        {% if bsubmovies.has_previous %}
+        <li class="page-item">
+            <a class="page-link" href="?page={{ bsubmovies.previous_page_number }}">&lsaquo;</a>
+        </li>
+        {% else %}
+        <li class="page-item disabled">
+            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">&lsaquo;</a>
+        </li>
+        {% endif %}
+
+        {% if bsubmovies.number|add:'-4' > 1 %}
+        <li class="page-item"><a class="page-link" href="?page={{ bsubmovies.number|add:'-5' }}">&hellip;</a></li>
+        {% endif %}
+
+        {% for i in bsubmovies.paginator.page_range %}
+        {% if bsubmovies.number == i %}
+        <li class="page-item active" aria-current="page">
+            <span class="page-link">
+                {{ i }}
+                <span class="sr-only">(current)</span>
+            </span>
+        </li>
+        {% elif i > bsubmovies.number|add:'-5' and i < bsubmovies.number|add:'5' %}
+        <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+        {% endif %}
+        {% endfor %}
+
+        {% if bsubmovies.paginator.num_pages > bsubmovies.number|add:'4' %}
+        <li class="page-item"><a class="page-link" href="?page={{ bsubmovies.number|add:'5' }}">&hellip;</a></li>
+        {% endif %}
+
+        {% if bsubmovies.has_next %}
+        <li class="page-item">
+            <a class="page-link" href="?page={{ bsubmovies.next_page_number }}">&rsaquo;</a>
+        </li>
+        {% else %}
+        <li class="page-item disabled">
+            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">&rsaquo;</a>
+        </li>
+        {% endif %}
+        {% if bsubmovies.number != bsubmovies.paginator.num_pages %}
+        <li class="page-item">
+            <a class="page-link" href="?page={{ bsubmovies.paginator.num_pages }}">&raquo;</a>
+        </li>
+        {% else %}
+        <li class="page-item disabled">
+            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">&raquo;</a>
+        </li>
+        {% endif %}
+    </ul>
+</div>
+<!--end of Pagination-->
+
+{% endblock content %}

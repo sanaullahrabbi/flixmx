@@ -1,0 +1,4 @@
+*.pyc
+mediafiles
+staticfiles
+db.sqlite3
