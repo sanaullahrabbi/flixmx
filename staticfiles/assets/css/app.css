@@ -683,6 +683,7 @@ img {
     font-size: 15px;
     font-weight: 400;
     white-space: nowrap;
+    margin-left: 12px;
 }
 
 .totalobj a {
