@@ -106,7 +106,6 @@ def softwaresGames_view(request,category):
 
 def genres_view(request,genrename):
     genrename = unquote(genrename)
-    print(genrename)
     movies = MovieModel.objects.filter(genre__genre_name__icontains=genrename)
     paginator = Paginator(movies,20)
     page_number = request.GET.get('page')
@@ -222,6 +221,7 @@ def superhero_view(request):
 
 
 def details_movie_view(request,pk):
+
     obj = MovieModel.objects.get(slug = pk)
     recobjs = sorted(MovieModel.objects.filter(type=obj.type).order_by('-created_at')[:12], key=lambda x: random.random())
     context = {
@@ -230,6 +230,44 @@ def details_movie_view(request,pk):
     }
     return render(request,'core/details/details_movie.html',context)
 
+def director_contents_view(request,directorName):
+    directorName = unquote(directorName)
+    movies = MovieModel.objects.filter(director__icontains = directorName)
+    paginator = Paginator(movies,20)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    context = {
+        'movies':page_obj,
+        'director':directorName,
+        'totalobj':movies.count,
+    }
+    return render(request,'core/all/director_contents.html',context)
+
+def writer_contents_view(request,writerName):
+    writerName = unquote(writerName)
+    movies = MovieModel.objects.filter(writers__icontains = writerName)
+    paginator = Paginator(movies,20)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    context = {
+        'movies':page_obj,
+        'writer':writerName,
+        'totalobj':movies.count,
+    }
+    return render(request,'core/all/writer_contents.html',context)
+
+def actor_contents_view(request,actorName):
+    actorName = unquote(actorName)
+    movies = MovieModel.objects.filter(starring__icontains = actorName)
+    paginator = Paginator(movies,20)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    context = {
+        'movies':page_obj,
+        'actor':actorName,
+        'totalobj':movies.count,
+    }
+    return render(request,'core/all/actor_contents.html',context)
 
 def details_series_view(request,pk):
     obj = SeriesModel.objects.get(slug = pk)

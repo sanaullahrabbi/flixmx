@@ -73,7 +73,8 @@
                 </div>
                 <div class="col-details">
                     <h4>{% for dirct in obj.director|splitVal:"," %}
-                        <a href="">{{dirct}}</a>{% if not forloop.last %},{% endif %}
+                        <a
+                            href="{% url 'director_contents' directorName=dirct %}">{{dirct}}</a>{% if not forloop.last %},{% endif %}
                         {% endfor %}
                     </h4>
                 </div>
@@ -85,7 +86,8 @@
                 </div>
                 <div class="col-details">
                     <h4>{% for writer in obj.writers|splitVal:"," %}
-                        <a href="">{{writer}}</a>{% if not forloop.last %},{% endif %}
+                        <a
+                            href="{% url 'writer_contents' writerName=writer %}">{{writer}}</a>{% if not forloop.last %},{% endif %}
                         {% endfor %}
                     </h4>
                 </div>
@@ -97,7 +99,8 @@
                 </div>
                 <div class="col-details">
                     <h4>{% for star in obj.starring|splitVal:"," %}
-                        <a href="">{{star}}</a>{% if not forloop.last %},{% endif %}
+                        <a
+                            href="{% url 'actor_contents' actorName=star %}">{{star}}</a>{% if not forloop.last %},{% endif %}
                         {% endfor %}
                     </h4>
                 </div>

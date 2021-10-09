@@ -11,6 +11,10 @@ urlpatterns = [
     path('genres/<str:genrename>', views.genres_view,name='genres'),
     path('classic/<str:type>', views.classic_view,name='classic'),
 
+    path('director/<str:directorName>', views.director_contents_view,name='director_contents'),
+    path('actor/<str:actorName>', views.actor_contents_view,name='actor_contents'),
+    path('writer/<str:writerName>', views.writer_contents_view,name='writer_contents'),
+
     path('dualaudio', views.dualaudio_view,name='dualaudio'),
     path('bsub', views.bsub_view,name='bsub'),
     path('hindidubbed', views.hindidubbed_view,name='hindidubbed'),
