@@ -1557,7 +1557,7 @@ footer .content p {
     padding: 0rem 2rem 2rem 2rem;
     position: absolute;
     left: 0;
-    bottom: 2rem;
+    bottom: 1em;
 
 }
 
@@ -1715,6 +1715,7 @@ footer .content p {
         padding: 2rem 5rem;
         left: 5rem;
         overflow: visible;
+        bottom: 2em;
     }
 
     #secondary-slider .splide__slide {
