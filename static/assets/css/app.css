@@ -1615,7 +1615,7 @@ footer .content p {
 }
 
 #secondary-slider .splide__slide.is-active.is-visible {
-    margin-left: 40px !important;
+    margin-left: 20px !important;
     /* transform: scale(1.15) translate(-5px) perspective(1000px) rotateY(25deg); */
     box-shadow: 0px 0px 5px 5px #98989888;
     transform: scale(1.2) perspective(500px) rotate3d(3, 5, -1, 27deg);
@@ -1727,7 +1727,7 @@ footer .content p {
     }
 
     #secondary-slider .splide__slide.is-active.is-visible {
-        /* margin: 0 40px 0 60px !important; */
+        margin-left: 40px !important;
     }
 }
 
