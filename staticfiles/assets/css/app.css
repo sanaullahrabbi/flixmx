@@ -1316,9 +1316,9 @@ footer .content {
         padding-top: 50%;
     }
 
-    .item-content-wraper {
+    /* .item-content-wraper {
         width: 50%;
-    }
+    } */
 }
 
 @media only screen and (max-width: 1080px) {
@@ -1474,6 +1474,7 @@ footer .content {
     padding: 0;
     position: relative;
     overflow: hidden;
+    font-size: 1rem;
 }
 
 .content {
@@ -1503,18 +1504,27 @@ footer .content p {
 }
 
 #primary-slider .splide__slide .btn {
-    padding: 0rem 1rem;
+    padding: 0rem 1em;
     margin-top: 5px;
     margin-right: 5px;
 }
 
+#primary-slider .splide__slide .content p {
+    font-size: 1.15em;
+    line-height: 1.25em;
+}
+
 #primary-slider .splide__slide .subtitle,
 #primary-slider .splide__slide h2 {
-    padding: 1rem 0;
+    padding: 1em 0;
+}
+
+#primary-slider .splide__slide h2 {
+    font-size: 1.5em;
 }
 
 #primary-slider .splide__slide .title {
-    font-size: calc(1.4vw + 18px)
+    font-size: 2.25em
 }
 
 #primary-slider .splide__slide .subtitle a {
@@ -1559,10 +1569,12 @@ footer .content p {
     opacity: 0.9 !important;
     border: none !important;
     width: 180px !important;
-    height: 105px !important;
+    height: unset !important;
+    aspect-ratio: 16/9 !important;
     transition: all 0.4s ease;
     position: relative;
     cursor: grab;
+    background-position: top !important;
 
 }
 
@@ -1587,18 +1599,30 @@ footer .content p {
 
 #secondary-slider .splide__slide .movie-infos {
     margin-top: 5px;
+    position: absolute;
+    bottom: 0;
+    padding: 5px;
 
 }
 
 #secondary-slider .splide__slide.is-active.is-visible,
 #secondary-slider .splide__slide:hover {
     opacity: 1 !important;
-    transform: scale(1.075);
     z-index: 2;
     transition: all 0.4s ease;
     /* box-shadow: 0 0 10px 2.5px #0a7cffb2; */
-    box-shadow: 0px 0px 5px 5px #98989888;
+    transform: scale(1.075);
+}
 
+#secondary-slider .splide__slide.is-active.is-visible {
+    margin-left: 40px !important;
+    /* transform: scale(1.15) translate(-5px) perspective(1000px) rotateY(25deg); */
+    box-shadow: 0px 0px 5px 5px #98989888;
+    transform: scale(1.2) perspective(500px) rotate3d(3, 5, -1, 27deg);
+}
+
+#secondary-slider .content {
+    padding: 0 0 2em 0;
 }
 
 .ep-num {
@@ -1606,10 +1630,14 @@ footer .content p {
     display: flex;
     justify-content: flex-start;
     height: 100%;
-    align-items: flex-end;
+    align-items: flex-start;
 }
 
 @media screen and (max-width:768px) {
+    .episode-main {
+        font-size: 0.85rem;
+    }
+
     #primary-slider .splide__slide {
         height: unset !important;
         min-height: 320px !important;
@@ -1627,12 +1655,19 @@ footer .content p {
     #secondary-slider {
         position: relative;
         bottom: unset;
-        padding: 0rem 2rem 4rem 2rem;
+        padding: 1rem 2rem 3rem 2rem;
     }
 
     #secondary-slider .splide__slide {
-        width: 100px !important;
-        height: 60px !important;
+        width: 140px !important;
+    }
+
+    #secondary-slider .splide__slide.is-active.is-visible {
+        margin-left: 10px !important;
+    }
+
+    .ep-num h2 {
+        font-size: 16px;
     }
 }
 
@@ -1641,9 +1676,26 @@ footer .content p {
         padding-bottom: 1rem;
     }
 
-    #primary-slider .splide__slide .content {
-        padding-top: 10%;
+    .episode-main {
+        font-size: 1.5rem;
     }
+
+    #primary-slider .splide__slide .content {
+        padding: 5rem 0 0 5rem;
+    }
+
+    /* #primary-slider .splide__slide .title {
+        font-size: 4em;
+    }
+
+    #primary-slider .splide__slide h2 {
+        font-size: 1.5rem;
+    } */
+
+    /* #primary-slider .splide__slide .content p {
+        font-size: 1.85rem;
+        line-height: 2.25rem;
+    } */
 
     .movie-info {
         font-size: 1.1rem;
@@ -1660,7 +1712,21 @@ footer .content p {
     }
 
     #secondary-slider {
-        padding: 5rem 2rem;
+        padding: 2rem 5rem;
+        left: 5rem;
+        overflow: visible;
+    }
+
+    #secondary-slider .splide__slide {
+        width: 260px !important;
+    }
+
+    #secondary-slider .content {
+        margin-left: -5rem;
+    }
+
+    #secondary-slider .splide__slide.is-active.is-visible {
+        /* margin: 0 40px 0 60px !important; */
     }
 }
 

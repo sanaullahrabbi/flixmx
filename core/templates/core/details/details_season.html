@@ -79,8 +79,8 @@
     </div>
 
     <div id="secondary-slider" class="splide">
-        <div class="content" style="padding: 2rem 0;">
-            <h2>Episodes</h2>
+        <div class="content">
+            <h2>Episodes List <i class="fad fa-angle-double-right"></i></h2>
         </div>
         <div class="splide__track">
             <ul class="splide__list">
@@ -89,7 +89,7 @@
                     <img src="{% if episode.thumbnail %}{{ episode.thumbnail.url }}{% else %}{{obj.series.thumbnail.url}}{% endif %}"
                         loading="lazy" alt="">
                     <div class="ep-num">
-                        <h1>{{episode.episode}}</h1>
+                        <h2>Ep {{episode.episode}}</h2>
                     </div>
                     <div class="movie-infos">
                         <div class="movie-info">
