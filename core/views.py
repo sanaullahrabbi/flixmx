@@ -339,6 +339,10 @@ def privacy_view(request):
     return render(request,'core/extras/privacy.html')
 
 
+def fileserver_view(request):
+    return render(request,'core/fileserver.html')
+
+
 
 
 # custom error handling page

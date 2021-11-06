@@ -199,6 +199,7 @@ img {
 
 
 .menu-items .menu-item {
+    white-space: nowrap;
     cursor: pointer;
     min-width: max-content;
     -webkit-transition: background 0.3s ease-in-out;

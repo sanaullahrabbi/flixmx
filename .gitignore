@@ -2,3 +2,5 @@
 mediafiles
 db.sqlite3
 test.html
+runlocal.py
+*.zip

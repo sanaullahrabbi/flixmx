@@ -33,6 +33,7 @@ urlpatterns = [
     path('contactus', views.contactus_view,name='contactus'),
     path('aboutus', views.aboutus_view,name='aboutus'),
     path('privacy', views.privacy_view,name='privacy'),
+    path('fileserver', views.fileserver_view,name='fileserver'),
     path('testapi', views.testapi,name='testapi'),
 
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
