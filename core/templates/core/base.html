@@ -368,6 +368,10 @@
                 fjs.parentNode.insertBefore(js, fjs);
             }(document, 'script', 'facebook-jssdk'));
         })
+        setTimeout(() => {
+            $('.preload').fadeOut('slow')
+            $('body').css('overflow', 'visible')
+        }, 10000)
     </script>
 </body>
 
