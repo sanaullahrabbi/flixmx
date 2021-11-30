@@ -225,11 +225,15 @@
                 Added
                 By : {% if obj.created_by.first_name %}{{obj.created_by.first_name}} {% endif %}
                 {% if obj.created_by.last_name %}{{obj.created_by.last_name}}{% endif %}</div>
-
+            <div
+                style="color: #333;font-size: 0.875rem;font-weight: 700;background: #fff;padding: 5px 10px;margin: 5px auto;display: block; width: max-content;">
+                Added On: {{obj.created_at}}
+            </div>
             <div style="font-weight: 600;">Last Edit By :
                 {% if obj.last_update.first_name %}{{obj.last_update.first_name}}
                 {% endif %}
                 {% if obj.last_update.last_name %}{{obj.last_update.last_name}}{% endif %}</div>
+
         </div>
     </div>
 </div>

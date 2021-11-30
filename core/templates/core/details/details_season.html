@@ -21,7 +21,7 @@
             <ul class="splide__list">
                 {% for episode in episodes %}
                 <li class="splide__slide">
-                    <img src="{% if episode.thumbnail %}{{ episode.thumbnail.url }}{% elif obj.thumbnail %}{{ obj.thumbnail.url }}{% elif obj.series.tmdb_poster %}{{ obj.series.tmdb_poster}}{% else %}{{obj.series.poster.url}}{% endif %}"
+                    <img src="{% if obj.series.tmdb_poster %}{{ obj.series.tmdb_poster }}{% elif obj.series.poster %}{{obj.series.poster.url}}{% elif obj.series.tmdb_thumbnail %}{{obj.series.tmdb_thumbnail}}{% elif obj.series.thumbnail %}{{obj.series.thumbnail.url}}{% else %}''{% endif %}"
                         loading="lazy">
                     <div class="content">
                         <h2>{{obj.series.title}} : Season {{obj.season_number}} , Episode {{episode.episode}}</h2>
