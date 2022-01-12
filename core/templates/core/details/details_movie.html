@@ -117,10 +117,29 @@
                     <i class="fas fa-caret-right fa-md"></i>
                     <span>Watch trailer</span>
                 </a>
-                <a href="{% if obj.watch_link %}{{obj.watch_link}}{% endif %}" class="btn btn-hover">
+                <div class="dropdowncontain">
+                    <div class="btn btn-hover downloadbtn">
+                        <i class="fas fa-caret-right fa-md qIcon"></i>
+                        <span> watch now</span>
+                    </div>
+                    <div class="qSelect">
+                        <ul>
+                            {% if obj.watch_link_english %}
+                            <li><a href="{{ obj.watch_link_english }}">English</a></li>
+                            {% endif %}
+                            {% if obj.watch_link_hindi %}
+                            <li><a href="{{ obj.watch_link_hindi }}">Hindi</a></li>
+                            {% endif %}
+                            {% if obj.watch_link_others_name and obj.watch_link_others %}
+                            <li><a href="{{ obj.watch_link_others }}">{{ obj.watch_link_others_name }}</a></li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                </div>
+                <!-- <a href="{% if obj.watch_link %}{{obj.watch_link}}{% endif %}" class="btn btn-hover">
                     <i class="fas fa-caret-right fa-md"></i>
                     <span>Watch now</span>
-                </a>
+                </a> -->
                 <div class="dropdowncontain">
                     <div class="btn btn-hover downloadbtn">
                         <i class="fas fa-caret-right fa-md qIcon"></i>
@@ -200,6 +219,32 @@
                                 </div>
                             </li>
                             {% endif %}
+
+                            {% if obj.mega_quality_480p or obj.mega_quality_720p or obj.mega_quality_1080p or obj.mega_quality_4K or obj.mega_download_hindi_dubbed or obj.mega_download_dual_audio  %}
+                            <li><a>Mega </a>
+                                <div class="dropdown-2">
+                                    {% if obj.mega_quality_480p %}
+                                    <a href="{{obj.mega_quality_480p}}">480p</a>
+                                    {% endif %}
+                                    {% if obj.mega_quality_720p %}
+                                    <a href="{{obj.mega_quality_720p}}">720p</a>
+                                    {% endif %}
+                                    {% if obj.mega_quality_1080p %}
+                                    <a href="{{obj.mega_quality_1080p}}">1080p</a>
+                                    {% endif %}
+                                    {% if obj.mega_quality_4K %}
+                                    <a href="{{obj.mega_quality_4K}}">4K</a>
+                                    {% endif %}
+                                    {% if obj.mega_download_dual_audio %}
+                                    <a href="{{obj.mega_download_dual_audio}}">Dual Audio</a>
+                                    {% endif %}
+                                    {% if obj.mega_download_hindi_dubbed %}
+                                    <a href="{{obj.mega_download_hindi_dubbed}}">Hindi Dubbed</a>
+                                    {% endif %}
+                                </div>
+                            </li>
+                            {% endif %}
+
                             {% if obj.torrent %}
                             <li><a href="{{obj.torrent}}">Torrent</a></li>
                             {% endif %}

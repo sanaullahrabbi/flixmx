@@ -37,8 +37,8 @@
 
  //  Download collapse 
  $(".downloadbtn").click(function (e) {
-     $('.downloadbtn > .qIcon').toggleClass('active');
-     $(".qSelect").slideToggle();
+     $(this).children('.qIcon').toggleClass('active');
+     $(this).next(".qSelect").slideToggle();
      e.stopPropagation();
  });
 

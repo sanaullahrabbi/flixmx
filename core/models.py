@@ -69,7 +69,11 @@ class MovieModel(models.Model):
     rated = models.CharField(max_length=250,null=True,blank=True)
     release_date = models.DateField(null=True,blank=True,default=date.today)    
     trailer_link = models.CharField(max_length=999,null=True,blank=True)
-    watch_link = models.URLField(max_length=999,null=True,blank=True)
+
+    watch_link_english = models.URLField(max_length=999,null=True,blank=True)
+    watch_link_hindi = models.URLField(max_length=999,null=True,blank=True)
+    watch_link_others_name = models.CharField(max_length=250,null=True)
+    watch_link_others = models.URLField(max_length=999,null=True,blank=True)
 
     direct_download_480p = models.URLField(max_length=999,null=True,blank=True)
     direct_download_720p = models.URLField(max_length=999,null=True,blank=True)
@@ -91,6 +95,13 @@ class MovieModel(models.Model):
     onedrive_quality_4K = models.URLField(max_length=999,null=True,blank=True)
     onedrive_download_dual_audio = models.URLField(max_length=999,null=True,blank=True)
     onedrive_download_hindi_dubbed = models.URLField(max_length=999,null=True,blank=True)
+
+    mega_quality_480p = models.URLField(max_length=999,null=True,blank=True)
+    mega_quality_720p = models.URLField(max_length=999,null=True,blank=True)
+    mega_quality_1080p = models.URLField(max_length=999,null=True,blank=True)
+    mega_quality_4K = models.URLField(max_length=999,null=True,blank=True)
+    mega_download_dual_audio = models.URLField(max_length=999,null=True,blank=True)
+    mega_download_hindi_dubbed = models.URLField(max_length=999,null=True,blank=True)
 
     torrent = models.URLField(max_length=999,null=True,blank=True)
 
