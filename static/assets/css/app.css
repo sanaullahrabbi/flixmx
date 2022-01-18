@@ -1209,6 +1209,10 @@ footer .content {
 }
 
 @media only screen and (max-width: 850px) {
+    .dropdowncontain .qSelect {
+        position: relative !important;
+    }
+
 
     .dropdowncontain .qSelect .dropdown-2 {
         display: none;
@@ -1246,7 +1250,7 @@ footer .content {
     /* white-space: pre-line; */
     /* text-align: center; */
     /* overflow-wrap: break-word; */
-    /* word-break: break-all; */
+    word-break: break-all;
     /* padding-bottom: 1rem !important; */
     padding: 1rem;
     background-color: #444444bf;
