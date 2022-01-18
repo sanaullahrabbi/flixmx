@@ -124,22 +124,19 @@
                     </div>
                     <div class="qSelect">
                         <ul>
-                            {% if obj.watch_link_english %}
-                            <li><a href="{{ obj.watch_link_english }}">English</a></li>
+                            {% if obj.watch_link_main_source %}
+                            <li><a href="{{ obj.watch_link_main_source }}">Main Source</a></li>
                             {% endif %}
-                            {% if obj.watch_link_hindi %}
-                            <li><a href="{{ obj.watch_link_hindi }}">Hindi</a></li>
+                            {% if obj.watch_link_alt1_name and obj.watch_link_alt1_url %}
+                            <li><a href="{{ obj.watch_link_alt1_url }}">{{ obj.watch_link_alt1_name }}</a></li>
                             {% endif %}
-                            {% if obj.watch_link_others_name and obj.watch_link_others %}
-                            <li><a href="{{ obj.watch_link_others }}">{{ obj.watch_link_others_name }}</a></li>
+                            {% if obj.watch_link_alt2_name and obj.watch_link_alt2_url %}
+                            <li><a href="{{ obj.watch_link_alt2_url }}">{{ obj.watch_link_alt2_name }}</a></li>
                             {% endif %}
                         </ul>
                     </div>
                 </div>
-                <!-- <a href="{% if obj.watch_link %}{{obj.watch_link}}{% endif %}" class="btn btn-hover">
-                    <i class="fas fa-caret-right fa-md"></i>
-                    <span>Watch now</span>
-                </a> -->
+
                 <div class="dropdowncontain">
                     <div class="btn btn-hover downloadbtn">
                         <i class="fas fa-caret-right fa-md qIcon"></i>
@@ -148,7 +145,7 @@
                     <div class="qSelect">
                         <ul>
                             {% if obj.direct_download_480p or obj.direct_download_720p or obj.direct_download_1080p or obj.direct_download_4K or obj.direct_download_dual_audio or obj.direct_download_hindi_dubbed %}
-                            <li><a>Direct Download</a>
+                            <li><a>GDirect</a>
                                 <div class="dropdown-2">
                                     {% if obj.direct_download_480p %}
                                     <a href="{{obj.direct_download_480p}}">480p</a>
@@ -172,7 +169,7 @@
                             </li>
                             {% endif %}
                             {% if obj.gdrive_quality_480p or obj.gdrive_quality_720p or obj.gdrive_quality_1080p or obj.gdrive_quality_4K or obj.gdrive_download_hindi_dubbed or obj.gdrive_download_dual_audio  %}
-                            <li><a>Google Drive</a>
+                            <li><a>GDShare</a>
                                 <div class="dropdown-2">
                                     {% if obj.gdrive_quality_480p %}
                                     <a href="{{obj.gdrive_quality_480p}}">480p</a>
@@ -254,31 +251,23 @@
             </div>
         </div>
     </div>
-    <div class="container extraInfo">
-        <div class="col-12">
-            <h3>Synopsys</h3>
-            {{obj.synopsys}}
+    <div class="container extraInfo row">
+        <div class="col-7">
+            <a class="subtitle" href="{{obj.subtitle_link}}">Download Subtitle</a>
+            {{obj.synopsys|safe}}
         </div>
-        <div class="subtitle">
-            <h3>
-                <a href="{{obj.subtitle_link}}">Download Subtitle</a>
-            </h3>
-        </div>
-        <div class="col-12" style="white-space:normal;">
-            <div
-                style="color: #333;font-size: 0.875rem;font-weight: 700;background: #fff;padding: 5px 10px;margin: 5px 0;display: inline-block;">
+        <div class="col-4" style="white-space:normal;">
+            <div>
                 Added
                 By : {% if obj.created_by.first_name %}{{obj.created_by.first_name}} {% endif %}
                 {% if obj.created_by.last_name %}{{obj.created_by.last_name}}{% endif %}</div>
-            <div
-                style="color: #333;font-size: 0.875rem;font-weight: 700;background: #fff;padding: 5px 10px;margin: 5px auto;display: block; width: max-content;">
+            <div>
                 Added On: {{obj.created_at}}
             </div>
-            <div style="font-weight: 600;">Last Edit By :
+            <div>Last Edit By :
                 {% if obj.last_update.first_name %}{{obj.last_update.first_name}}
                 {% endif %}
                 {% if obj.last_update.last_name %}{{obj.last_update.last_name}}{% endif %}</div>
-
         </div>
     </div>
 </div>

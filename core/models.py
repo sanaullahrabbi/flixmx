@@ -70,10 +70,11 @@ class MovieModel(models.Model):
     release_date = models.DateField(null=True,blank=True,default=date.today)    
     trailer_link = models.CharField(max_length=999,null=True,blank=True)
 
-    watch_link_english = models.URLField(max_length=999,null=True,blank=True)
-    watch_link_hindi = models.URLField(max_length=999,null=True,blank=True)
-    watch_link_others_name = models.CharField(max_length=250,null=True)
-    watch_link_others = models.URLField(max_length=999,null=True,blank=True)
+    watch_link_main_source = models.URLField(max_length=999,null=True,blank=True)
+    watch_link_alt1_name = models.CharField(max_length=250,null=True,blank=True)
+    watch_link_alt1_url = models.URLField(max_length=999,null=True,blank=True)
+    watch_link_alt2_name = models.CharField(max_length=250,null=True,blank=True)
+    watch_link_alt2_url = models.URLField(max_length=999,null=True,blank=True)
 
     direct_download_480p = models.URLField(max_length=999,null=True,blank=True)
     direct_download_720p = models.URLField(max_length=999,null=True,blank=True)

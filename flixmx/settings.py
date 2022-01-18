@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'core',
     'api',
+    'django_summernote',
 ]
 
 MIDDLEWARE = [

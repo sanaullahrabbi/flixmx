@@ -29,6 +29,27 @@
     background: #0059bf;
 }
 
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td,
+th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 5px;
+}
+
+tr:nth-child(even) {
+    background-color: #626262;
+}
+
+tr:nth-child(odd) {
+    background-color: #505050;
+}
+
 * {
     padding: 0;
     margin: 0;
@@ -715,7 +736,7 @@ img {
     align-items: center;
     font-size: 0.85em;
     font-weight: 500;
-    margin-right: 5px;
+    margin-right: 1rem;
 }
 
 .movie-info span {
@@ -1217,18 +1238,51 @@ footer .content {
 .extraInfo {
     background-color: rgba(0, 0, 0, 0.8);
     padding-bottom: 4rem !important;
+    justify-content: space-between;
+
 }
 
-.extraInfo .col-12 {
-    white-space: pre-line;
-    text-align: center;
-    overflow-wrap: break-word;
-    word-break: break-all;
-    padding-bottom: 1rem !important;
+.extraInfo .col-7 {
+    /* white-space: pre-line; */
+    /* text-align: center; */
+    /* overflow-wrap: break-word; */
+    /* word-break: break-all; */
+    /* padding-bottom: 1rem !important; */
+    padding: 1rem;
+    background-color: #444444bf;
+    color: #fff;
+    border-radius: 0.25rem;
+    flex: 1;
+    margin-right: 1rem;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    display: flex;
 }
 
-.extraInfo h3 {
-    color: var(--main-color);
+.extraInfo .col-4 {
+    background-color: #444444bf;
+    color: #fff;
+    padding: 1rem;
+    border-radius: 0.25rem;
+}
+
+.extraInfo .col-4 div {
+    color: #fff;
+    font-size: 0.875rem;
+    font-weight: 700;
+    background: #000;
+    padding: 1rem;
+    margin: 5px 0;
+    border-radius: 0.25rem;
+}
+
+.extraInfo a.subtitle {
+    color: #fff;
+    background-color: var(--main-color);
+    padding: 0.5rem;
+    display: inline-block;
+    margin-bottom: 0.5rem;
 }
 
 .extraInfo .subtitle {
@@ -1669,6 +1723,16 @@ footer .content p {
 
     .ep-num h2 {
         font-size: 16px;
+    }
+
+    .extraInfo .col-4 {
+        width: 100%;
+    }
+
+    .extraInfo .col-7 {
+        width: 100%;
+        margin: 0;
+        margin-bottom: 0.5rem;
     }
 }
 

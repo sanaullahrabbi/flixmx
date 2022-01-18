@@ -95,10 +95,23 @@
             </div>
         </div>
     </div>
-    <div class="container extraInfo">
-        <div class="col-12">
-            <h3>Synopsys</h3>
-            {{obj.synopsys}}
+    <div class="container extraInfo row">
+        <div class="col-7">
+            <a class="subtitle" href="{{obj.subtitle_link}}">Download Subtitle</a>
+            {{obj.synopsys|safe}}
+        </div>
+        <div class="col-4" style="white-space:normal;">
+            <div>
+                Added
+                By : {% if obj.created_by.first_name %}{{obj.created_by.first_name}} {% endif %}
+                {% if obj.created_by.last_name %}{{obj.created_by.last_name}}{% endif %}</div>
+            <div>
+                Added On: {{obj.created_at}}
+            </div>
+            <div>Last Edit By :
+                {% if obj.last_update.first_name %}{{obj.last_update.first_name}}
+                {% endif %}
+                {% if obj.last_update.last_name %}{{obj.last_update.last_name}}{% endif %}</div>
         </div>
     </div>
 </div>

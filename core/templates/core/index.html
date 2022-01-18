@@ -59,7 +59,7 @@
                                         {{i.movie_content.description|slice:":320"}}
                                     </div>
                                     <div class="item-action top-down delay-6">
-                                        <a href="{% if i.movie_content.watch_link %}{{i.movie_content.watch_link}}{% endif %}"
+                                        <a href="{% if i.movie_content.watch_link_main_source %}{{i.movie_content.watch_link_main_source}}{% endif %}"
                                             class="btn btn-hover">
                                             <i class="fas fa-caret-right fa-md"></i>
                                             <span>Watch now</span>
@@ -1038,7 +1038,7 @@
                     {{specialobj.description}}
                 </div>
                 <div class="item-action">
-                    <a href="{{specialobj.watch_link}}" class="btn btn-hover">
+                    <a href="{{specialobj.watch_link_main_source}}" class="btn btn-hover">
                         <i class="fas fa-caret-right fa-md"></i>
                         <span>Watch now</span>
                     </a>

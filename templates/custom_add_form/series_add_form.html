@@ -329,7 +329,40 @@
         $('#id_genre').select2({
             placeholder: "Select genres",
         });
-        var textContent = "Title :\nFile Size :\nResolution :\nAudio :\nSubtitle :\nSource :\n";
+        var textContent = `<table class="table table-bordered">
+            <tbody>
+                <tr>
+                    <td><b>
+                            <font color="#3984c6">Original Title</font>
+                        </b></td>
+                    <td><br></td>
+                </tr>
+                <tr>
+                    <td><b>
+                            <font color="#3984c6">Size</font>
+                        </b></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><b>
+                            <font color="#3984c6">Resolution</font>
+                        </b></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><b>
+                            <font color="#3984c6">Subtitle</font>
+                        </b></td>
+                    <td><br></td>
+                </tr>
+                <tr>
+                    <td><b>
+                            <font color="#3984c6">Source<br></font>
+                        </b></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>`;
         if (!$("#id_synopsys").val())
             $("#id_synopsys").val(textContent);
     });

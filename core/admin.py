@@ -1,6 +1,12 @@
 from django.contrib import admin
 from .models import GenreModel, MovieModel,SeriesModel,SeasonModel,EpisodeModel,SoftwaresGamesModel, SpecialModel, TopSlideModel , BSubModel,ClassicModel,DualAudioModel,SatyajitRayModel,JamesBondModel,HindiDubbedModel, IMDBTopModel,OscarWinningModel,SuperheroModel
+from django_summernote.admin import SummernoteModelAdmin
+# from .models import Post
 
+# class PostAdmin(SummernoteModelAdmin):
+#     summernote_fields = ('content',)
+
+# admin.site.register(Post, PostAdmin)
 
 
 admin.site.site_header = 'Flixmx Administration'
@@ -16,12 +22,15 @@ admin.site.register(SuperheroModel)
 
 
 
-class MovieModelAdmin(admin.ModelAdmin):
+# class MovieModelAdmin(SummernoteModelAdmin):
+#       summernote_fields = ('synopsys',)
+class MovieModelAdmin(SummernoteModelAdmin):
     list_display=('title','type','release_date',)
     list_filter=('type','genre','release_date')
     search_fields = ['title','release_date']
     add_form_template = 'custom_add_form/movie_add_form.html'
     change_form_template = 'custom_add_form/movie_add_form.html'
+    summernote_fields = ('synopsys',)
     def save_model(self, request, obj, form, change):
 
       if not obj.last_update:
@@ -56,11 +65,12 @@ admin.site.register(DualAudioModel,DualAudioModelAdmin)
 
 
 
-class SeriesModelAdmin(admin.ModelAdmin):
+class SeriesModelAdmin(SummernoteModelAdmin):
     list_display=('title','type','rating','release_date',)
     list_filter=('type','genre','release_date')
     search_fields = ['title','release_date']
     add_form_template = 'custom_add_form/series_add_form.html'
+    summernote_fields = ('synopsys',)
 admin.site.register(SeriesModel,SeriesModelAdmin)
 
 
