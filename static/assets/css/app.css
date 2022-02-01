@@ -7,11 +7,11 @@
     --text-color: #ffffff;
     --nav-height: 60px;
     --space-top: 30px;
-    --border-radius: 2.5px
 }
 
+
 ::-webkit-scrollbar {
-    width: 0.55vw;
+    width: 8.5px;
 }
 
 /* Track */
@@ -28,6 +28,7 @@
 ::-webkit-scrollbar-thumb:hover {
     background: #0059bf;
 }
+
 
 table {
     font-family: arial, sans-serif;

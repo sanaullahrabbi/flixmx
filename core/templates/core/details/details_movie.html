@@ -26,7 +26,7 @@
 </div>
 <div class="movie-details-main">
     <div class="movie-details-container">
-        <div class="col-4 thumbnail">
+        <div class="thumbnail">
             <img src="{% if obj.tmdb_thumbnail %}{{obj.tmdb_thumbnail}}{% elif obj.thumbnail %}{{obj.thumbnail.url}}{% endif %}"
                 alt="thumbnail" loading="lazy">
         </div>
@@ -53,6 +53,21 @@
                     <span>{{obj.rated}}</span>
                 </div>
                 {% endif %}
+            </div>
+            <div class="movie-infos infos2">
+                <div class="movie-info">
+                    <i class='bx bxs-bookmark-plus'></i>
+                </div>
+                <div class="movie-info">
+                    <i class='bx bxs-heart-circle'></i>
+                </div>
+                <div class="movie-info">
+                    <i class='bx bx-plus-medical'></i>
+                </div>
+                <a class="btn btn-hover play-trailer-btn" id="openwatch">
+                    <i class="fas fa-caret-right fa-md"></i>
+                    <span>play trailer</span>
+                </a>
             </div>
             <br>
             <div class="row infoscontainer">
@@ -110,13 +125,10 @@
                 <div class="col-12">
                     <h4><span>Plot :</span></h4>
                     {{obj.description|safe}}
+                    <button class="see-more-btn"><i class="fas fa-chevron-down"></i></button>
                 </div>
             </div>
             <div class="item-action">
-                <a class="btn btn-hover" id="openwatch">
-                    <i class="fas fa-caret-right fa-md"></i>
-                    <span>Watch trailer</span>
-                </a>
                 <div class="dropdowncontain">
                     <div class="btn btn-hover downloadbtn">
                         <i class="fas fa-caret-right fa-md qIcon"></i>
@@ -248,12 +260,25 @@
                         </ul>
                     </div>
                 </div>
+                <a class="subtitle btn btn-hover" href="{{obj.subtitle_link}}"><span>Download Subtitle</span></a>
             </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="social">
+            <a href=""><i class="fab fa-facebook-f fb"></i></a>
+            <a href=""><i class="fab fa-twitter tw"></i></a>
+            <a href=""><i class="fab fa-youtube yt"></i></a>
+            <a href=""><i class="fab fa-skype sk"></i></a>
+            <a href=""><i class="fab fa-dropbox db"></i></a>
+        </div>
+        <div class="total-view-down-infos">
+            <div class=""><i class="fas fa-eye"></i>View: 0</div>
+            <div class=""><i class="fas fa-download"></i>Download: 0</div>
         </div>
     </div>
     <div class="container extraInfo row">
         <div class="col-7">
-            <a class="subtitle" href="{{obj.subtitle_link}}">Download Subtitle</a>
             {{obj.synopsys|safe}}
         </div>
         <div class="col-4" style="white-space:normal;">
@@ -269,6 +294,14 @@
                 {% endif %}
                 {% if obj.last_update.last_name %}{{obj.last_update.last_name}}{% endif %}</div>
         </div>
+    </div>
+    <div class="review-container">
+        <button class="tbutton tbutton1" onclick="document.location='https://www.facebook.com/groups/flixmxofficial'"><i
+                class='bx bxl-facebook bx-burst'></i>Review
+            FB Group</button>
+        <button class="tbutton tbutton2" onclick="document.location='https://telegram.im/@flixmxofficial'"><i
+                class='bx bxl-telegram bx-burst'></i>Review TG
+            Group</button>
     </div>
 </div>
 

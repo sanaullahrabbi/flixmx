@@ -14,7 +14,7 @@
 {% block ogdescription %}{{obj.series.description|truncatechars:500}}{% endblock ogdescription %}
 
 {% block content %}
-<div class="container episode-main">
+<div class="episode-main">
     <div id="primary-slider" class="splide">
 
         <div class="splide__track">
@@ -23,19 +23,148 @@
                 <li class="splide__slide">
                     <img src="{% if obj.series.tmdb_poster %}{{ obj.series.tmdb_poster }}{% elif obj.series.poster %}{{obj.series.poster.url}}{% elif obj.series.tmdb_thumbnail %}{{obj.series.tmdb_thumbnail}}{% elif obj.series.thumbnail %}{{obj.series.thumbnail.url}}{% else %}''{% endif %}"
                         loading="lazy">
-                    <div class="content">
+                    <div class="primary-slider-content">
                         <h2>{{obj.series.title}} : Season {{obj.season_number}} , Episode {{episode.episode}}</h2>
                         <h1 class="title">{{episode.title}}</h1>
+                        <div class="episode-descript">
+                            {{episode.description|safe}}
+                        </div>
 
-                        <p>{{episode.description}}</p>
                         <div class="item-action">
-                            <a href="{{episode.watch_link}}" class="btn btn-hover"><i
-                                    class="fas fa-caret-right fa-md"></i><span>Watch now</span></a>
+
+                            <div class="dropdowncontain">
+                                <div class="btn btn-hover downloadbtn">
+                                    <i class="fas fa-caret-right fa-md qIcon"></i>
+                                    <span> watch now</span>
+                                </div>
+                                <div class="qSelect">
+                                    <ul>
+                                        {% if episode.watch_link_main_source %}
+                                        <li><a href="{{ episode.watch_link_main_source }}">Main Source</a></li>
+                                        {% endif %}
+                                        {% if episode.watch_link_alt1_name and episode.watch_link_alt1_url %}
+                                        <li><a
+                                                href="{{ episode.watch_link_alt1_url }}">{{ episode.watch_link_alt1_name }}</a>
+                                        </li>
+                                        {% endif %}
+                                        {% if episode.watch_link_alt2_name and episode.watch_link_alt2_url %}
+                                        <li><a
+                                                href="{{ episode.watch_link_alt2_url }}">{{ episode.watch_link_alt2_name }}</a>
+                                        </li>
+                                        {% endif %}
+                                    </ul>
+                                </div>
+                            </div>
                             <div class="dropdowncontain">
                                 <div class="btn btn-hover downloadbtn">
                                     <i class="fas fa-caret-right fa-md qIcon"></i>
                                     <span> Download now</span>
                                 </div>
+
+
+                                <div class="qSelect">
+                                    <ul>
+                                        {% if episode.direct_download or episode.direct_download_alt1_url or episode.direct_download_alt2_url %}
+                                        <li><a>GDirect</a>
+                                            <div class="dropdown-2">
+                                                {% if episode.direct_download %}
+                                                <a href="{{episode.direct_download}}">Main Source</a>
+                                                {% endif %}
+                                                {% if episode.direct_download_alt1_name and episode.direct_download_alt1_url %}
+                                                <a
+                                                    href="{{episode.direct_download_alt1_url}}">{{episode.direct_download_alt1_name}}</a>
+                                                {% endif %}
+                                                {% if episode.direct_download_alt2_name and episode.direct_download_alt2_url %}
+                                                <a
+                                                    href="{{episode.direct_download_alt2_url}}">{{episode.direct_download_alt2_name}}</a>
+                                                {% endif %}
+                                            </div>
+                                        </li>
+                                        {% endif %}
+                                        {% if episode.gdrive_download or episode.gdrive_download_alt1_url or episode.gdrive_download_alt2_url %}
+                                        <li><a>GDShare</a>
+                                            <div class="dropdown-2">
+                                                {% if episode.gdrive_download_link %}
+                                                <a href="{{episode.gdrive_download_link}}">Main Source</a>
+                                                {% endif %}
+                                                {% if episode.gdrive_download_alt1_name and episode.gdrive_download_alt1_url %}
+                                                <a
+                                                    href="{{episode.gdrive_download_alt1_url}}">{{episode.gdrive_download_alt1_name}}</a>
+                                                {% endif %}
+                                                {% if episode.gdrive_download_alt2_name and episode.gdrive_download_alt2_url %}
+                                                <a
+                                                    href="{{episode.gdrive_download_alt2_url}}">{{episode.gdrive_download_alt2_name}}</a>
+                                                {% endif %}
+                                            </div>
+                                        </li>
+                                        {% endif %}
+                                        {% if episode.onedrive_download or episode.onedrive_download_alt1_url or episode.onedrive_download_alt2_url %}
+                                        <li><a>One Drive</a>
+                                            <div class="dropdown-2">
+                                                {% if episode.onedrive_download_link %}
+                                                <a href="{{episode.onedrive_download_link}}">Main Source</a>
+                                                {% endif %}
+                                                {% if episode.onedrive_download_alt1_name and episode.onedrive_download_alt1_url %}
+                                                <a
+                                                    href="{{episode.onedrive_download_alt1_url}}">{{episode.onedrive_download_alt1_name}}</a>
+                                                {% endif %}
+                                                {% if episode.onedrive_download_alt2_name and episode.onedrive_download_alt2_url %}
+                                                <a
+                                                    href="{{episode.onedrive_download_alt2_url}}">{{episode.onedrive_download_alt2_name}}</a>
+                                                {% endif %}
+                                            </div>
+                                        </li>
+                                        {% endif %}
+                                        {% if episode.mega_download or episode.mega_download_alt1_url or episode.mega_download_alt2_url %}
+                                        <li><a>Mega</a>
+                                            <div class="dropdown-2">
+                                                {% if episode.mega_download_link %}
+                                                <a href="{{episode.mega_download_link}}">Main Source</a>
+                                                {% endif %}
+                                                {% if episode.mega_download_alt1_name and episode.mega_download_alt1_url %}
+                                                <a
+                                                    href="{{episode.mega_download_alt1_url}}">{{episode.mega_download_alt1_name}}</a>
+                                                {% endif %}
+                                                {% if episode.mega_download_alt2_name and episode.mega_download_alt2_url %}
+                                                <a
+                                                    href="{{episode.mega_download_alt2_url}}">{{episode.mega_download_alt2_name}}</a>
+                                                {% endif %}
+                                            </div>
+                                        </li>
+                                        {% endif %}
+
+                                    </ul>
+                                </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                <!-- 
+
+
+
+
                                 <div class="qSelect">
                                     <ul>
                                         {% if episode.direct_download or episode.gdrive_download_link or episode.onedrive_download_link %}
@@ -62,13 +191,14 @@
                                         {% endif %}
 
                                     </ul>
-                                </div>
+                                </div> -->
                             </div>
+
                         </div>
-                        <br>
                         <div class="subtitle">
                             <h3>
-                                <a href="{{episode.subtitle_link}}">Download Subtitle</a>
+                                <a class="" href="{{episode.subtitle_link}}"><span>Download
+                                        Subtitle</span></a>
                             </h3>
                         </div>
                     </div>

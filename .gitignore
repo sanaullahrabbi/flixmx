@@ -4,3 +4,5 @@ db.sqlite3
 test.html
 runlocal.py
 *.zip
+test2.html
+workspace.code-workspace

@@ -14,10 +14,10 @@
 {% block ogdescription %}{{obj.description|truncatechars:500}}{% endblock ogdescription %}
 
 {% block content %}
-<div class="movie-details-main">
+<div class="movie-details-main software-games-extra-main">
     <div class="movie-details-container">
-        <div class="col-4 thumbnail">
-            <img src="{% if obj.thumbnail %}{{obj.thumbnail.url}}{% endif %}" alt="movie-poster">
+        <div class="thumbnail">
+            <img src="{% if obj.thumbnail %}{{obj.thumbnail.url}}{% endif %}" alt="thumbnail">
         </div>
         <div class="col-8 details">
             <div class="item-content-title">
@@ -45,10 +45,12 @@
             </div>
             <br>
             {% if obj.genre.all %}
-            <div class="row genrecontainer">
-                <div class="col-12">
-                    <h4><span>Genre :</span>
-                        {% for genre in obj.genre.all %}
+            <div class="row infoscontainer">
+                <div class="col-title">
+                    <h4><span>Genres :</span></h4>
+                </div>
+                <div class="col-details">
+                    <h4>{% for genre in obj.genre.all %}
                         <a
                             href="{% url 'genres' genrename=genre.genre_name|lower %}">{{ genre.genre_name }}</a>{% if not forloop.last %},{% endif %}
                         {% endfor %}
@@ -56,15 +58,21 @@
                 </div>
             </div>
             {% endif %}
-            <div class="row">
-                <div class="col-12">
-                    <h4><span>Release Date :</span> {{obj.release_date}}</h4>
+            <div class="row infoscontainer">
+                <div class="col-title">
+                    <h4><span>Release Date :</span></h4>
+                </div>
+                <div class="col-details">
+                    <h4>{{obj.release_date}}</h4>
                 </div>
             </div>
             {% if obj.developer %}
-            <div class="row">
-                <div class="col-12">
-                    <h4><span>Developer :</span> {{obj.developer}}</h4>
+            <div class="row infoscontainer">
+                <div class="col-title">
+                    <h4><span>Developer :</span></h4>
+                </div>
+                <div class="col-details">
+                    <h4>{{obj.developer}}</h4>
                 </div>
             </div>
             {% endif %}
@@ -72,6 +80,7 @@
             <div class="row descript">
                 <div class="col-12">
                     {{obj.description|safe}}
+                    <button class="see-more-btn"><i class="fas fa-chevron-down"></i></button>
                 </div>
             </div>
             <div class=" item-action">
@@ -104,6 +113,19 @@
             </div>
         </div>
     </div>
+    <div class="container">
+        <div class="social">
+            <a href=""><i class="fab fa-facebook-f fb"></i></a>
+            <a href=""><i class="fab fa-twitter tw"></i></a>
+            <a href=""><i class="fab fa-youtube yt"></i></a>
+            <a href=""><i class="fab fa-skype sk"></i></a>
+            <a href=""><i class="fab fa-dropbox db"></i></a>
+        </div>
+        <div class="total-view-down-infos">
+            <div class=""><i class="fas fa-eye"></i>View: 0</div>
+            <div class=""><i class="fas fa-download"></i>Download: 0</div>
+        </div>
+    </div>
     <div class="container extraInfo">
         {% if obj.min_sys_req %}
         <div class="col-12">
@@ -123,6 +145,14 @@
             {{obj.general_notes}}
         </div>
         {% endif %}
+    </div>
+    <div class="review-container">
+        <button class="tbutton tbutton1" onclick="document.location='https://www.facebook.com/groups/flixmxofficial'"><i
+                class='bx bxl-facebook bx-burst'></i>Review
+            FB Group</button>
+        <button class="tbutton tbutton2" onclick="document.location='https://telegram.im/@flixmxofficial'"><i
+                class='bx bxl-telegram bx-burst'></i>Review TG
+            Group</button>
     </div>
 </div>
 

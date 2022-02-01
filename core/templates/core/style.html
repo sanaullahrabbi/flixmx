@@ -1,10 +1,5 @@
 <style>
     .movie-details-main {
-        height: 100%;
-        width: 100%;
-        max-width: 1920px;
-        margin: auto;
-        position: relative;
         background: url('{% if obj.tmdb_poster %}{{obj.tmdb_poster}}{% elif obj.tmdb_thumbnail %}{{obj.tmdb_thumbnail}}{% elif obj.poster %}{{obj.poster.url}}{% elif obj.thumbnail %}{{ obj.thumbnail.url }}{% endif %}') no-repeat center center;
         -webkit-background-size: cover;
         -moz-background-size: cover;

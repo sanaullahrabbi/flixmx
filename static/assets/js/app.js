@@ -72,6 +72,32 @@
      }
  })
 
+
+
+ descript = document.querySelector('.descript')
+ descriptCol = document.querySelector('.descript .col-12')
+ seeMoreBtn = document.querySelector('.see-more-btn')
+
+ function isOverflown(element) {
+     return element.scrollHeight > element.clientHeight;
+ }
+
+ // checkOverflow()
+ if (descriptCol) {
+     if (isOverflown(descriptCol)) {
+         descript.classList.add('hidden')
+     }
+ }
+ if (seeMoreBtn)
+     seeMoreBtn.addEventListener('click', () => {
+         descript.classList.toggle('expand')
+     })
+
+
+
+
+
+
  // Splide slider
  let width = window.innerWidth;
  let perLoadCount = 0
@@ -132,8 +158,8 @@
  // episodes slider must be top of other carosals for fixing offsetTop problem 
  if ((typeof (secondaryslider__content) != 'undefined' && secondaryslider__content != null) && (typeof (primaryslider__content) != 'undefined' && primaryslider__content != null)) {
      let secondarySlider = new Splide(secondaryslider__content, {
-         fixedWidth: 100,
-         height: 60,
+         //  fixedWidth: 100,
+         //  height: 60,
          gap: 20,
          cover: true,
          isNavigation: true,
@@ -141,8 +167,28 @@
          arrows: false,
          pagination: false,
          breakpoints: {
-             '600': {}
-         },
+             '1920': {
+                 perPage: 6,
+                 gap: '1.5rem',
+             },
+
+             '1312': {
+                 perPage: 5,
+                 gap: '1rem',
+             },
+             '992': {
+                 perPage: 4,
+                 gap: '1rem',
+             },
+             '688': {
+                 perPage: 3,
+                 gap: '1rem',
+             },
+             '480': {
+                 perPage: 2,
+                 gap: '1rem',
+             },
+         }
      }).mount();
      let primarySlider = new Splide(primaryslider__content, {
          type: 'slide',

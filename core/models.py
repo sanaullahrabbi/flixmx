@@ -203,12 +203,37 @@ class EpisodeModel(models.Model):
     description = models.TextField(null=True,blank=True)
     rating = models.FloatField(null=True,blank=True)
     runtime = models.CharField(max_length=250,null=True,blank=True)
-    watch_link = models.URLField(max_length=999,null=True,blank=True)
+
+
+    watch_link_main_source = models.URLField(max_length=999,null=True,blank=True)
+    watch_link_alt1_name = models.CharField(max_length=250,null=True,blank=True)
+    watch_link_alt1_url = models.URLField(max_length=999,null=True,blank=True)
+    watch_link_alt2_name = models.CharField(max_length=250,null=True,blank=True)
+    watch_link_alt2_url = models.URLField(max_length=999,null=True,blank=True)
 
     direct_download = models.URLField(max_length=999,null=True,blank=True)
+    direct_download_alt1_name = models.CharField(max_length=250,null=True,blank=True)
+    direct_download_alt1_url = models.URLField(max_length=999,null=True,blank=True)
+    direct_download_alt2_name = models.CharField(max_length=250,null=True,blank=True)
+    direct_download_alt2_url = models.URLField(max_length=999,null=True,blank=True)
 
     gdrive_download_link = models.URLField(max_length=999,null=True,blank=True)
+    gdrive_download_alt1_name = models.CharField(max_length=250,null=True,blank=True)
+    gdrive_download_alt1_url = models.URLField(max_length=999,null=True,blank=True)
+    gdrive_download_alt2_name = models.CharField(max_length=250,null=True,blank=True)
+    gdrive_download_alt2_url = models.URLField(max_length=999,null=True,blank=True)
+
     onedrive_download_link = models.URLField(max_length=999,null=True,blank=True)
+    onedrive_download_alt1_name = models.CharField(max_length=250,null=True,blank=True)
+    onedrive_download_alt1_url = models.URLField(max_length=999,null=True,blank=True)
+    onedrive_download_alt2_name = models.CharField(max_length=250,null=True,blank=True)
+    onedrive_download_alt2_url = models.URLField(max_length=999,null=True,blank=True)
+
+    mega_download_link = models.URLField(max_length=999,null=True,blank=True)
+    mega_download_alt1_name = models.CharField(max_length=250,null=True,blank=True)
+    mega_download_alt1_url = models.URLField(max_length=999,null=True,blank=True)
+    mega_download_alt2_name = models.CharField(max_length=250,null=True,blank=True)
+    mega_download_alt2_url = models.URLField(max_length=999,null=True,blank=True)
 
     subtitle_link = models.URLField(max_length=999,null=True,blank=True)
     created_at = models.DateTimeField(auto_now_add=True)

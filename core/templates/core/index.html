@@ -92,10 +92,10 @@
                                         </div>
                                         <div class="movie-info">
                                             <i class="far fa-calendar-alt"></i>
-                                            <span>{% if not i.series_content.end_date %} (
-                                                {{i.series_content.release_date|date:"Y"}} )
-                                                {% else %}( {{i.series_content.release_date|date:"Y"}} -
-                                                {{i.series_content.end_date|date:"Y"}}){% endif %}</span>
+                                            <span>{% if not i.series_content.end_date %}
+                                                {{i.series_content.release_date|date:"Y"}}
+                                                {% else %} {{i.series_content.release_date|date:"Y"}} -
+                                                {{i.series_content.end_date|date:"Y"}}{% endif %}</span>
                                         </div>
                                         {% if i.series_content.rated %}
                                         <div class="movie-info">
