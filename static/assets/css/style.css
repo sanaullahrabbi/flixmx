@@ -283,7 +283,6 @@ img {
 @media only screen and (max-width: 850px) {
   .dropdowncontain .qSelect {
     position: relative !important;
-    margin: 0 5px;
   }
   .dropdowncontain .qSelect .dropdown-2 {
     display: none;

@@ -64,11 +64,11 @@
 
                                 <div class="qSelect">
                                     <ul>
-                                        {% if episode.direct_download or episode.direct_download_alt1_url or episode.direct_download_alt2_url %}
+                                        {% if episode.direct_download_main or episode.direct_download_alt1_url or episode.direct_download_alt2_url %}
                                         <li><a>GDirect</a>
                                             <div class="dropdown-2">
-                                                {% if episode.direct_download %}
-                                                <a href="{{episode.direct_download}}">Main Source</a>
+                                                {% if episode.direct_download_main %}
+                                                <a href="{{episode.direct_download_main}}">Main Source</a>
                                                 {% endif %}
                                                 {% if episode.direct_download_alt1_name and episode.direct_download_alt1_url %}
                                                 <a
@@ -81,11 +81,11 @@
                                             </div>
                                         </li>
                                         {% endif %}
-                                        {% if episode.gdrive_download or episode.gdrive_download_alt1_url or episode.gdrive_download_alt2_url %}
+                                        {% if episode.gdrive_download_main or episode.gdrive_download_alt1_url or episode.gdrive_download_alt2_url %}
                                         <li><a>GDShare</a>
                                             <div class="dropdown-2">
-                                                {% if episode.gdrive_download_link %}
-                                                <a href="{{episode.gdrive_download_link}}">Main Source</a>
+                                                {% if episode.gdrive_download_main %}
+                                                <a href="{{episode.gdrive_download_main}}">Main Source</a>
                                                 {% endif %}
                                                 {% if episode.gdrive_download_alt1_name and episode.gdrive_download_alt1_url %}
                                                 <a
@@ -98,11 +98,11 @@
                                             </div>
                                         </li>
                                         {% endif %}
-                                        {% if episode.onedrive_download or episode.onedrive_download_alt1_url or episode.onedrive_download_alt2_url %}
+                                        {% if episode.onedrive_download_main or episode.onedrive_download_alt1_url or episode.onedrive_download_alt2_url %}
                                         <li><a>One Drive</a>
                                             <div class="dropdown-2">
-                                                {% if episode.onedrive_download_link %}
-                                                <a href="{{episode.onedrive_download_link}}">Main Source</a>
+                                                {% if episode.onedrive_download_main %}
+                                                <a href="{{episode.onedrive_download_main}}">Main Source</a>
                                                 {% endif %}
                                                 {% if episode.onedrive_download_alt1_name and episode.onedrive_download_alt1_url %}
                                                 <a
@@ -115,11 +115,11 @@
                                             </div>
                                         </li>
                                         {% endif %}
-                                        {% if episode.mega_download or episode.mega_download_alt1_url or episode.mega_download_alt2_url %}
+                                        {% if episode.mega_download_main or episode.mega_download_alt1_url or episode.mega_download_alt2_url %}
                                         <li><a>Mega</a>
                                             <div class="dropdown-2">
-                                                {% if episode.mega_download_link %}
-                                                <a href="{{episode.mega_download_link}}">Main Source</a>
+                                                {% if episode.mega_download_main %}
+                                                <a href="{{episode.mega_download_main}}">Main Source</a>
                                                 {% endif %}
                                                 {% if episode.mega_download_alt1_name and episode.mega_download_alt1_url %}
                                                 <a
