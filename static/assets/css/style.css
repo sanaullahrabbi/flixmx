@@ -130,11 +130,16 @@ img {
   color: var(--main-color);
 }
 
+ul,
+li {
+  list-style: none;
+}
+
 .btn {
   color: #ffffff;
-  padding: 0.25rem 1.5rem;
+  padding: 0.5rem 1.5rem;
   text-transform: uppercase;
-  font-size: 1.1rem;
+  font-size: 1.05rem;
   font-weight: 600;
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
@@ -143,8 +148,8 @@ img {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  height: 35px;
   background-color: var(--btn-bg);
+  border-radius: 0.15rem;
   overflow: hidden;
 }
 
@@ -154,6 +159,10 @@ img {
 }
 
 .btn i {
+  margin-right: 1rem;
+}
+
+.expand-icon {
   margin-right: 1rem;
 }
 
@@ -178,12 +187,12 @@ img {
           clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
 }
 
-.btn-hover .fill_btn {
+.fill_btn {
   background-color: var(--main-color);
-  border-radius: var(--border-radius);
+  font-size: 1em !important;
 }
 
-.btn-hover .fill_btn:hover {
+.fill_btn:hover {
   background-color: #006ce7;
 }
 
@@ -211,95 +220,85 @@ img {
 /* Download Dropdown */
 .dropdowncontain {
   position: relative !important;
+  border-radius: 0.15rem;
 }
 
-.dropdowncontain .qSelect {
+.dropdowncontain .dropdown {
   display: none;
   left: 0;
   right: 0;
   position: absolute !important;
   width: auto;
-  background-color: #464646;
-  /*z-index: 999;*/
+  background-color: #2e2e2e;
+  z-index: 999;
   margin-right: 10px;
+  margin-top: 10px;
+  border-radius: 0.15rem;
+  padding: 2px;
+  -webkit-box-shadow: 0 10px 24px 0 rgba(0, 0, 0, 0.6);
+          box-shadow: 0 10px 24px 0 rgba(0, 0, 0, 0.6);
 }
 
-.dropdowncontain .qSelect a {
+.dropdowncontain .dropdown::after {
+  content: '';
+  position: absolute;
+  top: -7px;
+  right: 15px;
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-bottom: 8px solid #2e2e2e;
+  display: block;
+  z-index: 2;
+  -webkit-transition: all 300ms linear;
+  transition: all 300ms linear;
+}
+
+.dropdowncontain .dropdown a {
   padding: 0.5rem 1.5rem;
   display: block;
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
+  border-radius: 0.15rem;
 }
 
-.dropdowncontain .qSelect a:hover {
+.dropdowncontain .dropdown a:hover {
   background-color: var(--main-color);
 }
 
-.dropdowncontain .qSelect ul {
-  list-style: none;
-  -webkit-transition: all 0.3s;
-  transition: all 0.3s;
-}
-
-.dropdowncontain .qSelect ul li {
+.dropdowncontain .dropdown ul li {
   position: relative;
-  -webkit-transition: all 0.3s;
-  transition: all 0.3s;
+  margin: 2px 0;
 }
 
-.dropdowncontain .qSelect .dropdown-2 {
-  background-color: #464646;
-  position: absolute;
-  width: 100%;
-  right: 100%;
-  top: 0;
-  opacity: 0;
-  -webkit-transition: all 0.3s;
-  transition: all 0.3s;
-  visibility: hidden;
-  z-index: 100;
+.dropdowncontain .dropdown .dropdown-sub {
+  position: relative;
+  display: none;
+  padding-left: 0.75rem;
+  padding-right: 0.25rem;
 }
 
-.dropdowncontain .qSelect .dropdown-2.active {
-  -webkit-transition: all 0.3s;
-  transition: all 0.3s;
-  visibility: visible;
-  opacity: 1;
+.dropdowncontain .dropdown .dropdown-sub.active {
+  display: block;
 }
 
-.dropdowncontain .qIcon {
+.dropdowncontain .expand-icon {
   -webkit-transition: 0.3s ease-in-out;
   transition: 0.3s ease-in-out;
 }
 
-.dropdowncontain .qIcon.active {
-  transform: rotate(90deg);
+.dropdowncontain .expand-icon.active {
   -webkit-transform: rotate(90deg);
-  -moz-transform: rotate(90deg);
-  -webkit-transition: 0.3s ease-in-out;
-  transition: 0.3s ease-in-out;
+          transform: rotate(90deg);
 }
 
-@media only screen and (max-width: 850px) {
-  .dropdowncontain .qSelect {
-    position: relative !important;
+@media only screen and (max-width: 1080px) {
+  .dropdowncontain .dropdown {
+    margin: 10px 5px;
   }
-  .dropdowncontain .qSelect .dropdown-2 {
-    display: none;
-    position: relative !important;
+  .dropdowncontain .dropdown .dropdown-sub {
     width: 100%;
-    right: 0;
-    left: 0;
-    pointer-events: none;
-  }
-  .dropdowncontain .qSelect .dropdown-2 a {
-    padding-left: 3rem;
-  }
-  .dropdowncontain .qSelect .dropdown-2.active {
-    display: block;
-    visibility: visible;
-    opacity: 1;
-    pointer-events: initial;
   }
 }
 
@@ -319,7 +318,7 @@ img {
       flex-wrap: wrap;
 }
 
-.tbutton {
+.review-container .tbutton {
   border: none;
   font-weight: bold;
   color: white;
@@ -336,15 +335,15 @@ img {
   margin: 0.5rem;
 }
 
-.tbutton i {
+.review-container .tbutton i {
   margin-right: 0.5em;
 }
 
-.tbutton1 {
+.review-container .tbutton1 {
   background-color: #4267B2;
 }
 
-.tbutton2 {
+.review-container .tbutton2 {
   background-color: #0088cc;
 }
 
@@ -697,13 +696,121 @@ img {
   }
 }
 
+.modal-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 9999;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: #333;
+  opacity: 0;
+  height: 100%;
+  overflow: hidden;
+  visibility: hidden;
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+  -webkit-transition: opacity 0.6s cubic-bezier(0.55, 0, 0.1, 1), visibility 0.6s cubic-bezier(0.55, 0, 0.1, 1);
+  transition: opacity 0.6s cubic-bezier(0.55, 0, 0.1, 1), visibility 0.6s cubic-bezier(0.55, 0, 0.1, 1);
+}
+
+.modal-container .modal {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  position: relative;
+  margin: 0 auto;
+  background-color: #fff;
+  max-width: 600px;
+  width: 100%;
+  min-height: 20rem;
+  padding: 3rem;
+  margin: 1rem;
+  border-radius: 3px;
+  opacity: 0;
+  overflow-y: auto;
+  visibility: hidden;
+  -webkit-box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+  -webkit-transform: scale(1.2);
+          transform: scale(1.2);
+  -webkit-transition: all 0.6s cubic-bezier(0.55, 0, 0.1, 1);
+  transition: all 0.6s cubic-bezier(0.55, 0, 0.1, 1);
+}
+
+.modal-container .modal .close-modal {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  right: 1rem;
+  opacity: 0;
+  font-size: 1.75rem;
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+  -webkit-transition: opacity 0.6s cubic-bezier(0.55, 0, 0.1, 1), -webkit-transform 0.6s cubic-bezier(0.55, 0, 0.1, 1);
+  transition: opacity 0.6s cubic-bezier(0.55, 0, 0.1, 1), -webkit-transform 0.6s cubic-bezier(0.55, 0, 0.1, 1);
+  transition: opacity 0.6s cubic-bezier(0.55, 0, 0.1, 1), transform 0.6s cubic-bezier(0.55, 0, 0.1, 1);
+  transition: opacity 0.6s cubic-bezier(0.55, 0, 0.1, 1), transform 0.6s cubic-bezier(0.55, 0, 0.1, 1), -webkit-transform 0.6s cubic-bezier(0.55, 0, 0.1, 1);
+  -webkit-transition-delay: 0.3s;
+          transition-delay: 0.3s;
+}
+
+.modal-container .modal .modal-content {
+  opacity: 0;
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+  -webkit-transition: opacity 0.6s cubic-bezier(0.55, 0, 0.1, 1);
+  transition: opacity 0.6s cubic-bezier(0.55, 0, 0.1, 1);
+  -webkit-transition-delay: 0.3s;
+          transition-delay: 0.3s;
+}
+
+.modal-container.active {
+  visibility: visible;
+  opacity: 1;
+}
+
+.modal-container.active .modal {
+  visibility: visible;
+  opacity: 1;
+  -webkit-transform: scale(1);
+          transform: scale(1);
+}
+
+.modal-container.active .modal .modal-content {
+  opacity: 1;
+}
+
+.modal-container.active .modal .close-modal {
+  -webkit-transform: translateY(10px);
+          transform: translateY(10px);
+  opacity: 1;
+}
+
 .item-content-title {
   font-family: "Patrick Hand", cursive;
-  font-size: calc(4.75vw + 10px);
+  font-size: calc(4vw + 10px);
   font-weight: 900;
-  width: 70vw !important;
-  overflow-wrap: break-word !important;
-  white-space: normal !important;
+  width: 70vw;
+  overflow-wrap: break-word;
+  white-space: normal;
   z-index: 1;
   letter-spacing: 5px;
 }
@@ -1107,7 +1214,7 @@ img {
   background-color: #fff;
   color: #171c24;
   position: relative;
-  border-radius: var(--border-radius);
+  border-radius: 0.15rem;
 }
 
 .nav .search-icon i::after {
@@ -1117,7 +1224,7 @@ img {
   width: inherit;
   height: inherit;
   background-color: #fff;
-  border-radius: var(--border-radius);
+  border-radius: 0.15rem;
   z-index: -1;
 }
 
@@ -1502,12 +1609,8 @@ img {
   isolation: isolate;
 }
 
-#primary-slider .splide__slide .dropdowncontain .qSelect {
-  margin-right: 5px;
-}
-
 #primary-slider .splide__slide .btn {
-  padding: 0em 1em;
+  padding: 0.45em 1em;
   margin-top: 5px;
   margin-right: 5px;
   font-size: 1em;
@@ -1530,13 +1633,14 @@ img {
 
 #primary-slider .splide__slide .title {
   font-family: "Patrick Hand", cursive;
-  letter-spacing: 3px;
+  letter-spacing: 2px;
   font-size: 2.15em;
   margin-bottom: var(--margin-bottom-1);
 }
 
 #primary-slider .splide__slide .episode-descript {
-  height: 145px;
+  min-height: 80px;
+  max-height: 100px;
   overflow: auto;
   padding-right: 10px;
 }
@@ -1545,11 +1649,12 @@ img {
   width: 4px;
 }
 
-#primary-slider .splide__slide .qSelect {
+#primary-slider .splide__slide .dropdown {
   position: relative !important;
+  margin-left: 0;
 }
 
-#primary-slider .splide__slide .qSelect a {
+#primary-slider .splide__slide .dropdown a {
   font-size: 95%;
 }
 
@@ -1572,8 +1677,9 @@ img {
   width: 100%;
   height: 100%;
   z-index: -1;
-  background-image: -webkit-gradient(linear, left top, right top, from(black), color-stop(45%, rgba(0, 0, 0, 0.5)), color-stop(53%, rgba(0, 0, 0, 0.4)), color-stop(61%, rgba(0, 0, 0, 0.3)), color-stop(76%, rgba(0, 0, 0, 0.15)), color-stop(100%, rgba(0, 0, 0, 0.075)), color-stop(100%, rgba(0, 0, 0, 0.037)), color-stop(100%, rgba(0, 0, 0, 0.019)), to(rgba(0, 0, 0, 0)));
-  background-image: linear-gradient(to right, black 0%, rgba(0, 0, 0, 0.5) 45%, rgba(0, 0, 0, 0.4) 53%, rgba(0, 0, 0, 0.3) 61%, rgba(0, 0, 0, 0.15) 76%, rgba(0, 0, 0, 0.075) 100%, rgba(0, 0, 0, 0.037) 100%, rgba(0, 0, 0, 0.019) 100%, rgba(0, 0, 0, 0) 100%);
+  background: black;
+  background: -webkit-gradient(linear, left top, right top, color-stop(10%, rgba(0, 0, 0, 0.872398)), color-stop(36%, rgba(0, 0, 0, 0.813995)), color-stop(49%, rgba(0, 0, 0, 0.727973)), color-stop(66%, rgba(0, 0, 0, 0.63541)), to(rgba(0, 0, 0, 0.3)));
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.872398) 10%, rgba(0, 0, 0, 0.813995) 36%, rgba(0, 0, 0, 0.727973) 49%, rgba(0, 0, 0, 0.63541) 66%, rgba(0, 0, 0, 0.3) 100%);
 }
 
 #primary-slider .primary-slider-content {
@@ -1601,7 +1707,7 @@ img {
   cursor: grab;
   background-position: top !important;
   background-color: #191919;
-  border-radius: 2px;
+  border-radius: 0.25rem;
   overflow: hidden;
 }
 
@@ -1676,9 +1782,16 @@ img {
     min-height: 600px !important;
     height: calc(100vh - 60px) !important;
   }
+  #primary-slider .splide__slide .btn {
+    margin-right: 15px;
+  }
+  #primary-slider .splide__slide .dropdown {
+    margin-right: 15px;
+  }
   #primary-slider .splide__slide .episode-descript {
-    width: 80%;
-    height: 140px;
+    width: 65%;
+    min-height: 120px;
+    max-height: 140px;
   }
   #secondary-slider {
     padding: 0rem var(--primary-episode-padding) 2rem var(--primary-episode-padding);
@@ -1895,9 +2008,8 @@ footer .content p {
 .movie-infos.infos2 .play-trailer-btn {
   margin: 0;
   margin-left: 1rem;
-  font-size: 1rem;
-  padding: 0.2rem 1rem;
-  border-radius: 0.25rem;
+  font-size: 95%;
+  padding: 0.65rem 1rem;
   cursor: pointer;
 }
 
@@ -2416,10 +2528,9 @@ footer .content p {
     position: relative;
   }
   .item-content-title {
-    overflow-wrap: break-word;
-    white-space: unset;
-    max-height: 120px;
-    overflow-y: hidden;
+    letter-spacing: 2px;
+    width: 100%;
+    font-size: calc(4.75vw + 10px);
   }
   #watchModal {
     padding: 0 1.5rem !important;

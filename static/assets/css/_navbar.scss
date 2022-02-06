@@ -221,7 +221,7 @@
     background-color: #fff;
     color: #171c24;
     position: relative;
-    border-radius: var(--border-radius);
+    border-radius: $border-radius-2;
 }
 
 .nav .search-icon i::after {
@@ -231,7 +231,7 @@
     width: inherit;
     height: inherit;
     background-color: #fff;
-    border-radius: var(--border-radius);
+    border-radius: $border-radius-2;
     z-index: -1;
 }
 

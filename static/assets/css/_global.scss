@@ -1,10 +1,10 @@
 .item-content-title {
     font-family: $font-family-3;
-    font-size: calc(4.75vw + 10px);
+    font-size: calc(4vw + 10px);
     font-weight: 900;
-    width: 70vw !important;
-    overflow-wrap: break-word !important;
-    white-space: normal !important;
+    width: 70vw;
+    overflow-wrap: break-word;
+    white-space: normal;
     z-index: 1;
     letter-spacing: 5px;
 }

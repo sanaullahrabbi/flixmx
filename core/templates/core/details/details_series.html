@@ -18,7 +18,8 @@
 <div id="watchModal" class="">
     <div class="trailer-section">
         <span id="closeModal">&times;</span>
-        <iframe width="560" height="315" src={{obj.trailer_link}} title="YouTube video player" frameborder="0"
+        <iframe width="560" height="315" src='{% if obj.trailer_link %}{{obj.trailer_link}}{% endif %}'
+            title="YouTube video player" frameborder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowfullscreen></iframe>
     </div>
@@ -163,10 +164,10 @@
     </div>
     <div class="review-container">
         <button class="tbutton tbutton1" onclick="document.location='https://www.facebook.com/groups/flixmxofficial'"><i
-                class='bx bxl-facebook bx-burst'></i>Review
+                class='bx bxl-facebook bx-burst'></i>Join
             FB Group</button>
-        <button class="tbutton tbutton2" onclick="document.location='https://telegram.im/@flixmxofficial'"><i
-                class='bx bxl-telegram bx-burst'></i>Review TG
+        <button class="tbutton tbutton2" onclick="document.location='https://telegram.im/@flixmxchat'"><i
+                class='bx bxl-telegram bx-burst'></i>Join TG
             Group</button>
     </div>
 </div>

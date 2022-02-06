@@ -13,6 +13,10 @@ $space-top: 30px;
 $btn-bg: #96969659;
 $padding-primary: 2rem;
 
+$dropdown-bg-primary-1: #111111;
+$dropdown-bg-primary-2: #2e2e2e;
+$dropdown-bg-secondary-1: #202020;
+$dropdown-bg-secondary-2: #202020;
 
 $font-family-1:'Mulish',
 sans-serif;
@@ -155,6 +159,10 @@ img {
     color: var(--main-color);
 }
 
+ul,
+li {
+    list-style: none;
+}
 
 // @media (min-width: 320px) and (max-width: 576px) {}
 

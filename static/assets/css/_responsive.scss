@@ -178,10 +178,9 @@
     }
 
     .item-content-title {
-        overflow-wrap: break-word;
-        white-space: unset;
-        max-height: 120px;
-        overflow-y: hidden;
+        letter-spacing: 2px;
+        width: 100%;
+        font-size: calc(4.75vw + 10px);
     }
 
 

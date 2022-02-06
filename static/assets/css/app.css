@@ -1148,7 +1148,7 @@ footer .content {
     position: relative !important;
 }
 
-.dropdowncontain .qSelect {
+.dropdowncontain .dropdown {
     display: none;
     left: 0;
     right: 0;
@@ -1159,38 +1159,38 @@ footer .content {
     margin-right: 10px;
 }
 
-.dropdowncontain .qSelect a {
+.dropdowncontain .dropdown a {
     padding: 0.5rem 1.5rem;
     display: block;
     transition: all 0.3s;
 }
 
-.dropdowncontain .qSelect a:hover {
+.dropdowncontain .dropdown a:hover {
     background-color: var(--main-color);
 }
 
-.dropdowncontain .qIcon {
+.dropdowncontain .expand-icon {
     transition: 0.3s ease-in-out;
 }
 
-.dropdowncontain .qIcon.active {
+.dropdowncontain .expand-icon.active {
     transform: rotate(90deg);
     -webkit-transform: rotate(90deg);
     -moz-transform: rotate(90deg);
     transition: 0.3s ease-in-out;
 }
 
-.dropdowncontain .qSelect ul {
+.dropdowncontain .dropdown ul {
     list-style: none;
     transition: all 0.3s;
 }
 
-.dropdowncontain .qSelect ul li {
+.dropdowncontain .dropdown ul li {
     position: relative;
     transition: all 0.3s;
 }
 
-.dropdowncontain .qSelect .dropdown-2 {
+.dropdowncontain .dropdown .dropdown-sub {
     background-color: rgb(70 70 70);
     position: absolute;
     width: 100%;
@@ -1203,19 +1203,19 @@ footer .content {
 
 }
 
-.dropdowncontain .qSelect ul li .dropdown-2.active {
+.dropdowncontain .dropdown ul li .dropdown-sub.active {
     transition: all 0.3s;
     visibility: visible;
     opacity: 1;
 }
 
 @media only screen and (max-width: 850px) {
-    .dropdowncontain .qSelect {
+    .dropdowncontain .dropdown {
         position: relative !important;
     }
 
 
-    .dropdowncontain .qSelect .dropdown-2 {
+    .dropdowncontain .dropdown .dropdown-sub {
         display: none;
         position: relative !important;
         width: 100%;
@@ -1224,11 +1224,11 @@ footer .content {
         pointer-events: none;
     }
 
-    .dropdowncontain .qSelect .dropdown-2 a {
+    .dropdowncontain .dropdown .dropdown-sub a {
         padding-left: 3rem;
     }
 
-    .dropdowncontain .qSelect ul li .dropdown-2.active {
+    .dropdowncontain .dropdown ul li .dropdown-sub.active {
         display: block;
         visibility: visible;
         opacity: 1;
@@ -1559,7 +1559,7 @@ footer .content p {
 
 }
 
-#primary-slider .splide__slide .dropdowncontain .qSelect {
+#primary-slider .splide__slide .dropdowncontain .dropdown {
     margin-right: 5px;
 }
 

@@ -37,14 +37,15 @@
 
  //  Download collapse 
  $(".downloadbtn").click(function (e) {
-     $(this).children('.qIcon').toggleClass('active');
-     $(this).next(".qSelect").slideToggle();
+     $(this).children('.expand-icon').toggleClass('active');
+     $(this).next(".dropdown").slideToggle();
      e.stopPropagation();
  });
 
  $(document).ready(function () {
-     $(".dropdowncontain > .qSelect > ul > li").hover(function (e) {
-         $(this).children('.dropdown-2').toggleClass('active');
+     $(".dropdowncontain > .dropdown > ul > li").click(function (e) {
+         $(this).find('.expand-icon').toggleClass('active');
+         $(this).children('.dropdown-sub').slideToggle();
          e.stopPropagation();
      });
  });
@@ -158,8 +159,6 @@
  // episodes slider must be top of other carosals for fixing offsetTop problem 
  if ((typeof (secondaryslider__content) != 'undefined' && secondaryslider__content != null) && (typeof (primaryslider__content) != 'undefined' && primaryslider__content != null)) {
      let secondarySlider = new Splide(secondaryslider__content, {
-         //  fixedWidth: 100,
-         //  height: 60,
          gap: 20,
          cover: true,
          isNavigation: true,
@@ -197,7 +196,27 @@
          arrows: false,
          cover: true,
      }); // do not call mount() here.
+
      primarySlider.sync(secondarySlider).mount();
+
+
+     //  localStorage.clear()
+     let episodeWatchStatus = localStorage.episodeWatchStatus
+
+     if (episodeWatchStatus) {
+         episodeWatchStatus = JSON.parse(episodeWatchStatus)
+     } else {
+         episodeWatchStatus = {}
+     }
+     seasonID = document.querySelector('.episode-main').dataset.seasonId
+     primarySlider.go(episodeWatchStatus[seasonID] ? episodeWatchStatus[seasonID] : 0)
+
+     secondarySlider.on('click', function () {
+         episodeWatchStatus[seasonID] = secondarySlider.index
+         console.log(JSON.stringify(episodeWatchStatus))
+         localStorage.setItem('episodeWatchStatus', JSON.stringify(episodeWatchStatus))
+     });
+
  }
 
  carousels.forEach(carousel => {

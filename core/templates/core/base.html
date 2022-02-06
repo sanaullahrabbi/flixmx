@@ -344,7 +344,22 @@
 
     <!-- Your Chat Plugin code -->
     <div id="fb-customer-chat" class="fb-customerchat"></div>
+    <div class="modal-container modal-overlay">
+        <div class="modal">
+            <span class="close-modal">&times;</span>
+            <div class="modal-content">
+                <h1>Welcome to Flixmx</h1>
+                <br>
+                <h3>This site is being developed regularly to improve user experience</h3>
+                <br>
+                <p>Please clear your browser cache often for latest design and feature and inform us for any problem. It
+                    will help us to improve user experience and site.</p>
+                <br>
+                <h5>To clear cache ( CTRL + F5 on browser for pc ) ( Browser app info > clear cache for mobile)</h5>
+            </div>
 
+        </div>
+    </div>
     <!-- Script -->
     <!-- Jquery -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -385,11 +400,33 @@
                 js.src = 'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js';
                 fjs.parentNode.insertBefore(js, fjs);
             }(document, 'script', 'facebook-jssdk'));
-        })
+
+
+
+            let notifyModalEl = document.querySelector('.modal-container');
+            storage = localStorage
+            document.querySelector('.close-modal').addEventListener('click', () => {
+                notifyModalEl.classList.remove('active');
+                storage.setItem('notifyModal', 'close')
+            })
+            document.addEventListener('click', function (e) {
+                if (e.target == notifyModalEl) {
+                    notifyModalEl.classList.remove('active');
+                    storage.setItem('notifyModal', 'close')
+                }
+            })
+            setTimeout(function () {
+                if (storage.notifyModal == 'open' || storage.notifyModal == undefined) {
+                    notifyModalEl.classList.add('active');
+                    storage.setItem('notifyModal', 'open')
+                }
+            }, 10000)
+
+        });
         setTimeout(() => {
             $('.preload').fadeOut('slow')
             $('body').css('overflow', 'visible')
-        }, 10000)
+        }, 5000)
     </script>
 </body>
 

@@ -19,7 +19,8 @@
 <div id="watchModal" class="">
     <div class="trailer-section">
         <span id="closeModal">&times;</span>
-        <iframe src={{obj.trailer_link}} title="YouTube video player" frameborder="0"
+        <iframe src='{% if obj.trailer_link %}{{obj.trailer_link}}{% endif %}' title="YouTube video player"
+            frameborder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowfullscreen></iframe>
     </div>
@@ -131,11 +132,11 @@
             <div class="item-action">
                 <div class="dropdowncontain">
                     <div class="btn btn-hover downloadbtn">
-                        <i class="fas fa-caret-right fa-md qIcon"></i>
+                        <i class="fas fa-caret-right fa-md expand-icon"></i>
                         <span> watch now</span>
                     </div>
-                    <div class="qSelect">
-                        <ul>
+                    <div class="dropdown">
+                        <ul>{% if obj.watch_link_main_source or obj.watch_link_alt1_name and obj.watch_link_alt1_url or obj.watch_link_alt2_name and obj.watch_link_alt2_url%}
                             {% if obj.watch_link_main_source %}
                             <li><a href="{{ obj.watch_link_main_source }}">Main Source</a></li>
                             {% endif %}
@@ -145,20 +146,24 @@
                             {% if obj.watch_link_alt2_name and obj.watch_link_alt2_url %}
                             <li><a href="{{ obj.watch_link_alt2_url }}">{{ obj.watch_link_alt2_name }}</a></li>
                             {% endif %}
+                            {% else %}
+                            <li><a>No link available</a></li>
+                            {% endif %}
+
                         </ul>
                     </div>
                 </div>
 
                 <div class="dropdowncontain">
                     <div class="btn btn-hover downloadbtn">
-                        <i class="fas fa-caret-right fa-md qIcon"></i>
+                        <i class="fas fa-caret-right fa-md expand-icon"></i>
                         <span> Download now</span>
                     </div>
-                    <div class="qSelect">
+                    <div class="dropdown">
                         <ul>
                             {% if obj.direct_download_480p or obj.direct_download_720p or obj.direct_download_1080p or obj.direct_download_4K or obj.direct_download_dual_audio or obj.direct_download_hindi_dubbed %}
-                            <li><a>GDirect</a>
-                                <div class="dropdown-2">
+                            <li><a><i class="fas fa-caret-right fa-md expand-icon"></i>GDirect</a>
+                                <div class="dropdown-sub">
                                     {% if obj.direct_download_480p %}
                                     <a href="{{obj.direct_download_480p}}">480p</a>
                                     {% endif %}
@@ -181,8 +186,8 @@
                             </li>
                             {% endif %}
                             {% if obj.gdrive_quality_480p or obj.gdrive_quality_720p or obj.gdrive_quality_1080p or obj.gdrive_quality_4K or obj.gdrive_download_hindi_dubbed or obj.gdrive_download_dual_audio  %}
-                            <li><a>GDShare</a>
-                                <div class="dropdown-2">
+                            <li><a><i class="fas fa-caret-right fa-md expand-icon"></i>GDShare</a>
+                                <div class="dropdown-sub">
                                     {% if obj.gdrive_quality_480p %}
                                     <a href="{{obj.gdrive_quality_480p}}">480p</a>
                                     {% endif %}
@@ -205,8 +210,8 @@
                                 {% endif %}
                             </li>
                             {% if obj.onedrive_quality_480p or obj.onedrive_quality_720p or obj.onedrive_quality_1080p or obj.onedrive_quality_4K or obj.onedrive_download_hindi_dubbed or obj.onedrive_download_dual_audio  %}
-                            <li><a>OneDrive </a>
-                                <div class="dropdown-2">
+                            <li><a><i class="fas fa-caret-right fa-md expand-icon"></i>OneDrive </a>
+                                <div class="dropdown-sub">
                                     {% if obj.onedrive_quality_480p %}
                                     <a href="{{obj.onedrive_quality_480p}}">480p</a>
                                     {% endif %}
@@ -230,8 +235,8 @@
                             {% endif %}
 
                             {% if obj.mega_quality_480p or obj.mega_quality_720p or obj.mega_quality_1080p or obj.mega_quality_4K or obj.mega_download_hindi_dubbed or obj.mega_download_dual_audio  %}
-                            <li><a>Mega </a>
-                                <div class="dropdown-2">
+                            <li><a><i class="fas fa-caret-right fa-md expand-icon"></i>Mega </a>
+                                <div class="dropdown-sub">
                                     {% if obj.mega_quality_480p %}
                                     <a href="{{obj.mega_quality_480p}}">480p</a>
                                     {% endif %}
@@ -297,10 +302,10 @@
     </div>
     <div class="review-container">
         <button class="tbutton tbutton1" onclick="document.location='https://www.facebook.com/groups/flixmxofficial'"><i
-                class='bx bxl-facebook bx-burst'></i>Review
+                class='bx bxl-facebook bx-burst'></i>Join
             FB Group</button>
-        <button class="tbutton tbutton2" onclick="document.location='https://telegram.im/@flixmxofficial'"><i
-                class='bx bxl-telegram bx-burst'></i>Review TG
+        <button class="tbutton tbutton2" onclick="document.location='https://telegram.im/@flixmxchat'"><i
+                class='bx bxl-telegram bx-burst'></i>Join TG
             Group</button>
     </div>
 </div>

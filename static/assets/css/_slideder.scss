@@ -131,18 +131,12 @@ $primary-info-font: 1.25rem;
 
 #primary-slider {
 
-
     .splide__slide {
         height: unset !important;
-        // min-height: 320px !important;
         isolation: isolate;
 
-        .dropdowncontain .qSelect {
-            margin-right: 5px;
-        }
-
         .btn {
-            padding: 0em 1em;
+            padding: 0.45em 1em;
             margin-top: 5px;
             margin-right: 5px;
             font-size: 1em;
@@ -165,13 +159,14 @@ $primary-info-font: 1.25rem;
 
         .title {
             font-family: $font-family-3;
-            letter-spacing: 3px;
+            letter-spacing: 2px;
             font-size: 2.15em;
             margin-bottom: var(--margin-bottom-1);
         }
 
         .episode-descript {
-            height: 145px;
+            min-height: 80px;
+            max-height: 100px;
             overflow: auto;
             padding-right: 10px;
 
@@ -180,8 +175,9 @@ $primary-info-font: 1.25rem;
             }
         }
 
-        .qSelect {
+        .dropdown {
             position: relative !important;
+            margin-left: 0;
 
             a {
                 font-size: 95%;
@@ -208,15 +204,19 @@ $primary-info-font: 1.25rem;
             width: 100%;
             height: 100%;
             z-index: -1;
-            background-image: linear-gradient(to right, rgb(0, 0, 0) 0%,
-                    rgba(0, 0, 0, 0.5) 45%,
-                    rgba(0, 0, 0, 0.4) 53%,
-                    rgba(0, 0, 0, 0.3) 61%,
-                    rgba(0, 0, 0, 0.15) 76%,
-                    rgba(0, 0, 0, 0.075) 100%,
-                    rgba(0, 0, 0, 0.037) 100%,
-                    rgba(0, 0, 0, 0.019) 100%,
-                    rgba(0, 0, 0, 0) 100%);
+            background: rgb(0, 0, 0);
+            // background: linear-gradient(90deg, rgba(0, 0, 0, 0.92398) 14%, rgba(0, 0, 0, 0.893995) 33%, rgba(0, 0, 0, 0.737973) 53%, rgba(0, 0, 0, 0.69541) 60%, rgba(0, 0, 0, 0.3) 100%);
+            background: linear-gradient(90deg, rgba(0, 0, 0, 0.872398) 10%, rgba(0, 0, 0, 0.813995) 36%, rgba(0, 0, 0, 0.727973) 49%, rgba(0, 0, 0, 0.63541) 66%, rgba(0, 0, 0, 0.3) 100%);
+
+            // background-image: linear-gradient(to right, rgb(0, 0, 0) 0%,
+            //         rgba(0, 0, 0, 0.5) 45%,
+            //         rgba(0, 0, 0, 0.4) 53%,
+            //         rgba(0, 0, 0, 0.3) 61%,
+            //         rgba(0, 0, 0, 0.15) 76%,
+            //         rgba(0, 0, 0, 0.075) 100%,
+            //         rgba(0, 0, 0, 0.037) 100%,
+            //         rgba(0, 0, 0, 0.019) 100%,
+            //         rgba(0, 0, 0, 0) 100%);
         }
     }
 
@@ -246,7 +246,7 @@ $primary-info-font: 1.25rem;
         cursor: grab;
         background-position: top !important;
         background-color: #191919;
-        border-radius: 2px;
+        border-radius: $border-radius-1;
         overflow: hidden;
 
         &::before {
@@ -327,9 +327,18 @@ $primary-info-font: 1.25rem;
         min-height: 600px !important;
         height: calc(100vh - 60px) !important;
 
+        .btn {
+            margin-right: 15px;
+        }
+
+        .dropdown {
+            margin-right: 15px;
+        }
+
         .episode-descript {
-            width: 80%;
-            height: 140px;
+            width: 65%;
+            min-height: 120px;
+            max-height: 140px;
         }
 
 
@@ -342,6 +351,7 @@ $primary-info-font: 1.25rem;
         left: 0;
         bottom: 1em;
     }
+
 }
 
 
