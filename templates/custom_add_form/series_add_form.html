@@ -37,10 +37,10 @@
     {% endif %}{% endif %}
     {% endblock %}
     <div class="tmdbapi_container">
-        <h2> Search movie and select for fetch</h2>
+        <h2> Search Series and select for fetch</h2>
         <div class="inputContainer">
             {% csrf_token %}
-            <input type="text" class="form-control" id="contentTitleInput" placeholder="Search by 'Title'......"
+            <input type="text" class="form-control" id="contentTitleInput" placeholder="Search by 'Title' or 'TMDbID'"
                 data-cid="">
             <input type="button" class="btn btn-primary ms-2" id="fetchInfosBtn" value="Fetch"></input>
         </div>
@@ -204,7 +204,16 @@
     }
     $("#contentTitleInput").on('keyup', function () {
         let title = $(this).val();
+        url = `https://api.themoviedb.org/3/tv/${title}?api_key=${apiKey}`
         if (title.length >= 2) {
+            fetch(url).then(response => response.json()).then(item => {
+                if (item['id']) {
+                    searchedOutput +=
+                        `<li data-cid=${item['id']} class="list-group-item"><img
+                    src="https://image.tmdb.org/t/p/w300${item['poster_path']}" alt=""><span
+                    class="title">${item['name']}</span><span class="rlsdate"> (${item['first_air_date']})</span></li>`
+                }
+            })
             dataDict = {
                 'csrfmiddlewaretoken': $("input[name=csrfmiddlewaretoken]").val(),
                 'contentTitle': title
@@ -244,6 +253,7 @@
                 .then(response => response.json())
                 .then(data => {
                     console.log(data)
+                    $('#id_tmdbid').val(data.id)
                     $('#id_title').val(data.name)
                     $('#id_description').val(data.overview)
                     $('#id_rating').val(data.vote_average)
@@ -304,7 +314,7 @@
                     genresOptions.forEach(function (item1, index) {
                         data.genres.forEach(function (item2) {
                             item2['name'].split("&").forEach(function (item3) {
-                                console.log(item3.trim())
+                                // console.log(item3.trim())
                                 item3 = item3.trim()
                                 if (item3 == item1.text) {
                                     genres.options[index].selected = 'true'

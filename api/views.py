@@ -23,6 +23,7 @@ def getSearchTMDBMoviesData(request):
     }
     return JsonResponse(context,safe=False)
 
+
 def getSearchTMDBSeriesData(request):
     contentTitle = request.POST.get('contentTitle')
     search = series.search(contentTitle)
@@ -55,3 +56,20 @@ def getSearchContent(request):
             'status':0,
         }
     return JsonResponse(content)
+
+
+
+def getSeasonModelData(request,seasonId):
+    obj = SeasonModel.objects.get(id=seasonId)
+    if obj and obj.series.tmdbid:
+        context = {
+            'status':1,
+            'seasonNum':obj.season_number,
+            'seriesTmdbId':obj.series.tmdbid,
+        }
+    else:
+        context = {
+            'status':0,
+        }
+    return JsonResponse(context,safe=False)
+

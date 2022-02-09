@@ -483,7 +483,7 @@ li {
   background-color: var(--main-color);
 }
 
-.pagination .page-item.active .page-link.disabled .page-link {
+.pagination .page-item.disabled .page-link {
   color: #6c757d;
   pointer-events: none;
   cursor: auto;
@@ -1607,6 +1607,7 @@ li {
 #primary-slider .splide__slide {
   height: unset !important;
   isolation: isolate;
+  max-height: 1100px !important;
 }
 
 #primary-slider .splide__slide .btn {
@@ -1700,6 +1701,7 @@ li {
   opacity: 0.9 !important;
   border: none !important;
   aspect-ratio: 16/9 !important;
+  max-width: 300px !important;
   -webkit-transition: all 0.4s ease;
   transition: all 0.4s ease;
   position: relative;

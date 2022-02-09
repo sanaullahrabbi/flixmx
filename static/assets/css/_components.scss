@@ -318,12 +318,12 @@
             z-index: 3;
             color: #fff;
             background-color: var(--main-color);
+        }
 
-            &.disabled .page-link {
-                color: #6c757d;
-                pointer-events: none;
-                cursor: auto;
-            }
+        &.disabled .page-link {
+            color: #6c757d;
+            pointer-events: none;
+            cursor: auto;
         }
     }
 

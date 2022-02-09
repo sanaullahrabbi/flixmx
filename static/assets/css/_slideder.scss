@@ -134,6 +134,7 @@ $primary-info-font: 1.25rem;
     .splide__slide {
         height: unset !important;
         isolation: isolate;
+        max-height: 1100px !important;
 
         .btn {
             padding: 0.45em 1em;
@@ -241,6 +242,7 @@ $primary-info-font: 1.25rem;
         border: none !important;
         // height: unset !important;
         aspect-ratio: 16/9 !important;
+        max-width: 300px !important;
         transition: all 0.4s ease;
         position: relative;
         cursor: grab;

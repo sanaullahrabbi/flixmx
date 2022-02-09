@@ -70,6 +70,7 @@ class SeriesModelAdmin(SummernoteModelAdmin):
     list_filter=('type','genre','release_date')
     search_fields = ['title','release_date']
     add_form_template = 'custom_add_form/series_add_form.html'
+    change_form_template = 'custom_add_form/series_add_form.html'
     summernote_fields = ('synopsys',)
 admin.site.register(SeriesModel,SeriesModelAdmin)
 
@@ -100,6 +101,8 @@ class EpisodeModelAdmin(admin.ModelAdmin):
     list_display=('season','title','episode','rating')
     list_filter=('season','episode')
     search_fields = ['season__series__title','title',]
+    add_form_template = 'custom_add_form/episode_add_form.html'
+    change_form_template = 'custom_add_form/episode_add_form.html'
 admin.site.register(EpisodeModel,EpisodeModelAdmin)
 
 

@@ -66,7 +66,8 @@
                                     <ul>
                                         {% if episode.direct_download_main or episode.direct_download_alt1_url or episode.direct_download_alt2_url %}
                                         <li>
-                                            <a><i class="fas fa-caret-right fa-md expand-icon"></i>GDirect</a>
+                                            <a class="toogle-dropdown-sub"><i
+                                                    class="fas fa-caret-right fa-md expand-icon"></i>GDirect</a>
                                             <div class="dropdown-sub">
                                                 {% if episode.direct_download_main %}
                                                 <a href="{{episode.direct_download_main}}">Main Source</a>
@@ -83,7 +84,8 @@
                                         </li>
                                         {% endif %}
                                         {% if episode.gdrive_download_main or episode.gdrive_download_alt1_url or episode.gdrive_download_alt2_url %}
-                                        <li><a><i class="fas fa-caret-right fa-md expand-icon"></i>GDShare</a>
+                                        <li><a class="toogle-dropdown-sub"><i
+                                                    class="fas fa-caret-right fa-md expand-icon"></i>GDShare</a>
                                             <div class="dropdown-sub">
                                                 {% if episode.gdrive_download_main %}
                                                 <a href="{{episode.gdrive_download_main}}">Main Source</a>
@@ -96,11 +98,29 @@
                                                 <a
                                                     href="{{episode.gdrive_download_alt2_url}}">{{episode.gdrive_download_alt2_name}}</a>
                                                 {% endif %}
+                                                {% if episode.hevc_download_main or episode.hevc_download_alt1_url or episode.hevc_download_alt2_url %}
+                                                <a class="toogle-dropdown-sub"><i
+                                                        class="fas fa-caret-right fa-md expand-icon"></i>HEVC</a>
+                                                <div class="dropdown-sub">
+                                                    {% if episode.hevc_download_main %}
+                                                    <a href="{{episode.hevc_download_main}}">Main Source</a>
+                                                    {% endif %}
+                                                    {% if episode.hevc_download_alt1_name and episode.hevc_download_alt1_url %}
+                                                    <a
+                                                        href="{{episode.hevc_download_alt1_url}}">{{episode.hevc_download_alt1_name}}</a>
+                                                    {% endif %}
+                                                    {% if episode.hevc_download_alt2_name and episode.hevc_download_alt2_url %}
+                                                    <a
+                                                        href="{{episode.hevc_download_alt2_url}}">{{episode.hevc_download_alt2_name}}</a>
+                                                    {% endif %}
+                                                </div>
+                                                {% endif %}
                                             </div>
                                         </li>
                                         {% endif %}
                                         {% if episode.onedrive_download_main or episode.onedrive_download_alt1_url or episode.onedrive_download_alt2_url %}
-                                        <li><a><i class="fas fa-caret-right fa-md expand-icon"></i>One Drive</a>
+                                        <li><a class="toogle-dropdown-sub"><i
+                                                    class="fas fa-caret-right fa-md expand-icon"></i>One Drive</a>
                                             <div class="dropdown-sub">
                                                 {% if episode.onedrive_download_main %}
                                                 <a href="{{episode.onedrive_download_main}}">Main Source</a>
@@ -116,24 +136,6 @@
                                             </div>
                                         </li>
                                         {% endif %}
-                                        {% if episode.mega_download_main or episode.mega_download_alt1_url or episode.mega_download_alt2_url %}
-                                        <li><a><i class="fas fa-caret-right fa-md expand-icon"></i>Mega</a>
-                                            <div class="dropdown-sub">
-                                                {% if episode.mega_download_main %}
-                                                <a href="{{episode.mega_download_main}}">Main Source</a>
-                                                {% endif %}
-                                                {% if episode.mega_download_alt1_name and episode.mega_download_alt1_url %}
-                                                <a
-                                                    href="{{episode.mega_download_alt1_url}}">{{episode.mega_download_alt1_name}}</a>
-                                                {% endif %}
-                                                {% if episode.mega_download_alt2_name and episode.mega_download_alt2_url %}
-                                                <a
-                                                    href="{{episode.mega_download_alt2_url}}">{{episode.mega_download_alt2_name}}</a>
-                                                {% endif %}
-                                            </div>
-                                        </li>
-                                        {% endif %}
-
                                     </ul>
                                 </div>
                             </div>
@@ -159,7 +161,7 @@
             <ul class="splide__list">
                 {% for episode in episodes %}
                 <li class="splide__slide">
-                    <img src="{% if episode.thumbnail %}{{ episode.thumbnail.url }}{% elif obj.thumbnail %}{{obj.thumbnail.url}}{% elif obj.series.tmdb_thumbnail %}{{obj.series.tmdb_thumbnail}}{% else %}{{obj.series.thumbnail.url}}{% endif %}"
+                    <img src="{% if episode.tmdb_thumbnail %}{{episode.tmdb_thumbnail}}{% elif episode.thumbnail %}{{ episode.thumbnail.url }}{% elif obj.thumbnail %}{{obj.thumbnail.url}}{% elif obj.series.tmdb_thumbnail %}{{obj.series.tmdb_thumbnail}}{% else %}{{obj.series.thumbnail.url}}{% endif %}"
                         loading="lazy" alt="">
                     <div class="ep-num">
                         <h2>Ep {{episode.episode}}</h2>
@@ -225,4 +227,29 @@
     </div>
 </div>
 <!-- End Recommend Section -->
+<div class="section comment-section">
+    <div class="container">
+        <div id="disqus_thread"></div>
+        <script>
+            /**
+             *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+             *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+            /*
+            var disqus_config = function () {
+            this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+            this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+            };
+            */
+            (function () { // DON'T EDIT BELOW THIS LINE
+                var d = document,
+                    s = d.createElement('script');
+                s.src = 'https://flixmx-com.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by
+                Disqus.</a></noscript>
+    </div>
+</div>
 {% endblock content %}

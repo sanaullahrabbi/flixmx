@@ -186,6 +186,7 @@
 <script>
     searchedOutput = ''
     apiKey = 'c922683661639d2817db046e73983d60'
+
     var genres = document.getElementById("id_genre");
     const genresOptions = Array.from(genres.options);
 
@@ -212,6 +213,8 @@
                     searchedOutput +=
                         `<li data-cid=${item['id']} class="list-group-item"><img src="https://image.tmdb.org/t/p/w300${item['poster_path']}" alt=""><span class="title">${item['title']}</span><span class="rlsdate"> (${item['release_date']})</span></li>`
                 }
+            }).catch(error => {
+                console.log(error)
             })
             dataDict = {
                 'csrfmiddlewaretoken': $("input[name=csrfmiddlewaretoken]").val(),
@@ -248,13 +251,14 @@
 
     $("#fetchInfosBtn").on('click', function () {
         let cnID = $('#contentTitleInput').attr('data-cid')
+        let stillPaths = []
         if (cnID) {
             fetch(
-                    `https://api.themoviedb.org/3/movie/${cnID}?api_key=${apiKey}&append_to_response=credits,videos`
+                    `https://api.themoviedb.org/3/movie/${cnID}?api_key=${apiKey}&append_to_response=credits,videos,images`
                 )
                 .then(response => response.json())
                 .then(data => {
-                    // console.log(data)
+                    $('#id_tmdbid').val(data.id)
                     $('#id_title').val(data.title + " (" + data.release_date.split('-')[0] + ")")
                     $('#id_description').val(data.overview)
                     $('#id_runtime').val(timeConvert(data.runtime))
@@ -311,6 +315,12 @@
                         }
                         return true;
                     })
+                    data.images.backdrops.slice(0, 10).forEach(item => {
+                        stillPaths.push(`https://image.tmdb.org/t/p/w300${item.file_path}`)
+                        // $('.tmdbapi_container').append(
+                        //     `<img src='https://image.tmdb.org/t/p/w300${item.file_path}'>`
+                        // )
+                    })
                     $('#id_starring').val(starring.join(', '))
                     $('#id_writers').val(writers.join(', '))
                     $('#id_director').val(directors.join(', '))
@@ -322,6 +332,7 @@
                         })
                     })
                     $('#id_genre').select2();
+                    $('#id_still_path').val(stillPaths.join(', '))
                 })
                 .catch((error) => {
                     console.error('Error:', error);

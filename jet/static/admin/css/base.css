@@ -18,3 +18,9 @@ select,
 .vTextField {
     border: 0.07143rem solid #e0e0e0 !important;
 }
+
+
+
+.select2-container--jet .select2-selection--single {
+    height: 2.28571rem !important;
+}

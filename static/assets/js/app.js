@@ -43,9 +43,10 @@
  });
 
  $(document).ready(function () {
-     $(".dropdowncontain > .dropdown > ul > li").click(function (e) {
-         $(this).find('.expand-icon').toggleClass('active');
-         $(this).children('.dropdown-sub').slideToggle();
+     $(".dropdown .toogle-dropdown-sub").click(function (e) {
+         console.log("Click")
+         $(this).children('.expand-icon').toggleClass('active');
+         $(this).next('.dropdown-sub').slideToggle();
          e.stopPropagation();
      });
  });

@@ -52,8 +52,9 @@ class GenreModel(models.Model):
 
 
 class MovieModel(models.Model):
-    title = models.CharField(max_length=250,null=True)
     slug = models.SlugField(max_length=250,null=True,editable=False)
+    tmdbid = models.BigIntegerField(unique=True,null=True,blank=True)
+    title = models.CharField(max_length=250,null=True)
     description = models.TextField(null=True,blank=True)
     poster = models.ImageField(upload_to='posters',null=True,blank=True)
     tmdb_poster = models.URLField(max_length=999,null=True,blank=True)
@@ -97,12 +98,11 @@ class MovieModel(models.Model):
     onedrive_download_dual_audio = models.URLField(max_length=999,null=True,blank=True)
     onedrive_download_hindi_dubbed = models.URLField(max_length=999,null=True,blank=True)
 
-    mega_quality_480p = models.URLField(max_length=999,null=True,blank=True)
-    mega_quality_720p = models.URLField(max_length=999,null=True,blank=True)
-    mega_quality_1080p = models.URLField(max_length=999,null=True,blank=True)
-    mega_quality_4K = models.URLField(max_length=999,null=True,blank=True)
-    mega_download_dual_audio = models.URLField(max_length=999,null=True,blank=True)
-    mega_download_hindi_dubbed = models.URLField(max_length=999,null=True,blank=True)
+    hevc_quality_720p = models.URLField(max_length=999,null=True,blank=True)
+    hevc_quality_1080p = models.URLField(max_length=999,null=True,blank=True)
+    hevc_quality_4K = models.URLField(max_length=999,null=True,blank=True)
+    hevc_download_dual_audio = models.URLField(max_length=999,null=True,blank=True)
+    hevc_download_hindi_dubbed = models.URLField(max_length=999,null=True,blank=True)
 
     torrent = models.URLField(max_length=999,null=True,blank=True)
 
@@ -110,6 +110,8 @@ class MovieModel(models.Model):
     info2 = models.CharField(max_length=250,null=True,blank=True)
     synopsys = models.TextField(null=True,blank=True)
     subtitle_link = models.URLField(max_length=999,null=True,blank=True)
+
+    still_path = models.CharField(max_length=5000,null=True,blank=True)
 
     created_at = models.DateTimeField(auto_now_add=True)
     created_by = models.ForeignKey(User, related_name='create_user', on_delete=models.SET_NULL,blank=True, null=True)
@@ -139,8 +141,10 @@ class MovieModel(models.Model):
 
 # Create your models here.
 class SeriesModel(models.Model):
-    title = models.CharField(max_length=250,null=True,blank=True)
+    tmdbid = models.BigIntegerField(unique=True,null=True,blank=True)
     slug = models.SlugField(max_length=250,null=True,blank=True,editable=False)
+    title = models.CharField(max_length=250,null=True,blank=True)
+
     description = models.TextField(null=True,blank=True)
     tmdb_poster = models.URLField(max_length=999,null=True,blank=True)
     poster = models.ImageField(upload_to='posters/',null=True,blank=True)
@@ -162,8 +166,10 @@ class SeriesModel(models.Model):
     info1 = models.CharField(max_length=250,null=True,blank=True)
     info2 = models.CharField(max_length=250,null=True,blank=True)
     synopsys = models.TextField(null=True,blank=True)
-    created_at = models.DateTimeField(auto_now_add=True)
 
+    created_at = models.DateTimeField(auto_now_add=True)
+    created_by = models.ForeignKey(User, related_name='create_user_series', on_delete=models.SET_NULL,blank=True, null=True)
+    last_update = models.ForeignKey(User, related_name='update_user_series', on_delete=models.SET_NULL,blank=True, null=True)
     class Meta:
         ordering = ('title', )
 
@@ -196,6 +202,7 @@ class SeasonModel(models.Model):
 
 class EpisodeModel(models.Model):
     title = models.CharField(max_length=250,null=True,blank=True)
+    tmdb_thumbnail = models.URLField(max_length=999,null=True,blank=True)
     thumbnail = models.ImageField(upload_to='thumbnails',null=True,blank=True)
     slug = models.SlugField(max_length=250,null=True,blank=True,editable=False)
     season = models.ForeignKey(SeasonModel,on_delete=models.CASCADE,null=True)
@@ -229,11 +236,11 @@ class EpisodeModel(models.Model):
     onedrive_download_alt2_name = models.CharField(max_length=250,null=True,blank=True)
     onedrive_download_alt2_url = models.URLField(max_length=999,null=True,blank=True)
 
-    mega_download_main = models.URLField(max_length=999,null=True,blank=True)
-    mega_download_alt1_name = models.CharField(max_length=250,null=True,blank=True)
-    mega_download_alt1_url = models.URLField(max_length=999,null=True,blank=True)
-    mega_download_alt2_name = models.CharField(max_length=250,null=True,blank=True)
-    mega_download_alt2_url = models.URLField(max_length=999,null=True,blank=True)
+    hevc_download_main = models.URLField(max_length=999,null=True,blank=True)
+    hevc_download_alt1_name = models.CharField(max_length=250,null=True,blank=True)
+    hevc_download_alt1_url = models.URLField(max_length=999,null=True,blank=True)
+    hevc_download_alt2_name = models.CharField(max_length=250,null=True,blank=True)
+    hevc_download_alt2_url = models.URLField(max_length=999,null=True,blank=True)
 
     subtitle_link = models.URLField(max_length=999,null=True,blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -289,7 +296,8 @@ class SoftwaresGamesModel(models.Model):
     info2 = models.CharField(max_length=250,null=True,blank=True)
     
     created_at = models.DateTimeField(auto_now_add=True)
-
+    created_by = models.ForeignKey(User, related_name='create_user_sge', on_delete=models.SET_NULL,blank=True, null=True)
+    last_update = models.ForeignKey(User, related_name='update_user_sge', on_delete=models.SET_NULL,blank=True, null=True)
     class Meta:
         ordering = ('-created_at', )
 
