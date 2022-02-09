@@ -184,27 +184,6 @@
                                     <a href="{{obj.direct_download_hindi_dubbed}}">Hindi Dubbed</a>
                                     {% endif %}
 
-                                    {% if obj.hevc_quality_720p or obj.hevc_quality_1080p or obj.hevc_quality_4K or obj.hevc_download_hindi_dubbed or obj.hevc_download_dual_audio  %}
-                                    <a class="toogle-dropdown-sub"><i
-                                            class="fas fa-caret-right fa-md expand-icon"></i>HEVC</a>
-                                    <div class="dropdown-sub">
-                                        {% if obj.hevc_quality_720p %}
-                                        <a href="{{obj.hevc_quality_720p}}">720p</a>
-                                        {% endif %}
-                                        {% if obj.hevc_quality_1080p %}
-                                        <a href="{{obj.hevc_quality_1080p}}">1080p</a>
-                                        {% endif %}
-                                        {% if obj.hevc_quality_4K %}
-                                        <a href="{{obj.hevc_quality_4K}}">4K</a>
-                                        {% endif %}
-                                        {% if obj.hevc_download_dual_audio %}
-                                        <a href="{{obj.hevc_download_dual_audio}}">Dual Audio</a>
-                                        {% endif %}
-                                        {% if obj.hevc_download_hindi_dubbed %}
-                                        <a href="{{obj.hevc_download_hindi_dubbed}}">Hindi Dubbed</a>
-                                        {% endif %}
-                                    </div>
-                                    {% endif %}
                                 </div>
                             </li>
                             {% endif %}
@@ -230,9 +209,30 @@
                                     {% if obj.gdrive_download_hindi_dubbed %}
                                     <a href="{{obj.gdrive_download_hindi_dubbed}}">Hindi Dubbed</a>
                                     {% endif %}
+                                    {% if obj.hevc_quality_720p or obj.hevc_quality_1080p or obj.hevc_quality_4K or obj.hevc_download_hindi_dubbed or obj.hevc_download_dual_audio  %}
+                                    <a class="toogle-dropdown-sub"><i
+                                            class="fas fa-caret-right fa-md expand-icon"></i>HEVC</a>
+                                    <div class="dropdown-sub">
+                                        {% if obj.hevc_quality_720p %}
+                                        <a href="{{obj.hevc_quality_720p}}">720p</a>
+                                        {% endif %}
+                                        {% if obj.hevc_quality_1080p %}
+                                        <a href="{{obj.hevc_quality_1080p}}">1080p</a>
+                                        {% endif %}
+                                        {% if obj.hevc_quality_4K %}
+                                        <a href="{{obj.hevc_quality_4K}}">4K</a>
+                                        {% endif %}
+                                        {% if obj.hevc_download_dual_audio %}
+                                        <a href="{{obj.hevc_download_dual_audio}}">Dual Audio</a>
+                                        {% endif %}
+                                        {% if obj.hevc_download_hindi_dubbed %}
+                                        <a href="{{obj.hevc_download_hindi_dubbed}}">Hindi Dubbed</a>
+                                        {% endif %}
+                                    </div>
+                                    {% endif %}
                                 </div>
-                                {% endif %}
                             </li>
+                            {% endif %}
                             {% if obj.onedrive_quality_480p or obj.onedrive_quality_720p or obj.onedrive_quality_1080p or obj.onedrive_quality_4K or obj.onedrive_download_hindi_dubbed or obj.onedrive_download_dual_audio  %}
                             <li><a class="toogle-dropdown-sub"><i
                                         class="fas fa-caret-right fa-md expand-icon"></i>OneDrive </a>
