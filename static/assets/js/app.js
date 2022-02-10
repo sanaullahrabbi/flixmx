@@ -44,9 +44,11 @@
 
  $(document).ready(function () {
      $(".dropdown .toogle-dropdown-sub").click(function (e) {
-         console.log("Click")
          $(this).children('.expand-icon').toggleClass('active');
-         $(this).next('.dropdown-sub').slideToggle();
+         dropSub = $(this).next('.dropdown-sub')
+         dropSub.slideToggle()
+         dropSub.closest('li').siblings('li').children('.dropdown-sub').slideUp()
+         dropSub.closest('li').siblings('li').children('.toogle-dropdown-sub').children('.expand-icon').removeClass('active')
          e.stopPropagation();
      });
  });

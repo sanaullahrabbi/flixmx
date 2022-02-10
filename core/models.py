@@ -192,6 +192,13 @@ class SeasonModel(models.Model):
     season_number = models.IntegerField(null=True,blank=True,default=0)
     episode_count = models.IntegerField(null=True,blank=True,default=0)
     complete = models.BooleanField(default=False)
+
+    download_full_quality_480p = models.URLField(max_length=999,null=True,blank=True)
+    download_full_quality_720p = models.URLField(max_length=999,null=True,blank=True)
+    download_full_quality_1080p = models.URLField(max_length=999,null=True,blank=True)
+    download_full_download_dual_audio = models.URLField(max_length=999,null=True,blank=True)
+    download_full_download_hindi_dubbed = models.URLField(max_length=999,null=True,blank=True)
+
     created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:

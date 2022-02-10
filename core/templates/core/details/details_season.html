@@ -182,6 +182,53 @@
         </div>
     </div>
 </div>
+<div class="section">
+    <div class="container">
+        <h2>Download Full Season ( Zip / RAR )</h2>
+        <div class="dropdowncontain " style="width: max-content;margin-top: 1rem;">
+            <div class="btn btn-hover downloadbtn">
+                <i class="fas fa-caret-right fa-md expand-icon"></i>
+                <span> Select Quality</span>
+            </div>
+
+            <div class="dropdown" style="margin-right: 0;">
+                <ul>
+                    {% if obj.download_full_quality_480p or obj.download_full_quality_720p or obj.download_full_quality_1080p or obj.download_full_download_dual_audio or obj.download_full_download_hindi_dubbed %}
+                    {% if obj.download_full_quality_480p %}
+                    <li>
+                        <a href="{{obj.download_full_quality_480p}}">480</a>
+                    </li>
+                    {% endif %}
+                    {% if obj.download_full_quality_720p %}
+                    <li>
+                        <a href="{{obj.download_full_quality_720p}}">720</a>
+                    </li>
+                    {% endif %}
+                    {% if obj.download_full_quality_1080p %}
+                    <li>
+                        <a href="{{obj.download_full_quality_1080p}}">1080</a>
+                    </li>
+                    {% endif %}
+                    {% if obj.download_full_download_dual_audio %}
+                    <li>
+                        <a href="{{obj.download_full_download_dual_audio}}">Dual audio</a>
+                    </li>
+                    {% endif %}
+                    {% if obj.download_full_download_hindi_dubbed %}
+                    <li>
+                        <a href="{{obj.download_full_download_hindi_dubbed}}">Hindi Dubbed</a>
+                    </li>
+                    {% endif %}
+                    {% else %}
+                    <li>
+                        <a>No link available</a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
 <!-- Recommend Section -->
 <div class="section">
     <div class="container">

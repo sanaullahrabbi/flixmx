@@ -181,7 +181,7 @@ li {
   transition: 0.3s ease-in-out;
 }
 
-.btn-hover::before::before {
+.btn-hover:hover:before {
   width: 100%;
   -webkit-clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
           clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
@@ -345,6 +345,10 @@ li {
 
 .review-container .tbutton2 {
   background-color: #0088cc;
+}
+
+.review-container .tbutton3 {
+  background-color: #ff2929;
 }
 
 .social {

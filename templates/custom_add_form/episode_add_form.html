@@ -136,13 +136,13 @@
                         )
                         .then(response => response.json())
                         .then(data => {
-                            console.log(data)
-
                             $('#id_title').val(data.name)
                             $('#id_description').val(data.overview)
-                            $('#id_rating').val(data.vote_average.toFixed(1))
-                            $('#id_tmdb_thumbnail').val('https://image.tmdb.org/t/p/w300' + data
-                                .still_path)
+                            $('#id_rating').val(data.vote_average ? data.vote_average.toFixed(1) :
+                                null)
+                            $('#id_tmdb_thumbnail').val((data.still_path) ?
+                                'https://image.tmdb.org/t/p/w300' +
+                                data.still_path : null)
 
                         }).catch((error) => {
                             console.error('Error:', error);

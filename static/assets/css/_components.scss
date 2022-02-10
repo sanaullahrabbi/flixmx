@@ -40,11 +40,11 @@
         clip-path: polygon(0% 0%, 100% 0%, 75% 100%, 0% 100%);
         background-color: var(--main-color);
         transition: 0.3s ease-in-out;
+    }
 
-        &::before {
-            width: 100%;
-            clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
-        }
+    &:hover:before {
+        width: 100%;
+        clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
     }
 }
 
@@ -211,6 +211,11 @@
     .tbutton2 {
         // background-image: linear-gradient(135deg, #5dcbff 10%, #1904E5 100%);
         background-color: #0088cc;
+    }
+
+    .tbutton3 {
+        // background-image: linear-gradient(135deg, #5dcbff 10%, #1904E5 100%);
+        background-color: #ff2929;
     }
 
 }
