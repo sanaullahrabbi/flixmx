@@ -52,7 +52,7 @@ class GenreModel(models.Model):
 
 
 class MovieModel(models.Model):
-    slug = models.SlugField(max_length=250,null=True,editable=False)
+    slug = models.SlugField(max_length=250,null=True,blank=True)
     tmdbid = models.BigIntegerField(unique=True,null=True,blank=True)
     title = models.CharField(max_length=250,null=True)
     description = models.TextField(null=True,blank=True)
@@ -124,9 +124,9 @@ class MovieModel(models.Model):
 
     def save(self, *args, **kwargs):
         if not self.slug:
-            self.slug = slugify(str(self.title)+"-"+ str(datetime.now()))
+            self.slug = slugify(f'{self.title}')
         super(MovieModel, self).save(*args, **kwargs)
-        
+
     def create(self,request):
         if not self.created_by:
             self.created_by = request.user
@@ -142,7 +142,7 @@ class MovieModel(models.Model):
 # Create your models here.
 class SeriesModel(models.Model):
     tmdbid = models.BigIntegerField(unique=True,null=True,blank=True)
-    slug = models.SlugField(max_length=250,null=True,blank=True,editable=False)
+    slug = models.SlugField(max_length=250,null=True,blank=True)
     title = models.CharField(max_length=250,null=True,blank=True)
 
     description = models.TextField(null=True,blank=True)
@@ -178,8 +178,16 @@ class SeriesModel(models.Model):
 
     def save(self, *args, **kwargs):
         if not self.slug:
-            self.slug = slugify(str(self.title)+"-"+ str(datetime.now()))
+            self.slug = slugify(f'{self.title}')
         super(SeriesModel, self).save(*args, **kwargs)
+    
+    def create(self,request):
+        if not self.created_by:
+            self.created_by = request.user
+            
+    def update(self,request):
+        self.last_update = request.user
+        
     def delete(self):
         self.thumbnail.delete()
         self.poster.delete()
@@ -187,6 +195,7 @@ class SeriesModel(models.Model):
 
 class SeasonModel(models.Model):
     series = models.ForeignKey(SeriesModel,on_delete=models.CASCADE,null=True)
+    slug = models.SlugField(max_length=250,null=True,blank=True)
     thumbnail = models.ImageField(upload_to='thumbnails',null=True,blank=True)
     release_date = models.DateField(null=True,blank=True,default=date.today)
     season_number = models.IntegerField(null=True,blank=True,default=0)
@@ -203,6 +212,11 @@ class SeasonModel(models.Model):
 
     class Meta:
         ordering = ('series__title','season_number', )
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(f'{self.series.title}-season{self.season_number}')
+        super(SeasonModel, self).save(*args, **kwargs)
+
     def __str__(self):
         return f"{self.series.title} (Season {self.season_number})"
 
@@ -211,13 +225,11 @@ class EpisodeModel(models.Model):
     title = models.CharField(max_length=250,null=True,blank=True)
     tmdb_thumbnail = models.URLField(max_length=999,null=True,blank=True)
     thumbnail = models.ImageField(upload_to='thumbnails',null=True,blank=True)
-    slug = models.SlugField(max_length=250,null=True,blank=True,editable=False)
     season = models.ForeignKey(SeasonModel,on_delete=models.CASCADE,null=True)
     episode = models.IntegerField(null=True,blank=True,default=0)
     description = models.TextField(null=True,blank=True)
     rating = models.FloatField(null=True,blank=True)
     runtime = models.CharField(max_length=250,null=True,blank=True)
-
 
     watch_link_main_source = models.URLField(max_length=999,null=True,blank=True)
     watch_link_alt1_name = models.CharField(max_length=250,null=True,blank=True)
@@ -258,8 +270,6 @@ class EpisodeModel(models.Model):
         return f"{self.season} (Episode {self.episode})"
 
     def save(self, *args, **kwargs):
-        if not self.slug:
-            self.slug = slugify(str(self.season.series)+ "-"+ str(datetime.now()))
         if not self.id:
             season = SeasonModel.objects.get(id = self.season_id)
             season.episode_count = self.season.episodemodel_set.count()+1
@@ -277,7 +287,7 @@ class SoftwaresGamesModel(models.Model):
     )
 
     title = models.CharField(max_length=250,null=True,blank=True)
-    slug = models.SlugField(max_length=250,null=True,blank=True,editable=False)
+    slug = models.SlugField(max_length=250,null=True,blank=True)
     poster = models.ImageField(upload_to='posters/',null=True,blank=True)
     thumbnail = models.ImageField(upload_to='thumbnails/',null=True,blank=True)
 
@@ -313,7 +323,7 @@ class SoftwaresGamesModel(models.Model):
 
     def save(self, *args, **kwargs):
         if not self.slug:
-            self.slug = slugify(str(self.title)+"-"+ str(datetime.now()))
+            self.slug = slugify(f'{self.title}')
         super(SoftwaresGamesModel, self).save(*args, **kwargs)
 
 
@@ -332,8 +342,6 @@ class TopSlideModel(models.Model):
             return f"{self.series_content}"
         else:
             return self.id
-
-
 
 
 

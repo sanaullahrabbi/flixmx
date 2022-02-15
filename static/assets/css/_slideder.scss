@@ -18,6 +18,16 @@
 .splide__arrow {
     width: 2.5rem !important;
     height: 2.5rem !important;
+    border-radius: 0;
+    opacity: 0.5;
+}
+
+.splide__arrow--prev {
+    left: 0;
+}
+
+.splide__arrow--next {
+    right: 0;
 }
 
 .hero-slide .splide__arrow {
@@ -29,7 +39,7 @@
 }
 
 .hero-slide .splide__arrow i {
-    font-size: 1.5rem;
+    font-size: 1.25rem;
 }
 
 .hero-slide .splide__arrow {
@@ -55,10 +65,13 @@
     opacity: 1;
 }
 
+.splide__pagination__page {
+    transition: all 0.25s linear;
+}
 
 .splide__pagination__page.is-active {
     transform: none;
-    width: 23px;
+    width: 27px;
     border-radius: 5px;
     background: #fff;
 }
@@ -75,6 +88,7 @@
     margin: auto;
     background-color: rgba(0, 0, 0, 0.5);
     transition: all 0.4s ease-in-out;
+    backdrop-filter: blur(1.5px);
 }
 
 .splide__slide .movie-item:hover::after {
@@ -87,7 +101,10 @@
 
 
 
-
+.fancybox__thumbs .carousel__slide .fancybox__thumb::after {
+    border-width: 3px;
+    border-color: $main-color;
+}
 
 
 

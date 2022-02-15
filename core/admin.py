@@ -25,9 +25,10 @@ admin.site.register(SuperheroModel)
 # class MovieModelAdmin(SummernoteModelAdmin):
 #       summernote_fields = ('synopsys',)
 class MovieModelAdmin(SummernoteModelAdmin):
-    list_display=('title','type','release_date',)
+    list_display=('title','type','release_date','created_at')
     list_filter=('type','genre','release_date')
     search_fields = ['title','release_date']
+    ordering = ['-created_at']
     add_form_template = 'custom_add_form/movie_add_form.html'
     change_form_template = 'custom_add_form/movie_add_form.html'
     summernote_fields = ('synopsys',)
@@ -63,24 +64,32 @@ class DualAudioModelAdmin(admin.ModelAdmin):
 admin.site.register(DualAudioModel,DualAudioModelAdmin)
 
 
-
-
 class SeriesModelAdmin(SummernoteModelAdmin):
-    list_display=('title','type','rating','release_date',)
+    list_display=('title','type','rating','release_date','created_at')
     list_filter=('type','genre','release_date')
     search_fields = ['title','release_date']
+    ordering = ['-created_at']
     add_form_template = 'custom_add_form/series_add_form.html'
     change_form_template = 'custom_add_form/series_add_form.html'
     summernote_fields = ('synopsys',)
+    def save_model(self, request, obj, form, change):
+      if not obj.last_update:
+        obj.update(request)
+      elif form.changed_data:
+        obj.update(request)
+
+      obj.create(request)
+      super(SeriesModelAdmin, self).save_model(request, obj, form, change)
+      
 admin.site.register(SeriesModel,SeriesModelAdmin)
 
 
 class SeasonModelAdmin(admin.ModelAdmin):
     def series_title(self, obj):
       return f'{obj.series.title}'
-    list_display=('series_title','season_number','episode_count','release_date',)
+    list_display=('series_title','season_number','episode_count','release_date','created_at')
     list_filter=('season_number','release_date')
-
+    ordering = ['-created_at']
     search_fields = ['series__title','release_date',]
     # def get_search_results(self, request, queryset, search_term):
     #     queryset, use_distinct = super(SeasonModelAdmin, self).get_search_results(request, queryset, search_term)
@@ -98,9 +107,10 @@ admin.site.register(SeasonModel,SeasonModelAdmin)
 
 
 class EpisodeModelAdmin(admin.ModelAdmin):
-    list_display=('season','title','episode','rating')
+    list_display=('season','title','episode','rating','created_at')
     list_filter=('season','episode')
     search_fields = ['season__series__title','title',]
+    ordering = ['-created_at']
     add_form_template = 'custom_add_form/episode_add_form.html'
     change_form_template = 'custom_add_form/episode_add_form.html'
 admin.site.register(EpisodeModel,EpisodeModelAdmin)

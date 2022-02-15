@@ -874,7 +874,7 @@ li {
   bottom: 0;
   left: 0;
   width: 100%;
-  padding: 10px;
+  padding: 14px;
   z-index: 10;
 }
 
@@ -1524,6 +1524,16 @@ li {
 .splide__arrow {
   width: 2.5rem !important;
   height: 2.5rem !important;
+  border-radius: 0;
+  opacity: 0.5;
+}
+
+.splide__arrow--prev {
+  left: 0;
+}
+
+.splide__arrow--next {
+  right: 0;
 }
 
 .hero-slide .splide__arrow {
@@ -1535,7 +1545,7 @@ li {
 }
 
 .hero-slide .splide__arrow i {
-  font-size: 1.5rem;
+  font-size: 1.25rem;
 }
 
 .hero-slide .splide__arrow {
@@ -1562,10 +1572,15 @@ li {
   opacity: 1;
 }
 
+.splide__pagination__page {
+  -webkit-transition: all 0.25s linear;
+  transition: all 0.25s linear;
+}
+
 .splide__pagination__page.is-active {
   -webkit-transform: none;
           transform: none;
-  width: 23px;
+  width: 27px;
   border-radius: 5px;
   background: #fff;
 }
@@ -1583,6 +1598,8 @@ li {
   background-color: rgba(0, 0, 0, 0.5);
   -webkit-transition: all 0.4s ease-in-out;
   transition: all 0.4s ease-in-out;
+  -webkit-backdrop-filter: blur(1.5px);
+          backdrop-filter: blur(1.5px);
 }
 
 .splide__slide .movie-item:hover::after {
@@ -1592,6 +1609,11 @@ li {
 .splide__slide .movie-item:hover .play-btn i {
   -webkit-transform: scale(1);
           transform: scale(1);
+}
+
+.fancybox__thumbs .carousel__slide .fancybox__thumb::after {
+  border-width: 3px;
+  border-color: #0A7CFF;
 }
 
 .episode-main {
@@ -2228,17 +2250,31 @@ footer .content p {
 
 .extraInfo .col-4 {
   background-color: #44444480;
-  padding: 1rem;
+  padding: 0.75rem;
   border-radius: 0.25rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
 
 .extraInfo .col-4 div {
   font-size: 0.875rem;
   font-weight: 700;
   background: #0e0e0e;
-  padding: 1rem;
-  margin: 5px 0;
+  padding: 0.5rem 1rem;
+  margin: 4px 0;
   border-radius: 0.25rem;
+  width: 100%;
 }
 
 /* Details Page ------------------------------------ */
@@ -2327,6 +2363,11 @@ footer .content p {
 
 .main-navitem-icon {
   display: none !important;
+}
+
+.splide__slide .movie-item-content .movie-infos {
+  margin: 0;
+  margin-top: 10px;
 }
 
 #watchModal {
@@ -2589,6 +2630,15 @@ footer .content p {
   }
   .movie-details-container .details .col-title {
     width: 90px;
+  }
+  .splide__slide .movie-item-content {
+    padding: 10px;
+  }
+  .splide__slide .movie-item-content .movie-infos {
+    margin-top: 5px;
+  }
+  .splide__slide .movie-item-content .movie-info {
+    font-size: 1em;
   }
 }
 

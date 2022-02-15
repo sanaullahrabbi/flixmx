@@ -191,22 +191,22 @@
                 <span> Select Quality</span>
             </div>
 
-            <div class="dropdown" style="margin-right: 0;">
+            <div class="dropdown" style="margin-right: 0;margin-left: 0;">
                 <ul>
                     {% if obj.download_full_quality_480p or obj.download_full_quality_720p or obj.download_full_quality_1080p or obj.download_full_download_dual_audio or obj.download_full_download_hindi_dubbed %}
                     {% if obj.download_full_quality_480p %}
                     <li>
-                        <a href="{{obj.download_full_quality_480p}}">480</a>
+                        <a href="{{obj.download_full_quality_480p}}">480p</a>
                     </li>
                     {% endif %}
                     {% if obj.download_full_quality_720p %}
                     <li>
-                        <a href="{{obj.download_full_quality_720p}}">720</a>
+                        <a href="{{obj.download_full_quality_720p}}">720p</a>
                     </li>
                     {% endif %}
                     {% if obj.download_full_quality_1080p %}
                     <li>
-                        <a href="{{obj.download_full_quality_1080p}}">1080</a>
+                        <a href="{{obj.download_full_quality_1080p}}">1080p</a>
                     </li>
                     {% endif %}
                     {% if obj.download_full_download_dual_audio %}

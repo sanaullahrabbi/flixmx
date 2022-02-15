@@ -250,6 +250,18 @@
             }
         }
     }
+
+    .splide__slide .movie-item-content {
+        padding: 10px;
+
+        .movie-infos {
+            margin-top: 5px;
+        }
+
+        .movie-info {
+            font-size: 1em;
+        }
+    }
 }
 
 @media only screen and (max-width: 768px) {

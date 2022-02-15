@@ -110,6 +110,7 @@
  let topslider__content = document.getElementById('topslider__content');
  let primaryslider__content = document.getElementById('primary-slider');
  let secondaryslider__content = document.getElementById('secondary-slider');
+ let stillpath__content = document.getElementById('still_path');
 
  if (width > 768)
      perLoadCount = 1
@@ -344,3 +345,34 @@
          }
      });
  });
+
+
+
+
+
+ new Splide(still_path, {
+     perPage: 3,
+     perMove: 1,
+     gap: '1rem',
+     preloadPages: perLoadCount,
+     cover: true,
+     pagination: false,
+     lazyLoad: 'nearby',
+     breakpoints: {
+         '1920': {
+             perPage: 6,
+         },
+         '1550': {
+             perPage: 5,
+         },
+         '1280': {
+             perPage: 4,
+         },
+         '768': {
+             perPage: 3,
+         },
+         '480': {
+             perPage: 2,
+         },
+     }
+ }).mount()

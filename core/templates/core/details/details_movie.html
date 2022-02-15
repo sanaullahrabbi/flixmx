@@ -282,11 +282,33 @@
             <div class=""><i class="fas fa-download"></i>Download: 0</div>
         </div>
     </div>
+    {% if obj.still_path %}
+    <div class="container" style="margin-top: 3rem;width: 100%;">
+        <div class="splide" id="still_path">
+            <div class="splide__track">
+                <ul class="splide__list">
+                    <!-- ITEM -->
+                    {% for stp in obj.still_path|splitVal:"," %}
+                    <li class="splide__slide">
+                        <a data-fancybox="gallery" data-src="https://image.tmdb.org/t/p/w1280{{stp}}">
+                            <img src="https://image.tmdb.org/t/p/w300{{stp}}" />
+                        </a>
+                    </li>
+                    {% endfor %}
+                </ul>
+
+            </div>
+        </div>
+    </div>
+    {% endif %}
     <div class="container extraInfo row">
         <div class="col-7">
             {{obj.synopsys|safe}}
         </div>
         <div class="col-4" style="white-space:normal;">
+            <div>
+                Bangla Subtitle By: N/A
+            </div>
             <div>
                 Added
                 By : {% if obj.created_by.first_name %}{{obj.created_by.first_name}} {% endif %}
@@ -301,7 +323,8 @@
         </div>
     </div>
     <div class="review-container">
-        <a class="tbutton tbutton1" href="https://telegram.im/@flixmxchat"><i class='bx bxl-telegram bx-burst'></i>Join
+        <a class="tbutton tbutton1" href="https://facebook.com/groups/flixmxofficial"><i
+                class='bx bxl-facebook bx-burst'></i>Join
             FB Group</a>
         <a class="tbutton tbutton2" href="https://telegram.im/@flixmxchat"><i class='bx bxl-telegram bx-burst'></i>Join
             TG Group</a>

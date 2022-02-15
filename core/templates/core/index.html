@@ -868,7 +868,7 @@
 </div>
 <!-- END SERIES SECTION -->
 <!-- SOFTWARES SECTION -->
-<div class="section">
+<!-- <div class="section">
     <div class="container">
         <div class="section-header">
             softwares
@@ -880,7 +880,6 @@
         <div class="splide slider__content" id="">
             <div class="splide__track">
                 <ul class="splide__list">
-                    <!-- ITEM -->
                     {% for i in softwaresobjs|slice:":50" %}
                     <li class="splide__slide">
                         <a href="{% url 'details_softwaresGames' category=i.category pk=i.slug %}" class="movie-item">
@@ -928,15 +927,14 @@
                         </a>
                     </li>
                     {% endfor %}
-                    <!-- END ITEM -->
                 </ul>
             </div>
         </div>
     </div>
-</div>
+</div> -->
 <!-- END SOFTWARES SECTION -->
 <!-- GAMES SECTION -->
-<div class="section">
+<!-- <div class="section">
     <div class="container">
         <div class="section-header">
             Games
@@ -948,7 +946,6 @@
         <div class="splide slider__content" id="">
             <div class="splide__track">
                 <ul class="splide__list">
-                    <!-- ITEM -->
                     {% for i in gamesobjs|slice:":50" %}
                     <li class="splide__slide">
                         <a href="{% url 'details_softwaresGames' category=i.category pk=i.slug %}" class="movie-item">
@@ -996,12 +993,11 @@
                         </a>
                     </li>
                     {% endfor %}
-                    <!-- END ITEM -->
                 </ul>
             </div>
         </div>
     </div>
-</div>
+</div> -->
 <!-- END GAMES SECTION -->
 <!-- SPECIAL MOVIE SECTION -->
 <div class="section">

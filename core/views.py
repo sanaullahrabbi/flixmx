@@ -15,7 +15,7 @@ def index(request):
     hindimovieobjs = MovieModel.objects.filter(type='hindi').order_by('-release_date')
     southmovieobjs = MovieModel.objects.filter(Q(type='malayalam')|Q(type='tamil')|Q(type='telegu')|Q(type='kannada')).order_by('-release_date')
     # dualaudioobjs = DualAudioModel.objects.filter().order_by('-movie_content__created_at')
-    dualaudioobjs = DualAudioModel.objects.filter()
+    dualaudioobjs = DualAudioModel.objects.filter().order_by('-movie_content__release_date')
 
     seriesobjs = SeriesModel.objects.filter().order_by('-release_date').exclude(Q(type='korean')|Q(type='anime'))
     kdramaobjs = SeriesModel.objects.filter(type='korean').order_by('-release_date')
@@ -24,8 +24,8 @@ def index(request):
     animemovieobjs = MovieModel.objects.filter(type='anime').order_by('-release_date')
     animeseriesobjs = SeriesModel.objects.filter(type='anime').order_by('-release_date')
 
-    softwaresobjs = SoftwaresGamesModel.objects.filter(category='softwares').order_by('-release_date')
-    gamesobjs = SoftwaresGamesModel.objects.filter(category='games').order_by('-release_date')
+    # softwaresobjs = SoftwaresGamesModel.objects.filter(category='softwares').order_by('-release_date')
+    # gamesobjs = SoftwaresGamesModel.objects.filter(category='games').order_by('-release_date')
 
     specialobj = SpecialModel.objects.first().movie_content
     context = {
@@ -45,8 +45,8 @@ def index(request):
         'animemovieobjs':animemovieobjs,
         'animeseriesobjs':animeseriesobjs,
 
-        'softwaresobjs':softwaresobjs,
-        'gamesobjs':gamesobjs,
+        # 'softwaresobjs':softwaresobjs,
+        # 'gamesobjs':gamesobjs,
         'specialobj':specialobj,
     }
     return render(request,'core/index.html',context)
@@ -78,7 +78,7 @@ def series_view(request,type):
     elif type=='foreign':
         series = SeriesModel.objects.filter(Q(type='spanish')|Q(type='japanese')|Q(type='turkish')|Q(type='chinese')|Q(type='thai')|Q(type='russian')|Q(type='indonesian')|Q(type='iranian')|Q(type='french')|Q(type='german')|Q(type='others')).order_by('-release_date')
     else:
-        series = SeriesModel.objects.filter(type=type)
+        series = SeriesModel.objects.filter(type=type).order_by('-release_date')
         
     paginator = Paginator(series,20)
     page_number = request.GET.get('page')
@@ -221,7 +221,6 @@ def superhero_view(request):
 
 
 def details_movie_view(request,pk):
-
     obj = MovieModel.objects.get(slug = pk)
     recobjs = sorted(MovieModel.objects.filter(type=obj.type).order_by('-created_at')[:12], key=lambda x: random.random())
     context = {
@@ -232,7 +231,7 @@ def details_movie_view(request,pk):
 
 def director_contents_view(request,directorName):
     directorName = unquote(directorName)
-    movies = MovieModel.objects.filter(director__icontains = directorName)
+    movies = MovieModel.objects.filter(director__icontains = directorName).order_by('-release_date')
     paginator = Paginator(movies,20)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
@@ -245,7 +244,7 @@ def director_contents_view(request,directorName):
 
 def writer_contents_view(request,writerName):
     writerName = unquote(writerName)
-    movies = MovieModel.objects.filter(writers__icontains = writerName)
+    movies = MovieModel.objects.filter(writers__icontains = writerName).order_by('-release_date')
     paginator = Paginator(movies,20)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
@@ -258,7 +257,7 @@ def writer_contents_view(request,writerName):
 
 def actor_contents_view(request,actorName):
     actorName = unquote(actorName)
-    movies = MovieModel.objects.filter(starring__icontains = actorName)
+    movies = MovieModel.objects.filter(starring__icontains = actorName).order_by('-release_date')
     paginator = Paginator(movies,20)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
