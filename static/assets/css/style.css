@@ -808,6 +808,65 @@ li {
   opacity: 1;
 }
 
+.bsubmaker-container {
+  background-color: #2a2a2a;
+  padding-top: 1rem !important;
+  padding-bottom: 3rem !important;
+}
+
+.bsubmaker-container a span {
+  margin-top: 1rem;
+  text-align: center;
+  display: block;
+}
+
+.bsubmaker-container .splide {
+  margin: auto;
+  opacity: 1;
+}
+
+.bsubmaker-container .splide__arrow.splide__arrow--prev {
+  left: -2rem;
+}
+
+.bsubmaker-container .splide__arrow.splide__arrow--next {
+  right: -2rem;
+}
+
+.bsubmaker-pagination {
+  bottom: -2rem;
+}
+
+.bsub-logo {
+  border-radius: 50%;
+  padding: 0.5rem;
+  background: #fff;
+}
+
+.bsub-logo img {
+  border-radius: 50%;
+  outline: 4px solid #232427;
+  aspect-ratio: 1/1;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.subscene-profile-link {
+  display: block;
+  margin-top: -10px;
+  margin-left: 24px;
+  padding: 0.5rem 1rem;
+  margin-bottom: 1rem;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  background: -webkit-gradient(linear, left top, left bottom, from(#235d7e), to(#1d4257));
+}
+
+.subscene-profile-link i {
+  margin-left: 0.5rem;
+}
+
 .item-content-title {
   font-family: "Patrick Hand", cursive;
   font-size: calc(4vw + 10px);
@@ -889,7 +948,7 @@ li {
   margin-bottom: 30px;
   padding-left: 20px;
   text-transform: uppercase;
-  font-size: calc(0.7vw + 14px);
+  font-size: 1.5rem;
   font-weight: 700;
   border-left: 4px solid var(--main-color);
   display: -webkit-box;
@@ -959,15 +1018,15 @@ li {
 .totalobj a {
   text-transform: uppercase;
   margin-left: 0.5em;
-  font-size: 0.95em;
-  padding: 0.25em 0.65em;
+  font-size: 0.85em;
+  padding: 0.35em 0.75em;
   background-color: var(--main-color);
   border-radius: 0.15rem;
 }
 
 .totalobj .total {
-  font-size: 0.95em;
-  padding: 0.25em 0.65em;
+  font-size: 0.85em;
+  padding: 0.35em 0.75em;
   background-color: var(--main-color);
   border-radius: 0.15rem;
 }
@@ -1575,14 +1634,17 @@ li {
 .splide__pagination__page {
   -webkit-transition: all 0.25s linear;
   transition: all 0.25s linear;
+  height: 3px;
+  width: 10px;
+  border-radius: 2px;
 }
 
 .splide__pagination__page.is-active {
   -webkit-transform: none;
           transform: none;
-  width: 27px;
-  border-radius: 5px;
-  background: #fff;
+  width: 30px;
+  background: #0A7CFF;
+  opacity: 1;
 }
 
 .splide__slide .movie-item::after {
@@ -2340,6 +2402,10 @@ footer .content p {
           transform: scale(1.15);
 }
 
+.recContent .movie-infos {
+  margin-bottom: 0;
+}
+
 .card-overlay {
   position: absolute;
   top: 0;
@@ -2439,6 +2505,12 @@ footer .content p {
     padding: .75rem 1.5rem;
     font-size: 1.25rem;
     line-height: 1.5;
+  }
+  .section-header {
+    font-size: 1.65rem;
+  }
+  .bsubmaker-container .splide {
+    width: 80%;
   }
 }
 
@@ -2611,8 +2683,9 @@ footer .content p {
     width: 31%;
     margin: 1.167%;
   }
-  .recContent .movie-item-title {
-    font-size: unset;
+  .recContent .movie-item-content {
+    padding: 10px;
+    font-size: 1.15rem;
   }
   .container {
     width: 100% !important;
@@ -2639,6 +2712,9 @@ footer .content p {
   }
   .splide__slide .movie-item-content .movie-info {
     font-size: 1em;
+  }
+  .section-header {
+    font-size: 1.4rem;
   }
 }
 

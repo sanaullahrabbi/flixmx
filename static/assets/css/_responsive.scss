@@ -21,6 +21,14 @@
         line-height: 1.5
     }
 
+    .section-header {
+        font-size: 1.65rem;
+    }
+
+    .bsubmaker-container .splide {
+        width: 80%;
+    }
+
 }
 
 @media only screen and (max-width: 1280px) {
@@ -218,10 +226,15 @@
     .recContent {
         width: 31%;
         margin: 1.167%;
+
+        .movie-item-content {
+            padding: 10px;
+            font-size: 1.15rem;
+        }
     }
 
     .recContent .movie-item-title {
-        font-size: unset;
+        // font-size: unset;
     }
 
     .container {
@@ -261,6 +274,10 @@
         .movie-info {
             font-size: 1em;
         }
+    }
+
+    .section-header {
+        font-size: 1.4rem;
     }
 }
 

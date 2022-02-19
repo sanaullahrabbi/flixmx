@@ -1,8 +1,8 @@
  // Force to scroll top 
- history.scrollRestoration = "manual"
- window.addEventListener('beforeunload', function (event) {
-     window.scrollTo(0, 0);
- });
+ //  history.scrollRestoration = "manual"
+ //  window.addEventListener('beforeunload', function (event) {
+ //      window.scrollTo(0, 0);
+ //  });
 
 
  //  Back to top 
@@ -111,6 +111,7 @@
  let primaryslider__content = document.getElementById('primary-slider');
  let secondaryslider__content = document.getElementById('secondary-slider');
  let stillpath__content = document.getElementById('still_path');
+ let bsubmaker__content = document.getElementById('bsubmaker');
 
  if (width > 768)
      perLoadCount = 1
@@ -349,30 +350,65 @@
 
 
 
-
- new Splide(still_path, {
-     perPage: 3,
+ if (stillpath__content) {
+     new Splide(stillpath__content, {
+         perPage: 3,
+         perMove: 1,
+         gap: '1rem',
+         preloadPages: perLoadCount,
+         cover: true,
+         pagination: false,
+         lazyLoad: 'nearby',
+         breakpoints: {
+             '1920': {
+                 perPage: 6,
+             },
+             '1550': {
+                 perPage: 5,
+             },
+             '1280': {
+                 perPage: 4,
+             },
+             '768': {
+                 perPage: 3,
+             },
+             '480': {
+                 perPage: 2,
+             },
+         }
+     }).mount()
+ }
+ new Splide(bsubmaker__content, {
+     perPage: 4,
      perMove: 1,
-     gap: '1rem',
+     gap: '2rem',
      preloadPages: perLoadCount,
      cover: true,
-     pagination: false,
+     pagination: true,
      lazyLoad: 'nearby',
+     arrows: false,
+     autoplay: true,
+     interval: 3000,
+     rewind: true,
      breakpoints: {
          '1920': {
-             perPage: 6,
+             perPage: 9,
          },
          '1550': {
-             perPage: 5,
+             perPage: 8,
          },
          '1280': {
-             perPage: 4,
+             perPage: 7,
          },
          '768': {
-             perPage: 3,
+             perPage: 5,
          },
          '480': {
-             perPage: 2,
+             perPage: 4,
          },
-     }
+     },
+     classes: {
+         pagination: 'splide__pagination bsubmaker-pagination',
+         page: 'splide__pagination__page bsubmaker-pagination',
+     },
  }).mount()

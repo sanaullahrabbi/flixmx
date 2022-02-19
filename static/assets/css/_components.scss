@@ -623,3 +623,65 @@ $easing: cubic-bezier(.55, 0, .1, 1);
         }
     }
 }
+
+
+.bsubmaker-container {
+    background-color: #2a2a2a;
+    padding-top: 1rem !important;
+    padding-bottom: 3rem !important;
+
+    a span {
+        margin-top: 1rem;
+        text-align: center;
+        display: block;
+
+    }
+
+    .splide {
+        margin: auto;
+        opacity: 1;
+    }
+
+    .splide__arrow.splide__arrow--prev {
+        left: -2rem;
+    }
+
+    .splide__arrow.splide__arrow--next {
+        right: -2rem;
+    }
+}
+
+.bsubmaker-pagination {
+    bottom: -2rem;
+}
+
+.bsub-logo {
+    border-radius: 50%;
+    padding: 0.5rem;
+    background: #fff;
+
+    img {
+        border-radius: 50%;
+        outline: 4px solid #232427;
+        aspect-ratio: 1/1;
+        object-fit: cover;
+    }
+
+
+}
+
+
+
+.subscene-profile-link {
+    display: block;
+    margin-top: -10px;
+    margin-left: 24px;
+    padding: 0.5rem 1rem;
+    margin-bottom: 1rem;
+    width: max-content;
+    background: -webkit-gradient(linear, left top, left bottom, from(#235d7e), to(#1d4257));
+
+    i {
+        margin-left: 0.5rem;
+    }
+}

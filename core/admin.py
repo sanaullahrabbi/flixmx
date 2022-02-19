@@ -1,15 +1,9 @@
 from django.contrib import admin
-from .models import GenreModel, MovieModel,SeriesModel,SeasonModel,EpisodeModel,SoftwaresGamesModel, SpecialModel, TopSlideModel , BSubModel,ClassicModel,DualAudioModel,SatyajitRayModel,JamesBondModel,HindiDubbedModel, IMDBTopModel,OscarWinningModel,SuperheroModel
+from .models import BsubCreatorModel, GenreModel, MovieModel,SeriesModel,SeasonModel,EpisodeModel,SoftwaresGamesModel, SpecialModel, TopSlideModel , BSubModel,ClassicModel,DualAudioModel,SatyajitRayModel,JamesBondModel,HindiDubbedModel, IMDBTopModel,OscarWinningModel,SuperheroModel
 from django_summernote.admin import SummernoteModelAdmin
-# from .models import Post
-
-# class PostAdmin(SummernoteModelAdmin):
-#     summernote_fields = ('content',)
-
-# admin.site.register(Post, PostAdmin)
-
 
 admin.site.site_header = 'Flixmx Administration'
+
 # Register your models here.
 admin.site.register(GenreModel)
 admin.site.register(ClassicModel)
@@ -19,11 +13,8 @@ admin.site.register(JamesBondModel)
 admin.site.register(IMDBTopModel)
 admin.site.register(OscarWinningModel)
 admin.site.register(SuperheroModel)
+admin.site.register(BsubCreatorModel)
 
-
-
-# class MovieModelAdmin(SummernoteModelAdmin):
-#       summernote_fields = ('synopsys',)
 class MovieModelAdmin(SummernoteModelAdmin):
     list_display=('title','type','release_date','created_at')
     list_filter=('type','genre','release_date')
@@ -41,6 +32,7 @@ class MovieModelAdmin(SummernoteModelAdmin):
 
       obj.create(request)
       super(MovieModelAdmin, self).save_model(request, obj, form, change)
+
     def get_form(self, request, obj=None, **kwargs):
         form = super().get_form(request, obj, **kwargs)
         is_superuser = request.user.is_superuser
@@ -48,7 +40,6 @@ class MovieModelAdmin(SummernoteModelAdmin):
         if not is_superuser:
             form.base_fields['created_by'].disabled = True
             form.base_fields['last_update'].disabled = True
-
         return form
 admin.site.register(MovieModel,MovieModelAdmin)
 
@@ -57,6 +48,7 @@ class BSubModelAdmin(admin.ModelAdmin):
   list_filter=('movie_content__type','movie_content__genre',)
   search_fields = ['movie_content__title','movie_content__release_date']
 admin.site.register(BSubModel,BSubModelAdmin)
+
 
 class DualAudioModelAdmin(admin.ModelAdmin):
   list_filter=('movie_content__type','movie_content__genre',)
@@ -80,11 +72,11 @@ class SeriesModelAdmin(SummernoteModelAdmin):
 
       obj.create(request)
       super(SeriesModelAdmin, self).save_model(request, obj, form, change)
-      
 admin.site.register(SeriesModel,SeriesModelAdmin)
 
 
 class SeasonModelAdmin(admin.ModelAdmin):
+    @admin.display(description='Series')
     def series_title(self, obj):
       return f'{obj.series.title}'
     list_display=('series_title','season_number','episode_count','release_date','created_at')
@@ -102,7 +94,6 @@ class SeasonModelAdmin(admin.ModelAdmin):
     #     #   print(query_condition)
     #     # queryset = self.model.objects.filter(query_condition)
     #     return queryset, use_distinct
-    series_title.short_description = 'Series'
 admin.site.register(SeasonModel,SeasonModelAdmin)
 
 
@@ -130,7 +121,6 @@ class TopSlideModelAdmin(admin.ModelAdmin):
       return False
     else:
       return True
-
 admin.site.register(TopSlideModel, TopSlideModelAdmin)
 
 
@@ -141,5 +131,4 @@ class SpecialModelAdmin(admin.ModelAdmin):
       return False
     else:
       return True
-
 admin.site.register(SpecialModel, SpecialModelAdmin)

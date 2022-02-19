@@ -14,6 +14,7 @@ urlpatterns = [
     path('director/<str:directorName>', views.director_contents_view,name='director_contents'),
     path('actor/<str:actorName>', views.actor_contents_view,name='actor_contents'),
     path('writer/<str:writerName>', views.writer_contents_view,name='writer_contents'),
+    path('bsubcreator/<str:creatorSlug>', views.bsubcreator_contents_view,name='bsubcreator_contents'),
 
     path('dualaudio', views.dualaudio_view,name='dualaudio'),
     path('bsub', views.bsub_view,name='bsub'),

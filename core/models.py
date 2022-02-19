@@ -1,3 +1,4 @@
+from distutils.command.upload import upload
 from django.db import models
 from django.template.defaultfilters import slugify
 from datetime import date, datetime
@@ -50,6 +51,17 @@ class GenreModel(models.Model):
     def __str__(self):
         return f"{self.genre_name}"
 
+class BsubCreatorModel(models.Model):
+    slug = models.SlugField(max_length=250,null=True,blank=True)
+    name = models.CharField(max_length=255,null=True)
+    subscene_url = models.URLField(null=True,blank=True)
+    profile_pic = models.ImageField(upload_to='submaker_profile/',null=True,blank=True)
+    def __str__(self):
+        return f'{self.name}'
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(f'{self.name}')
+        super(BsubCreatorModel, self).save(*args, **kwargs)
 
 class MovieModel(models.Model):
     slug = models.SlugField(max_length=250,null=True,blank=True)
@@ -110,6 +122,7 @@ class MovieModel(models.Model):
     info2 = models.CharField(max_length=250,null=True,blank=True)
     synopsys = models.TextField(null=True,blank=True)
     subtitle_link = models.URLField(max_length=999,null=True,blank=True)
+    bsub_creator = models.ManyToManyField(BsubCreatorModel,blank=True)
 
     still_path = models.CharField(max_length=5000,null=True,blank=True)
 
@@ -138,6 +151,9 @@ class MovieModel(models.Model):
         self.thumbnail.delete()
         self.poster.delete()
         super(MovieModel, self).delete()
+    
+    def get_model_name(self):
+        return 'movie'
 
 # Create your models here.
 class SeriesModel(models.Model):
@@ -162,6 +178,7 @@ class SeriesModel(models.Model):
     rating = models.FloatField(null=True,blank=True)
     rated = models.CharField(max_length=250,null=True,blank=True)
     trailer_link = models.CharField(max_length=999,null=True,blank=True)
+    bsub_creator = models.ManyToManyField(BsubCreatorModel,blank=True)
 
     info1 = models.CharField(max_length=250,null=True,blank=True)
     info2 = models.CharField(max_length=250,null=True,blank=True)
@@ -192,6 +209,9 @@ class SeriesModel(models.Model):
         self.thumbnail.delete()
         self.poster.delete()
         super(MovieModel, self).delete()
+
+    def get_model_name(self):
+        return 'series'
 
 class SeasonModel(models.Model):
     series = models.ForeignKey(SeriesModel,on_delete=models.CASCADE,null=True)

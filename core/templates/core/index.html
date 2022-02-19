@@ -203,6 +203,38 @@
     <!-- END TOP MOVIES SLIDE -->
 </div>
 <!-- END HERO SECTION -->
+<!-- BsubMaker SECTION -->
+<div class="section">
+    <div class="container bsubmaker-container">
+        <div class="section-header">
+            <div> BSub Translators</div>
+            <div class="totalobj">
+                <span>{{bsubmakerobjs.count}}</span>
+                <a href="">see all</a>
+            </div>
+        </div>
+        <div class="splide" id="bsubmaker">
+            <div class="splide__track">
+                <ul class="splide__list">
+                    <!-- ITEM -->
+                    {% for i in bsubmakerobjs %}
+                    <li class="splide__slide">
+                        <a href="{% url 'bsubcreator_contents' creatorSlug=i.slug %}" class="">
+                            <div class="bsub-logo">
+                                <img src="{% if i.profile_pic %}{{ i.profile_pic.url }} {% else %}{% static 'images/default_bsub_avatar.png' %}{% endif %}"
+                                    alt="bsub-profile-img-{{i.name}}">
+                            </div>
+                            <span>{{i.name}}</span>
+                        </a>
+                    </li>
+                    {% endfor %}
+                    <!-- END ITEM -->
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END BsubMaker SECTION -->
 <!-- ENGLISH MOVIES SECTION -->
 <div class="section">
     <div class="container">

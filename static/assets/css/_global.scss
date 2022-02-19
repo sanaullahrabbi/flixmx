@@ -71,7 +71,7 @@
     margin-bottom: 30px;
     padding-left: 20px;
     text-transform: uppercase;
-    font-size: calc(0.7vw + 14px);
+    font-size: 1.5rem;
     font-weight: 700;
     border-left: 4px solid var(--main-color);
     display: flex;
@@ -130,15 +130,15 @@
     a {
         text-transform: uppercase;
         margin-left: 0.5em;
-        font-size: 0.95em;
-        padding: 0.25em 0.65em;
+        font-size: 0.85em;
+        padding: 0.35em 0.75em;
         background-color: var(--main-color);
         border-radius: $border-radius-2;
     }
 
     .total {
-        font-size: 0.95em;
-        padding: 0.25em 0.65em;
+        font-size: 0.85em;
+        padding: 0.35em 0.75em;
         background-color: var(--main-color);
         border-radius: $border-radius-2;
     }

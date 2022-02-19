@@ -38,7 +38,7 @@
             <div class="movie-infos">
                 <div class="movie-info">
                     <i class="fas fa-star"></i>
-                    <span>{{obj.rating}}</span>
+                    <span>{% if obj.rating %}{{obj.rating}}{% else %}N/A{% endif %}</span>
                 </div>
                 <div class="movie-info">
                     <i class="fas fa-clock"></i>
@@ -307,7 +307,8 @@
         </div>
         <div class="col-4" style="white-space:normal;">
             <div>
-                Bangla Subtitle By: N/A
+                Bangla Subtitle By: {% if obj.bsub_creator.all %} <a
+                    href="{% url 'bsubcreator_contents' creatorSlug=obj.bsub_creator.all.first.slug %}">{{ obj.bsub_creator.all.first }}</a>{% else %}N/A{% endif %}
             </div>
             <div>
                 Added

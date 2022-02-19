@@ -1,3 +1,4 @@
+from itertools import chain
 from django.http import JsonResponse
 from core.models import *
 from django.shortcuts import render
@@ -5,6 +6,7 @@ from django.core.paginator import Paginator
 from django.db.models import Q
 import random
 from urllib.parse import *
+
 # Create your views here.
 def index(request):
     # topsliderobjs = TopSlideModel.objects.filter()
@@ -26,7 +28,7 @@ def index(request):
 
     # softwaresobjs = SoftwaresGamesModel.objects.filter(category='softwares').order_by('-release_date')
     # gamesobjs = SoftwaresGamesModel.objects.filter(category='games').order_by('-release_date')
-
+    bsubmakerobjs = BsubCreatorModel.objects.all()
     specialobj = SpecialModel.objects.first().movie_content
     context = {
         'topsliderobjs':topsliderobjs,
@@ -48,9 +50,9 @@ def index(request):
         # 'softwaresobjs':softwaresobjs,
         # 'gamesobjs':gamesobjs,
         'specialobj':specialobj,
+        'bsubmakerobjs':bsubmakerobjs,
     }
     return render(request,'core/index.html',context)
-
 
 def movies_view(request,type):
     if type=='foreign':
@@ -68,7 +70,6 @@ def movies_view(request,type):
         'totalobj':movies.count,
     }
     return render(request,'core/all/movies.html',context)
-
 
 def series_view(request,type):
     if type=='all':
@@ -90,7 +91,6 @@ def series_view(request,type):
     }
     return render(request,'core/all/series.html',context)
 
-
 def softwaresGames_view(request,category):
     softwaresGames = SoftwaresGamesModel.objects.filter(category=category).order_by('-created_at')
     paginator = Paginator(softwaresGames,20)
@@ -102,7 +102,6 @@ def softwaresGames_view(request,category):
         'totalobj':softwaresGames.count,
     }
     return render(request,'core/all/softwaresgames.html',context)
-
 
 def genres_view(request,genrename):
     genrename = unquote(genrename)
@@ -117,7 +116,6 @@ def genres_view(request,genrename):
     }
     return render(request,'core/all/genres.html',context)
 
-
 def classic_view(request,type):
     classicmovies = ClassicModel.objects.filter(type=type)
     paginator = Paginator(classicmovies,20)
@@ -129,7 +127,6 @@ def classic_view(request,type):
         'totalobj':classicmovies.count,
     }
     return render(request,'core/all/classic.html',context)
-
 
 def dualaudio_view(request):
     dualaudiomovies = DualAudioModel.objects.all()
@@ -219,7 +216,6 @@ def superhero_view(request):
     }
     return render(request,'core/special/superhero.html',context)
 
-
 def details_movie_view(request,pk):
     obj = MovieModel.objects.get(slug = pk)
     recobjs = sorted(MovieModel.objects.filter(type=obj.type).order_by('-created_at')[:12], key=lambda x: random.random())
@@ -268,6 +264,21 @@ def actor_contents_view(request,actorName):
     }
     return render(request,'core/all/actor_contents.html',context)
 
+def bsubcreator_contents_view(request,creatorSlug):
+    movies = MovieModel.objects.filter(bsub_creator__slug = creatorSlug).order_by('-release_date')
+    series = SeriesModel.objects.filter(bsub_creator__slug = creatorSlug).order_by('-release_date')
+    creator = BsubCreatorModel.objects.filter(slug=creatorSlug)[0]
+    objs = sorted(list(chain(movies,series)), key=lambda x: random.random())
+    paginator = Paginator(objs,20)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    context = {
+        'movies':page_obj,
+        'creator':creator,
+        'totalobj':objs.__len__,
+    }
+    return render(request,'core/all/bsubcreator_contents.html',context)
+
 def details_series_view(request,pk):
     obj = SeriesModel.objects.get(slug = pk)
     seasons = SeasonModel.objects.filter(series__slug = pk)
@@ -301,7 +312,6 @@ def details_softwaresGames_view(request,category,pk):
     }
     return render(request,'core/details/details_softwaresgames.html',context)
 
-
 def search_view(request):
     title = request.GET.get('title')
     movies = MovieModel.objects.filter(title__icontains = title).exclude(Q(type='animation')|Q(type='anime')).order_by('-release_date')[:50]
@@ -325,24 +335,17 @@ def search_view(request):
     }
     return render(request,'core/search.html',context)
 
-
 def contactus_view(request):
     return render(request,'core/extras/contactus.html')
-
 
 def aboutus_view(request):
     return render(request,'core/extras/aboutus.html')
 
-
 def privacy_view(request):
     return render(request,'core/extras/privacy.html')
 
-
 def fileserver_view(request):
     return render(request,'core/fileserver.html')
-
-
-
 
 # custom error handling page
 def custom_page_not_found_view(request, exception=None):

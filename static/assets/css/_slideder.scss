@@ -67,13 +67,16 @@
 
 .splide__pagination__page {
     transition: all 0.25s linear;
+    height: 3px;
+    width: 10px;
+    border-radius: 2px;
 }
 
 .splide__pagination__page.is-active {
     transform: none;
-    width: 27px;
-    border-radius: 5px;
-    background: #fff;
+    width: 30px;
+    background: $main-color;
+    opacity: 1;
 }
 
 .splide__slide .movie-item::after {
