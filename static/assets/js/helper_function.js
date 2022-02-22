@@ -2,6 +2,13 @@ function isInViewport(element, offset = -30) {
     return (window.innerHeight - element.getBoundingClientRect().top >= offset)
 }
 
+function cuteHide(el) {
+    el.animate({
+        opacity: '0',
+        height: '0'
+    }, 250)
+}
+
 function CreateSearchedOutputMovie(item, index) {
     if (item['tmdb_thumbnail'])
         searchedOutput +=

@@ -3,6 +3,9 @@
 <html lang="en">
 
 <head>
+    <script type="text/javascript">
+        var timerStart = Date.now();
+    </script>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -58,7 +61,7 @@
     <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.15.0/css/all.css" />
     <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
 
     {% include 'core/style.html' %}
 </head>
@@ -375,6 +378,7 @@
     <!-- <script src="{% static 'assets/js/fontawesome.js' %}"></script> -->
     <!-- APP SCRIPT -->
     <script src="{% static 'assets/js/helper_function.js' %}"></script>
+    <script src="{% static 'assets/js/slider.js' %}"></script>
     <script src="{% static 'assets/js/app.js' %}"></script>
     {% block script %}
     {% endblock script %}
@@ -385,25 +389,25 @@
             $('.preload').fadeOut('slow')
             $('body').css('overflow', 'visible')
 
-            // var chatbox = document.getElementById('fb-customer-chat');
-            // chatbox.setAttribute("page_id", "1750632178374600");
-            // chatbox.setAttribute("attribution", "biz_inbox");
+            var chatbox = document.getElementById('fb-customer-chat');
+            chatbox.setAttribute("page_id", "1750632178374600");
+            chatbox.setAttribute("attribution", "biz_inbox");
 
-            // window.fbAsyncInit = function () {
-            //     FB.init({
-            //         xfbml: true,
-            //         version: 'v12.0'
-            //     });
-            // };
+            window.fbAsyncInit = function () {
+                FB.init({
+                    xfbml: true,
+                    version: 'v12.0'
+                });
+            };
 
-            // (function (d, s, id) {
-            //     var js, fjs = d.getElementsByTagName(s)[0];
-            //     if (d.getElementById(id)) return;
-            //     js = d.createElement(s);
-            //     js.id = id;
-            //     js.src = 'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js';
-            //     fjs.parentNode.insertBefore(js, fjs);
-            // }(document, 'script', 'facebook-jssdk'));
+            (function (d, s, id) {
+                var js, fjs = d.getElementsByTagName(s)[0];
+                if (d.getElementById(id)) return;
+                js = d.createElement(s);
+                js.id = id;
+                js.src = 'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js';
+                fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));
 
 
 
@@ -430,17 +434,12 @@
         setTimeout(() => {
             $('.preload').fadeOut('slow')
             $('body').css('overflow', 'visible')
-        }, 500)
+        }, 5000)
 
 
         Fancybox.bind('[data-fancybox="gallery"]', {
             infinite: false
         });
-        // const myCarousel = new Carousel(document.querySelector(".carousel"), {
-        //     slides: [{
-        //         'slidesPerPage': 4
-        //     }, ]
-        // });
     </script>
 </body>
 

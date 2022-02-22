@@ -96,6 +96,7 @@ tr:nth-child(odd) {
   height: 100%;
   -webkit-box-shadow: rgba(0, 0, 0, 0.6) 0px 22px 70px 4px;
           box-shadow: rgba(0, 0, 0, 0.6) 0px 22px 70px 4px;
+  overflow: hidden;
 }
 
 .container {
@@ -519,8 +520,8 @@ li {
   position: fixed;
   width: 34px;
   height: 34px;
-  left: 2rem;
-  bottom: 3rem;
+  left: 1.5rem;
+  bottom: 2rem;
   border-radius: 0.15rem;
   -webkit-transition: background-color .3s, opacity .5s, visibility .5s;
   transition: background-color .3s, opacity .5s, visibility .5s;
@@ -1561,22 +1562,10 @@ li {
   }
 }
 
-.slider__content,
-.topslider__content {
-  visibility: hidden;
+.slider__content {
   opacity: 0;
-  -webkit-transition: 0.5s all ease;
-  transition: 0.5s all ease;
-  -webkit-transform: translateY(50px);
-          transform: translateY(50px);
-}
-
-.slider__content.splide_active,
-.topslider__content.splide_active {
-  visibility: visible;
-  opacity: 1;
-  -webkit-transform: translateY(0);
-          transform: translateY(0);
+  -webkit-animation-duration: 0.5s !important;
+          animation-duration: 0.5s !important;
 }
 
 /* splide arrow customize */
@@ -2352,12 +2341,8 @@ footer .content p {
 }
 
 .heroslide {
-  position: relative;
-  top: auto;
-  bottom: auto;
-  left: auto;
-  right: auto;
-  margin: 0 0.5em;
+  position: static;
+  margin: 0.5em;
 }
 
 .recContent_main {
@@ -2646,6 +2631,9 @@ footer .content p {
   .hero-slide-item .hero-slide-item-content {
     position: relative;
   }
+  .hero-slide-item .movie-info {
+    font-size: 1rem;
+  }
   .item-content-title {
     letter-spacing: 2px;
     width: 100%;
@@ -2684,8 +2672,11 @@ footer .content p {
     margin: 1.167%;
   }
   .recContent .movie-item-content {
-    padding: 10px;
-    font-size: 1.15rem;
+    padding: 7px;
+    font-size: 1.075rem;
+  }
+  .recContent .movie-infos .movie-info {
+    margin-right: 0.5rem;
   }
   .container {
     width: 100% !important;
@@ -2730,18 +2721,27 @@ footer .content p {
     font-size: .875rem;
     line-height: 1.5;
   }
+  .info1 {
+    left: 5px;
+    top: 5px;
+  }
+  .info2 {
+    right: 5px;
+    top: 5px;
+  }
 }
 
 @media only screen and (max-width: 480px) {
   .item-content-wraper {
     min-height: 280px;
+    padding: 2rem 3rem 3.5rem;
   }
   #watchModal .trailer-section iframe {
     height: 30vh;
   }
   .recContent {
-    width: 45%;
-    margin: 2.5%;
+    width: 46%;
+    margin: 2%;
   }
 }
 /*# sourceMappingURL=style.css.map */

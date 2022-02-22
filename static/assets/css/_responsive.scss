@@ -183,6 +183,10 @@
         .hero-slide-item-content {
             position: relative;
         }
+
+        .movie-info {
+            font-size: 1rem;
+        }
     }
 
     .item-content-title {
@@ -228,8 +232,12 @@
         margin: 1.167%;
 
         .movie-item-content {
-            padding: 10px;
-            font-size: 1.15rem;
+            padding: 7px;
+            font-size: 1.075rem;
+        }
+
+        .movie-infos .movie-info {
+            margin-right: 0.5rem;
         }
     }
 
@@ -296,11 +304,22 @@
         line-height: 1.5
     }
 
+    .info1 {
+        left: 5px;
+        top: 5px;
+    }
+
+    .info2 {
+        right: 5px;
+        top: 5px;
+    }
+
 }
 
 @media only screen and (max-width: 480px) {
     .item-content-wraper {
         min-height: 280px;
+        padding: 2rem 3rem 3.5rem;
     }
 
     #watchModal .trailer-section iframe {
@@ -308,7 +327,7 @@
     }
 
     .recContent {
-        width: 45%;
-        margin: 2.5%;
+        width: 46%;
+        margin: 2%;
     }
 }

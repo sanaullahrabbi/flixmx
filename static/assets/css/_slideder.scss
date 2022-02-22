@@ -1,16 +1,9 @@
-.slider__content,
-.topslider__content {
-    visibility: hidden;
+.slider__content {
+    // visibility: hidden;
     opacity: 0;
-    transition: 0.5s all ease;
-    transform: translateY(50px);
-}
-
-.slider__content.splide_active,
-.topslider__content.splide_active {
-    visibility: visible;
-    opacity: 1;
-    transform: translateY(0);
+    // transition: 0.5s all ease;
+    // transform: translateY(50px);
+    animation-duration: 0.5s !important;
 }
 
 

@@ -355,12 +355,8 @@
 
 
 .heroslide {
-    position: relative;
-    top: auto;
-    bottom: auto;
-    left: auto;
-    right: auto;
-    margin: 0 0.5em;
+    position: static;
+    margin: 0.5em;
 }
 
 .recContent_main {

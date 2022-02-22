@@ -25,7 +25,8 @@
         <div class="recContent_main">
             <!-- MOVIE ITEM -->
             {% for i in movies %}
-            <a href="{% url 'details_movie' pk=i.slug %}" class="recContent col-3">
+            <a href=" {% if i.get_model_name == 'series' %}{% url 'details_series' pk=i.slug %}{% else %}{% url 'details_movie' pk=i.slug %}{% endif %}"
+                class="recContent col-3">
                 {% if i.info1 %}
                 <div class="info1">
                     {{i.info1}}

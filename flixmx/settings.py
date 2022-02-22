@@ -198,7 +198,7 @@ JET_SIDE_MENU_ITEMS = [  # A list of application or custom item dicts
     ]},
     {'label': ('Extra'), 'items': [
         {'name': 'core.genremodel','label': ('Genres')},
-        {'name': 'core.bsubmaker','label': ('BSub Maker')},
+        {'name': 'core.bsubcreatormodel','label': ('BSub Translator')},
     ]},
     {'label': ('user account and groups'), 'items': [
         {'name': 'auth.user'},
