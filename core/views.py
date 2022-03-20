@@ -104,7 +104,7 @@ def softwaresGames_view(request,category):
 
 def genres_view(request,genrename):
     genrename = unquote(genrename)
-    movies = MovieModel.objects.filter(genre__genre_name__icontains=genrename)
+    movies = MovieModel.objects.filter(genre__genre_name__icontains=genrename).order_by('-release_date')
     paginator = Paginator(movies,20)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)

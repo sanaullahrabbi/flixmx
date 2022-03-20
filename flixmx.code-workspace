@@ -1,0 +1,10 @@
+{
+	"folders": [{
+		"path": "."
+	}],
+	"settings": {
+		"liveSassCompile.settings.includeItems": [
+			"static/assets/css/**",
+		],
+	}
+}
