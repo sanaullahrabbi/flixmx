@@ -1,4 +1,6 @@
 from itertools import chain
+
+from django.http import HttpResponse
 from core.models import *
 from django.shortcuts import render
 from django.core.paginator import Paginator
@@ -361,6 +363,5 @@ def custom_bad_request_view(request, exception=None):
 
 
 
-
 def testapi(request):
-    return render(request,'testapi.html')
+    return HttpResponse("Hello")
