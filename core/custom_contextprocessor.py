@@ -5,7 +5,7 @@ def site(request):
 
 def servemodels(request):
     genres = GenreModel.objects.all()
-    genresList = [genres[i:i+9] for i in range(0,len(genres),9)]
+    genresList = [genres[i:i+7] for i in range(0,len(genres),7)]
     context = {
         'genresList':genresList
     }

@@ -1,0 +1,19 @@
+.featherlight{
+  padding: 0.75rem;
+  .featherlight-content {
+    width: 100% !important;
+    max-width: 98vw !important;
+    aspect-ratio: 16/9 !important;
+    padding: 0;
+    border: 0;
+    background-color: #000;
+  }
+  .featherlight-close-icon{
+    font-weight: bold;
+    background-color: #fff;
+  }
+  iframe {
+    width: 100% !important;
+    height: 100%;
+  }
+}

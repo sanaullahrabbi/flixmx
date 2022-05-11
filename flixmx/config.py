@@ -1,21 +1,21 @@
 from pathlib import Path
-DEBUG = True
+DEBUG = False
 ROOT = Path.home()
-DOMAIN_ROOT = 'public_html'
+DOMAIN_ROOT = 'flixmx.com'
 SITE_URL = 'https://flixmx.com'
 
+if DEBUG:
+    SITE_URL = ''
 
 
-DATABASE = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'flixmx',
-        'USER': 'searchev_flixmx',
-        'PASSWORD': 'flixmx@123',
-        'HOST': 'localhost',
-        'PORT': '3306',
-        'OPTIONS': {
-            'sql_mode': 'traditional',
-        }
-    },
-}
+# DATABASES = {
+#     'pgsql': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'flixmx',
+#         'USER': 'postgres',
+#         'PASSWORD': '1234',
+#         'HOST': 'localhost',
+#         'PORT': '9999',
+#     }
+# }
+

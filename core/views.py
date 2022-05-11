@@ -1,6 +1,4 @@
 from itertools import chain
-
-from django.http import HttpResponse
 from core.models import *
 from django.shortcuts import render
 from django.core.paginator import Paginator
@@ -18,6 +16,7 @@ def index(request):
     hindimovieobjs = MovieModel.objects.filter(type='hindi').order_by('-release_date')
     southmovieobjs = MovieModel.objects.filter(Q(type='malayalam')|Q(type='tamil')|Q(type='telegu')|Q(type='kannada')).order_by('-release_date')
     # dualaudioobjs = DualAudioModel.objects.filter().order_by('-movie_content__created_at')
+    bsubobjs = BSubModel.objects.filter().order_by('-movie_content__release_date')
     dualaudioobjs = DualAudioModel.objects.filter().order_by('-movie_content__release_date')
 
     seriesobjs = SeriesModel.objects.filter().order_by('-release_date').exclude(Q(type='korean')|Q(type='anime'))
@@ -29,6 +28,7 @@ def index(request):
 
     # softwaresobjs = SoftwaresGamesModel.objects.filter(category='softwares').order_by('-release_date')
     # gamesobjs = SoftwaresGamesModel.objects.filter(category='games').order_by('-release_date')
+
     bsubmakerobjs = BsubCreatorModel.objects.all()
     specialobj = SpecialModel.objects.first().movie_content
     context = {
@@ -39,6 +39,7 @@ def index(request):
         'hindimovieobjs':hindimovieobjs,
         'southmovieobjs':southmovieobjs,
         'frgmovieobjs':frgmovieobjs,
+        'bsubobjs':bsubobjs,
         'dualaudioobjs':dualaudioobjs,
 
         'seriesobjs':seriesobjs,
@@ -62,7 +63,7 @@ def movies_view(request,type):
         movies = MovieModel.objects.filter(Q(type='malayalam')|Q(type='tamil')|Q(type='telegu')|Q(type='kannada')).order_by('-release_date')
     else:
         movies = MovieModel.objects.filter(type=type).order_by('-release_date')
-    paginator = Paginator(movies,20)
+    paginator = Paginator(movies,24)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     context = {
@@ -82,9 +83,10 @@ def series_view(request,type):
     else:
         series = SeriesModel.objects.filter(type=type).order_by('-release_date')
         
-    paginator = Paginator(series,20)
+    paginator = Paginator(series,24)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
+    print(type)
     context = {
         'series':page_obj,
         'type':type,
@@ -94,7 +96,7 @@ def series_view(request,type):
 
 def softwaresGames_view(request,category):
     softwaresGames = SoftwaresGamesModel.objects.filter(category=category).order_by('-created_at')
-    paginator = Paginator(softwaresGames,20)
+    paginator = Paginator(softwaresGames,24)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     context = {
@@ -107,7 +109,7 @@ def softwaresGames_view(request,category):
 def genres_view(request,genrename):
     genrename = unquote(genrename)
     movies = MovieModel.objects.filter(genre__genre_name__icontains=genrename).order_by('-release_date')
-    paginator = Paginator(movies,20)
+    paginator = Paginator(movies,24)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     context = {
@@ -119,7 +121,7 @@ def genres_view(request,genrename):
 
 def classic_view(request,type):
     classicmovies = ClassicModel.objects.filter(type=type)
-    paginator = Paginator(classicmovies,20)
+    paginator = Paginator(classicmovies,24)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     context = {
@@ -131,7 +133,7 @@ def classic_view(request,type):
 
 def dualaudio_view(request):
     dualaudiomovies = DualAudioModel.objects.all()
-    paginator = Paginator(dualaudiomovies,20)
+    paginator = Paginator(dualaudiomovies,24)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     context = {
@@ -142,7 +144,7 @@ def dualaudio_view(request):
 
 def bsub_view(request):
     bsubmovies = BSubModel.objects.all()
-    paginator = Paginator(bsubmovies,20)
+    paginator = Paginator(bsubmovies,24)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     context = {
@@ -153,7 +155,7 @@ def bsub_view(request):
 
 def hindidubbed_view(request):
     hindidubbedmovies = HindiDubbedModel.objects.all()
-    paginator = Paginator(hindidubbedmovies,20)
+    paginator = Paginator(hindidubbedmovies,24)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     context = {
@@ -164,7 +166,7 @@ def hindidubbed_view(request):
     
 def satyajitray_view(request):
     satyajitraymovies = SatyajitRayModel.objects.all()
-    paginator = Paginator(satyajitraymovies,20)
+    paginator = Paginator(satyajitraymovies,24)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     context = {
@@ -175,7 +177,7 @@ def satyajitray_view(request):
 
 def jamesbond_view(request):
     jamesbondmovies = JamesBondModel.objects.all()
-    paginator = Paginator(jamesbondmovies,20)
+    paginator = Paginator(jamesbondmovies,24)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     context = {
@@ -186,7 +188,7 @@ def jamesbond_view(request):
 
 def oscarwinning_view(request):
     oscarwinningmovies = OscarWinningModel.objects.all()
-    paginator = Paginator(oscarwinningmovies,20)
+    paginator = Paginator(oscarwinningmovies,24)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     context = {
@@ -197,7 +199,7 @@ def oscarwinning_view(request):
 
 def imdbtop_view(request):
     imdbtopmovies = IMDBTopModel.objects.all()
-    paginator = Paginator(imdbtopmovies,20)
+    paginator = Paginator(imdbtopmovies,24)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     context = {
@@ -208,7 +210,7 @@ def imdbtop_view(request):
 
 def superhero_view(request):
     superheromovies = SuperheroModel.objects.all()
-    paginator = Paginator(superheromovies,20)
+    paginator = Paginator(superheromovies,24)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     context = {
@@ -216,6 +218,19 @@ def superhero_view(request):
         'totalobj':superheromovies.count,
     }
     return render(request,'core/special/superhero.html',context)
+
+
+def foundFootage_view(request):
+    footages = FootageModel.objects.all()
+    paginator = Paginator(footages,24)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    context = {
+        'footages':page_obj,
+        'totalobj':footages.count,
+    }
+    return render(request,'core/special/footage.html',context)
+
 
 def details_movie_view(request,pk):
     obj = MovieModel.objects.get(slug = pk)
@@ -229,7 +244,7 @@ def details_movie_view(request,pk):
 def director_contents_view(request,directorName):
     directorName = unquote(directorName)
     movies = MovieModel.objects.filter(director__icontains = directorName).order_by('-release_date')
-    paginator = Paginator(movies,20)
+    paginator = Paginator(movies,24)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     context = {
@@ -242,7 +257,7 @@ def director_contents_view(request,directorName):
 def writer_contents_view(request,writerName):
     writerName = unquote(writerName)
     movies = MovieModel.objects.filter(writers__icontains = writerName).order_by('-release_date')
-    paginator = Paginator(movies,20)
+    paginator = Paginator(movies,24)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     context = {
@@ -255,7 +270,7 @@ def writer_contents_view(request,writerName):
 def actor_contents_view(request,actorName):
     actorName = unquote(actorName)
     movies = MovieModel.objects.filter(starring__icontains = actorName).order_by('-release_date')
-    paginator = Paginator(movies,20)
+    paginator = Paginator(movies,24)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     context = {
@@ -270,7 +285,7 @@ def bsubcreator_contents_view(request,creatorSlug):
     series = SeriesModel.objects.filter(bsub_creator__slug = creatorSlug).order_by('-release_date')
     creator = BsubCreatorModel.objects.filter(slug=creatorSlug)[0]
     objs = sorted(list(chain(movies,series)), key=lambda x: random.random())
-    paginator = Paginator(objs,20)
+    paginator = Paginator(objs,24)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     context = {
@@ -336,7 +351,20 @@ def search_view(request):
     }
     return render(request,'core/search.html',context)
 
+
+from django.apps import apps
+
 def contactus_view(request):
+    # for app in apps.all_models:
+    # for obj in apps.all_models['auth']['user'].objects.using('default').all():
+    #     obj.save(using='pgsql')
+    for key,value in apps.all_models['core'].items():
+        objlist = value.objects.using('default').all()
+        for obj in objlist:
+            print(obj)
+            obj.save(using='pgsql')
+
+
     return render(request,'core/extras/contactus.html')
 
 def aboutus_view(request):
@@ -363,5 +391,6 @@ def custom_bad_request_view(request, exception=None):
 
 
 
+
 def testapi(request):
-    return HttpResponse("Hello")
+    return render(request,'testapi.html')

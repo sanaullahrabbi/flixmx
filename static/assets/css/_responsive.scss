@@ -1,18 +1,8 @@
 /* RESPONSIVE */
-@media only screen and (min-width: 1550px) {
-
-    // .movie-infos {
-    //     padding-bottom: 1rem;
-    // }
-    .movie-infos {
-        .movie-info {
-            font-size: 102.5%;
-        }
-    }
+@media only screen and (min-width: 1536px) {
 
     .item-content-description {
-        font-size: 1.5rem;
-        line-height: 2.1rem;
+        line-height: 2rem;
     }
 
     .pagination-lg .page-link {
@@ -45,7 +35,7 @@
     } */
 }
 
-@media only screen and (max-width: 1080px) {
+@media only screen and (max-width: 1024px) {
     :root {
         --space-top: 10px;
         --content-details-title: 2rem;
@@ -63,16 +53,6 @@
 
     .top-movies-slide {
         padding-top: 50px;
-    }
-
-    /* .movie-item-title {
-        font-size: 1.15rem;
-        max-height: 69px;
-        overflow: hidden;
-    } */
-
-    .container {
-        padding: 0 15px;
     }
 
     .hero-slide-item {
@@ -133,16 +113,7 @@
                 width: 100%;
                 margin-bottom: 0.5rem;
             }
-
-            .movie-infos {
-                justify-content: center;
-                width: 100%;
-                margin-bottom: 0.5rem;
-
-                .movie-info {
-                    font-size: 1.15rem;
-                }
-            }
+            
         }
 
         .descript {
@@ -213,67 +184,40 @@
         flex-direction: column;
     }
 
-    .main-navitem-icon {
-        display: inline-block !important;
-    }
-
-    .menu-item span {
-        margin-right: 1rem;
-    }
-
     .content {
         padding: 1rem;
     }
 }
 
-@media only screen and (max-width: 850px) {
+@media only screen and (max-width: 768px) {
     .recContent {
-        width: 31%;
-        margin: 1.167%;
-
         .movie-item-content {
-            padding: 7px;
+            padding: 5px;
             font-size: 1.075rem;
         }
-
-        .movie-infos .movie-info {
-            margin-right: 0.5rem;
-        }
     }
 
-    .recContent .movie-item-title {
-        // font-size: unset;
-    }
 
     .container {
         width: 100% !important;
     }
 
 
-    .extraInfo {
-        padding: 2rem 15px 3rem 15px !important;
-
-        .col-4 {
+    .extrainfo-container {
+        .extrainfo-1 {
             width: 100%;
         }
 
-        .col-7 {
+        .extrainfo-2 {
             width: 100%;
             margin: 0;
             margin-bottom: 1rem;
         }
     }
-
-    .movie-details-container {
-        .details {
-            .col-title {
-                width: 90px;
-            }
-        }
-    }
+    
 
     .splide__slide .movie-item-content {
-        padding: 10px;
+        padding: 7px;
 
         .movie-infos {
             margin-top: 5px;
@@ -303,20 +247,9 @@
         font-size: .875rem;
         line-height: 1.5
     }
-
-    .info1 {
-        left: 5px;
-        top: 5px;
-    }
-
-    .info2 {
-        right: 5px;
-        top: 5px;
-    }
-
 }
 
-@media only screen and (max-width: 480px) {
+@media only screen and (max-width: 640px) {
     .item-content-wraper {
         min-height: 280px;
         padding: 2rem 3rem 3.5rem;
@@ -324,10 +257,5 @@
 
     #watchModal .trailer-section iframe {
         height: 30vh;
-    }
-
-    .recContent {
-        width: 46%;
-        margin: 2%;
     }
 }

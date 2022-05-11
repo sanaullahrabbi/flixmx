@@ -5,4 +5,5 @@ test.html
 runlocal.py
 *.zip
 test2.html
-workspace.code-workspace
+*.code-workspace
+src

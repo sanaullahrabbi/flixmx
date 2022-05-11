@@ -1,0 +1,74 @@
+.btn {
+  color: #ffffff;
+  padding: 0.35rem 1.25rem;
+  text-transform: uppercase;
+  font-size: 1rem;
+  font-weight: 600;
+  display: inline-flex;
+  position: relative;
+  align-items: center;
+  background-color: var(--btn-bg);
+  border-radius: $border-radius-2;
+  overflow: hidden;
+
+  i,
+  span {
+      z-index: 1;
+  }
+
+  i {
+      margin-right: 1rem;
+  }
+
+
+}
+
+.expand-icon {
+  margin-right: 1rem;
+}
+
+.btn-hover {
+
+  &::before {
+      z-index: 1;
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 65%;
+      height: 100%;
+      clip-path: polygon(0% 0%, 100% 0%, 75% 100%, 0% 100%);
+      background-color: var(--main-color);
+      transition: 0.3s ease-in-out;
+  }
+
+  &:hover:before {
+      width: 100%;
+      clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+  }
+}
+
+.fill_btn {
+  background-color: var(--main-color);
+
+  &:hover {
+      background-color: #006ce7;
+  }
+}
+
+
+.play-btn {
+  position: absolute !important;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 100;
+
+  i {
+      transform: scale(0);
+      font-size: 3.85rem;
+      transition: transform 0.3s ease-in-out;
+      transition-delay: 0.1s;
+  }
+}
+

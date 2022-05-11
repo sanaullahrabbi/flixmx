@@ -31,6 +31,7 @@ INSTALLED_APPS = [
     'core',
     'api',
     'django_summernote',
+    'nested_admin',
 ]
 
 MIDDLEWARE = [
@@ -75,17 +76,6 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': str(BASE_DIR / 'db.sqlite3'),
-    },
-    'mysql': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'flixmx',
-        'USER': 'root',
-        'PASSWORD': '',
-        'HOST': 'localhost',
-        'PORT': '3306',
-        'OPTIONS': {
-            'sql_mode': 'traditional',
-        }
     },
 }
 
@@ -194,6 +184,7 @@ JET_SIDE_MENU_ITEMS = [  # A list of application or custom item dicts
         {'name': 'core.imdbtopmodel','label': ('IMDB Top')},
         {'name': 'core.oscarwinningmodel','label': ('Oscar Winning')},
         {'name': 'core.superheromodel','label': ('Superhero')},
+        {'name': 'core.footagemodel','label': ('Found Footage')},
     ]},
     {'label': ('Series'), 'items': [
         {'name': 'core.seriesmodel','label': ('Series')},
@@ -210,6 +201,9 @@ JET_SIDE_MENU_ITEMS = [  # A list of application or custom item dicts
     {'label': ('Extra'), 'items': [
         {'name': 'core.genremodel','label': ('Genres')},
         {'name': 'core.bsubcreatormodel','label': ('BSub Translator')},
+        {'name': 'core.linksource','label': ('Link Source')},
+        {'name': 'core.linkcategory','label': ('Link Category')},
+        {'name': 'core.linksubcategory','label': ('Link Sub Category')},
     ]},
     {'label': ('user account and groups'), 'items': [
         {'name': 'auth.user'},

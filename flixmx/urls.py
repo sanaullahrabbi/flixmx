@@ -9,6 +9,7 @@ handler400 = 'core.views.custom_bad_request_view'
 urlpatterns = [
     path('jet/', include('jet.urls', 'jet')),  # Django JET URLS
     path('jet/dashboard/', include('jet.dashboard.urls', 'jet-dashboard')),  # Django JET dashboard URLS
+    path('nested_admin/', include('nested_admin.urls')),
     path('admin/', admin.site.urls),
     path('api/', include('api.urls')),
     path('summernote/', include('django_summernote.urls')),

@@ -24,6 +24,7 @@ urlpatterns = [
     path('imdbtop', views.imdbtop_view,name='imdbtop'),
     path('oscarwinning', views.oscarwinning_view,name='oscarwinning'),
     path('superhero', views.superhero_view,name='superhero'),
+    path('found_footage', views.foundFootage_view,name='found_footage'),
 
     path('details/movie/<slug:pk>', views.details_movie_view,name='details_movie'),
     path('details/series/<slug:pk>', views.details_series_view,name='details_series'),

@@ -1,7 +1,6 @@
 from itertools import chain
 from core.models import *
 from django.http import JsonResponse
-import requests
 from tmdbv3api import TMDb,Movie,TV,Trending
 tmdb = TMDb()
 apiKey = 'c922683661639d2817db046e73983d60'

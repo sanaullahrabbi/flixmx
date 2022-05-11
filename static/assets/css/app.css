@@ -1240,14 +1240,14 @@ footer .content {
 /* End Download Dropdown */
 
 /* Game Details */
-.extraInfo {
+.extrainfo-container {
     background-color: rgba(0, 0, 0, 0.8);
     padding-bottom: 4rem !important;
     justify-content: space-between;
 
 }
 
-.extraInfo .col-7 {
+.extrainfo-container .col-7 {
     /* white-space: pre-line; */
     /* text-align: center; */
     /* overflow-wrap: break-word; */
@@ -1265,14 +1265,14 @@ footer .content {
     display: flex;
 }
 
-.extraInfo .col-4 {
+.extrainfo-container .col-4 {
     background-color: #444444bf;
     color: #fff;
     padding: 1rem;
     border-radius: 0.25rem;
 }
 
-.extraInfo .col-4 div {
+.extrainfo-container .col-4 div {
     color: #fff;
     font-size: 0.875rem;
     font-weight: 700;
@@ -1282,7 +1282,7 @@ footer .content {
     border-radius: 0.25rem;
 }
 
-.extraInfo a.subtitle {
+.extrainfo-container a.subtitle {
     color: #fff;
     background-color: var(--main-color);
     padding: 0.5rem;
@@ -1290,13 +1290,13 @@ footer .content {
     margin-bottom: 0.5rem;
 }
 
-.extraInfo .subtitle {
+.extrainfo-container .subtitle {
     white-space: normal;
     text-align: center;
     padding: 1.5rem;
 }
 
-.extraInfo .subtitle a {
+.extrainfo-container .subtitle a {
     border-bottom: 1px solid var(--main-color);
 }
 
@@ -1730,11 +1730,11 @@ footer .content p {
         font-size: 16px;
     }
 
-    .extraInfo .col-4 {
+    .extrainfo-container .col-4 {
         width: 100%;
     }
 
-    .extraInfo .col-7 {
+    .extrainfo-container .col-7 {
         width: 100%;
         margin: 0;
         margin-bottom: 0.5rem;

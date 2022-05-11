@@ -1,7 +1,7 @@
 from django.contrib import admin
-from .models import BsubCreatorModel, GenreModel, MovieModel,SeriesModel,SeasonModel,EpisodeModel,SoftwaresGamesModel, SpecialModel, TopSlideModel , BSubModel,ClassicModel,DualAudioModel,SatyajitRayModel,JamesBondModel,HindiDubbedModel, IMDBTopModel,OscarWinningModel,SuperheroModel
+from .models import BsubCreatorModel, GenreModel, MovieModel,SeriesModel,SeasonModel,EpisodeModel,SoftwaresGamesModel, SpecialModel, TopSlideModel , BSubModel,ClassicModel,DualAudioModel,SatyajitRayModel,FootageModel, JamesBondModel,HindiDubbedModel, IMDBTopModel,OscarWinningModel,SuperheroModel,LinkSource,LinkCategory,LinkSubCategory
 from django_summernote.admin import SummernoteModelAdmin
-
+import nested_admin
 admin.site.site_header = 'Flixmx Administration'
 
 # Register your models here.
@@ -12,10 +12,30 @@ admin.site.register(SatyajitRayModel)
 admin.site.register(JamesBondModel)
 admin.site.register(IMDBTopModel)
 admin.site.register(OscarWinningModel)
+admin.site.register(FootageModel)
 admin.site.register(SuperheroModel)
 admin.site.register(BsubCreatorModel)
+admin.site.register(LinkSource)
+admin.site.register(LinkCategory)
+admin.site.register(LinkSubCategory)
 
-class MovieModelAdmin(SummernoteModelAdmin):
+
+class LinkSubCategoryInline(nested_admin.NestedStackedInline):
+    model = LinkSubCategory
+    extra = 0
+
+class LinkCategoryInline(nested_admin.NestedStackedInline):
+    model = LinkCategory
+    inlines = [LinkSubCategoryInline]
+    extra = 0
+
+class LinkSourceInline(nested_admin.NestedStackedInline):
+    model = LinkSource
+    inlines = [LinkCategoryInline]
+    extra = 0
+
+
+class MovieModelAdmin(SummernoteModelAdmin,nested_admin.NestedModelAdmin):
     list_display=('title','type','release_date','created_at')
     list_filter=('type','genre','release_date')
     search_fields = ['title','release_date']
@@ -23,6 +43,11 @@ class MovieModelAdmin(SummernoteModelAdmin):
     add_form_template = 'custom_add_form/movie_add_form.html'
     change_form_template = 'custom_add_form/movie_add_form.html'
     summernote_fields = ('synopsys',)
+
+    inlines = [
+        LinkSourceInline,
+    ]
+
     def save_model(self, request, obj, form, change):
 
       if not obj.last_update:

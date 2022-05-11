@@ -8,6 +8,13 @@ let primaryslider__content = document.getElementById('primary-slider');
 let secondaryslider__content = document.getElementById('secondary-slider');
 let stillpath__content = document.getElementById('still_path');
 let bsubmaker__content = document.getElementById('bsubmaker');
+let gap = '0.5rem'
+
+let bp_1920 = 8
+let bp_1550 = 7
+let bp_1280 = 6
+let bp_768 = 3
+let bp_480 = 2
 
 
 if (width > 768)
@@ -36,17 +43,17 @@ if (typeof (topslider__content) != 'undefined' && topslider__content != null) {
         cover: true,
         pagination: false,
         interval: 4000,
-        autoplay: true,
+        autoplay: false,
         lazyLoad: 'nearby',
         breakpoints: {
             '1920': {
-                perPage: 6,
+                perPage: 8,
             },
             '1550': {
-                perPage: 5,
+                perPage: 7,
             },
             '1280': {
-                perPage: 4,
+                perPage: 6,
             },
             '768': {
                 perPage: 3,
@@ -62,32 +69,28 @@ if (typeof (topslider__content) != 'undefined' && topslider__content != null) {
 shimmer__content.forEach(shimmer => {
     if (typeof (shimmer) != 'undefined' && shimmer != null) {
         splide = new Splide(shimmer, {
-            perPage: 5,
+            perPage: 7,
             perMove: 1,
             preloadPages: perLoadCount,
             cover: true,
             pagination: false,
             lazyLoad: 'nearby',
+            gap:gap,
             breakpoints: {
                 '1920': {
-                    perPage: 6,
-                    gap: '1rem',
+                    perPage: 7,
                 },
                 '1550': {
-                    perPage: 5,
-                    gap: '1rem',
+                    perPage: 6,
                 },
                 '1280': {
-                    perPage: 4,
-                    gap: '1rem',
+                    perPage: 5,
                 },
                 '768': {
                     perPage: 3,
-                    gap: '1rem',
                 },
                 '480': {
                     perPage: 2,
-                    gap: '1rem',
                 },
             }
         })
@@ -106,7 +109,7 @@ if (typeof (bsubmaker__content) != 'undefined' && bsubmaker__content != null) {
         pagination: true,
         lazyLoad: 'nearby',
         arrows: false,
-        autoplay: true,
+        // autoplay: true,
         interval: 3000,
         rewind: true,
         breakpoints: {
@@ -208,15 +211,15 @@ carousels.forEach(carousel => {
             lazyLoad: 'nearby',
             breakpoints: {
                 '1920': {
-                    perPage: 6,
+                    perPage: 7,
                     gap: '1rem',
                 },
                 '1550': {
-                    perPage: 5,
+                    perPage: 6,
                     gap: '1rem',
                 },
                 '1280': {
-                    perPage: 4,
+                    perPage: 5,
                     gap: '1rem',
                 },
                 '768': {
@@ -250,26 +253,22 @@ document.addEventListener("DOMContentLoaded", function (event) {
                     cover: true,
                     pagination: false,
                     lazyLoad: 'nearby',
+                    gap: gap,
                     breakpoints: {
                         '1920': {
-                            perPage: 6,
-                            gap: '1rem',
+                            perPage: 7,
                         },
                         '1550': {
-                            perPage: 5,
-                            gap: '1rem',
+                            perPage: 6,
                         },
                         '1280': {
-                            perPage: 4,
-                            gap: '1rem',
+                            perPage: 5,
                         },
                         '768': {
                             perPage: 3,
-                            gap: '1rem',
                         },
                         '480': {
                             perPage: 2,
-                            gap: '1rem',
                         },
                     }
                 })

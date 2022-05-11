@@ -56,15 +56,12 @@
     bottom: 0;
     left: 0;
     width: 100%;
-    padding: 14px;
+    padding: 8px;
     z-index: 10;
 }
 
 .movie-item-title {
     color: var(--text-color);
-    font-size: 1.25rem;
-    position: relative;
-    font-weight: 600;
 }
 
 .section-header {
@@ -84,62 +81,14 @@
     display: flex;
     justify-content: flex-end;
     align-items: center;
-
+    font-size: 0.9rem;
     div {
-        padding: 0.5rem 1rem;
+        padding: 0.25rem 1rem;
         color: #9f9f9f;
         border: 1px solid #333;
 
         i {
             margin-right: 0.5rem;
         }
-    }
-}
-
-.info1 {
-    padding: 0.35em;
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    border-radius: $border-radius-2;
-    letter-spacing: 1px;
-    background-color: rgb(74, 128, 228);
-    z-index: 10;
-    font-size: 0.85em;
-}
-
-.info2 {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background-color: #db3f2e;
-    padding: 0.35em;
-    font-size: 0.85em;
-    border-radius: $border-radius-2;
-    letter-spacing: 1px;
-    z-index: 10;
-}
-
-// Total obj button 
-.totalobj {
-    font-size: 15px;
-    font-weight: 400;
-    white-space: nowrap;
-    margin-left: 12px;
-
-    a {
-        text-transform: uppercase;
-        margin-left: 0.5em;
-        font-size: 0.85em;
-        padding: 0.35em 0.75em;
-        background-color: var(--main-color);
-        border-radius: $border-radius-2;
-    }
-
-    .total {
-        font-size: 0.85em;
-        padding: 0.35em 0.75em;
-        background-color: var(--main-color);
-        border-radius: $border-radius-2;
     }
 }

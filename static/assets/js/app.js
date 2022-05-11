@@ -54,16 +54,16 @@
  });
 
  // Watch modal
- $('#openwatch').on('click', function () {
-     $('body').css('overflow', 'hidden')
-     $('#watchModal').css({
-         'display': 'flex',
-     })
- })
- $('#closeModal').on('click', function () {
-     $('#watchModal').hide()
-     $('body').css('overflow', 'visible')
- })
+ //  $('#openwatch').on('click', function () {
+ //      $('body').css('overflow', 'hidden')
+ //      $('#watchModal').css({
+ //          'display': 'flex',
+ //      })
+ //  })
+ //  $('#closeModal').on('click', function () {
+ //      $('#watchModal').hide()
+ //      $('body').css('overflow', 'visible')
+ //  })
 
  // Search Content
  $('.search-icon').on('click', function () {
@@ -98,3 +98,35 @@
      })
 
  // Splide slider
+
+
+
+
+
+
+
+
+
+ var $searchView = $('.menu-search-container');
+ var $menu = $('.menu-mac, .menu-iPad, .menu-iPhone, .menu-watch, .menu-tv, .menu-support, .menu-search, .menu-store');
+ var $fadeScreen = $('.fade-screen');
+
+ $('li.menu-search, .fade-screen, .menu-search-close').on('click', function (e) {
+     console.log("sdjhgfsdjhgfv")
+     $searchView.toggleClass('active');
+
+     setTimeout(function () {
+         $searchView.children().find('input').focus();
+     }, 1100);
+
+     $fadeScreen.toggleClass('visible');
+     $menu.removeClass('is-closed');
+     $menu.toggleClass('hidden');
+
+     e.preventDefault();
+ });
+
+ $('.fade-screen,.menu-search-close').on('click', function (e) {
+     $menu.toggleClass('is-closed');
+     e.preventDefault();
+ });

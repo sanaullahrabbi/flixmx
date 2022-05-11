@@ -65,10 +65,14 @@
     border-radius: 2px;
 }
 
+.splide__pagination__page{
+    background: rgba(204, 204, 204, 0.753) !important;
+}
+
 .splide__pagination__page.is-active {
     transform: none;
     width: 30px;
-    background: $main-color;
+    background: $main-color !important;
     opacity: 1;
 }
 
