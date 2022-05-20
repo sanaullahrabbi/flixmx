@@ -16,145 +16,132 @@
 
 {% block content %}
 <div class="movie-details-main software-games-extra-main">
-    <div class="movie-details-container">
-        <div class="thumbnail">
-            <img src="{% if obj.thumbnail %}{{obj.thumbnail.url}}{% endif %}" alt="thumbnail">
-        </div>
-        <div class="col-8 details">
-            <div class="item-content-title">
-                {{obj.title}}
+    <div class="container">
+        <div class="movie-details-container">
+            <div class="thumbnail">
+                <img src="{% if obj.thumbnail %}{{obj.thumbnail.url}}{% endif %}" alt="thumbnail">
             </div>
-            <div class="movie-infos">
-                <div class="movie-info">
-                    <i class="fas fa-star"></i>
-                    <span>{{obj.platform|title}}</span>
+            <div class="col-8 details">
+                <div class="item-content-title">
+                    {{obj.title}}
                 </div>
-                <div class="movie-info">
-                    <i class="fas fa-file-alt"></i>
-                    <span>{{obj.size}}</span>
+                <div class="movie-infos mt-3 gap-3 justify-center md:justify-start">
+                    <div class="movie-info">
+                        <i class="fas fa-star"></i>
+                        <span>{{obj.platform|title}}</span>
+                    </div>
+                    <div class="movie-info">
+                        <i class="fas fa-file-alt"></i>
+                        <span>{{obj.size}}</span>
+                    </div>
+                    <div class="movie-info">
+                        <i class="fas fa-list-alt"></i>
+                        <span>{{obj.category|title}}</span>
+                    </div>
+                    {% if obj.rated %}
+                    <div class="movie-info">
+                        <i class="fas fa-percentage"></i>
+                        <span>{{obj.rated}}</span>
+                    </div>
+                    {% endif %}
                 </div>
-                <div class="movie-info">
-                    <i class="fas fa-list-alt"></i>
-                    <span>{{obj.category|title}}</span>
-                </div>
-                {% if obj.rated %}
-                <div class="movie-info">
-                    <i class="fas fa-percentage"></i>
-                    <span>{{obj.rated}}</span>
+                <br>
+                {% if obj.genre.all %}
+                <div class="row infoscontainer">
+                    <div class="col-title">
+                        <h4><span>Genres:</span></h4>
+                    </div>
+                    <div class="col-details">
+                        <h4>{% for genre in obj.genre.all %}
+                            <a
+                                href="{% url 'genres' genrename=genre.genre_name|lower %}">{{ genre.genre_name }}</a>{% if not forloop.last %},{% endif %}
+                            {% endfor %}
+                        </h4>
+                    </div>
                 </div>
                 {% endif %}
-            </div>
-            <br>
-            {% if obj.genre.all %}
-            <div class="row infoscontainer">
-                <div class="col-title">
-                    <h4><span>Genres :</span></h4>
-                </div>
-                <div class="col-details">
-                    <h4>{% for genre in obj.genre.all %}
-                        <a
-                            href="{% url 'genres' genrename=genre.genre_name|lower %}">{{ genre.genre_name }}</a>{% if not forloop.last %},{% endif %}
-                        {% endfor %}
-                    </h4>
-                </div>
-            </div>
-            {% endif %}
-            <div class="row infoscontainer">
-                <div class="col-title">
-                    <h4><span>Release Date :</span></h4>
-                </div>
-                <div class="col-details">
-                    <h4>{{obj.release_date}}</h4>
-                </div>
-            </div>
-            {% if obj.developer %}
-            <div class="row infoscontainer">
-                <div class="col-title">
-                    <h4><span>Developer :</span></h4>
-                </div>
-                <div class="col-details">
-                    <h4>{{obj.developer}}</h4>
-                </div>
-            </div>
-            {% endif %}
-            <br>
-            <div class="row descript">
-                <div class="col-12">
-                    {{obj.description|safe}}
-                    <button class="see-more-btn"><i class="fas fa-chevron-down"></i></button>
-                </div>
-            </div>
-            <div class=" item-action">
-                <div class="dropdowncontain">
-                    <div class="btn btn-hover downloadbtn">
-                        <i class="fas fa-caret-right fa-md expand-icon"></i>
-                        <span> Download now</span>
+                <div class="row infoscontainer">
+                    <div class="col-title">
+                        <h4><span>Release Date:</span></h4>
                     </div>
-                    <div class="dropdown">
-                        <ul>
-                            {% if obj.direct_download %}
-                            <li><a href="{{obj.direct_download}}">GDirect</a></li>
-                            {% endif %}
-                            {% if obj.gdrive_download_link %}
-                            <li>
-                                <a href="{{ obj.gdrive_download_link }}">GDShare</a>
-                            </li>
-                            {% endif %}
-                            {% if obj.onedrive_download_link %}
-                            <li>
-                                <a href="{{ obj.onedrive_download_link }}">OneDrive </a>
-                            </li>
-                            {% endif %}
-                            {% if obj.torrent %}
-                            <li><a href="{{obj.torrent}}">Torrent</a></li>
-                            {% endif %}
-                        </ul>
+                    <div class="col-details">
+                        <h4>{{obj.release_date}}</h4>
+                    </div>
+                </div>
+                {% if obj.developer %}
+                <div class="row infoscontainer">
+                    <div class="col-title">
+                        <h4><span>Developer:</span></h4>
+                    </div>
+                    <div class="col-details">
+                        <h4>{{obj.developer}}</h4>
+                    </div>
+                </div>
+                {% endif %}
+                <br>
+                <div class="row descript">
+                    <div class="col-12">
+                        {{obj.description|safe}}
+                        <button class="see-more-btn"><i class="fas fa-chevron-down"></i></button>
+                    </div>
+                </div>
+                <div class="item-action">
+                    <div class="dropdowncontain">
+                        <div class="btn btn-hover downloadbtn">
+                            <i class="fas fa-caret-right fa-md expand-icon"></i>
+                            <span> Download now</span>
+                        </div>
+                        <div class="dropdown">
+                            <ul>
+                                {% if obj.direct_download %}
+                                <li><a href="{{obj.direct_download}}">GDirect</a></li>
+                                {% endif %}
+                                {% if obj.gdrive_download_link %}
+                                <li>
+                                    <a href="{{ obj.gdrive_download_link }}">GDShare</a>
+                                </li>
+                                {% endif %}
+                                {% if obj.onedrive_download_link %}
+                                <li>
+                                    <a href="{{ obj.onedrive_download_link }}">OneDrive </a>
+                                </li>
+                                {% endif %}
+                                {% if obj.torrent %}
+                                <li><a href="{{obj.torrent}}">Torrent</a></li>
+                                {% endif %}
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-    <div class="container">
-        <div class="social">
-            <a href=""><i class="fab fa-facebook-f fb"></i></a>
-            <a href=""><i class="fab fa-twitter tw"></i></a>
-            <a href=""><i class="fab fa-youtube yt"></i></a>
-            <a href=""><i class="fab fa-skype sk"></i></a>
-            <a href=""><i class="fab fa-dropbox db"></i></a>
         </div>
         <div class="total-view-down-infos">
             <div class=""><i class="fas fa-eye"></i>View: 0</div>
             <div class=""><i class="fas fa-download"></i>Download: 0</div>
         </div>
-    </div>
-    <div class="container extrainfo-container">
-        {% if obj.min_sys_req %}
-        <div class="col-12">
-            <h3>Minimum System Requirements</h3>
-            {{obj.min_sys_req}}
+        <div class="container extrainfo-container">
+            {% if obj.min_sys_req %}
+            <div class="col-12">
+                <h3>Minimum System Requirements</h3>
+                {{obj.min_sys_req}}
+            </div>
+            {% endif %}
+            {% if obj.rec_sys_req %}
+            <div class="col-12">
+                <h3>Recommended System Requirements</h3>
+                {{obj.rec_sys_req}}
+            </div>
+            {% endif %}
+            {% if obj.general_notes %}
+            <div class="col-12">
+                <h3>General Notes</h3>
+                {{obj.general_notes}}
+            </div>
+            {% endif %}
         </div>
-        {% endif %}
-        {% if obj.rec_sys_req %}
-        <div class="col-12">
-            <h3>Recommended System Requirements</h3>
-            {{obj.rec_sys_req}}
+        <div class="share-container">
+            <div class="addthis_inline_share_toolbox"></div>
         </div>
-        {% endif %}
-        {% if obj.general_notes %}
-        <div class="col-12">
-            <h3>General Notes</h3>
-            {{obj.general_notes}}
-        </div>
-        {% endif %}
-    </div>
-    <div class="review-container">
-        <a class="tbutton tbutton1" href="https://facebook.com/groups/flixmxofficial"><i
-                class='bx bxl-facebook bx-burst'></i>Join
-            FB Group</a>
-        <a class="tbutton tbutton2" href="https://telegram.im/@flixmxchat"><i class='bx bxl-telegram bx-burst'></i>Join
-            TG Group</a>
-        <a class="tbutton tbutton3" href="https://www.youtube.com/watch?v=GiMBlRmCFIA"><i
-                class='bx bxl-youtube bx-burst'></i>How To Download</a>
     </div>
 </div>
 
@@ -175,14 +162,12 @@
                                 <i class="fad fa-info-circle"></i>
                             </div>
                             {% if i.info1 %}
-                            <div
-                                class="info1">
+                            <div class="info1">
                                 {{i.info1}}
                             </div>
                             {% endif %}
                             {% if i.info2 %}
-                            <div
-                                class="info2">
+                            <div class="info2">
                                 {{i.info2}}
                             </div>
                             {% endif %}

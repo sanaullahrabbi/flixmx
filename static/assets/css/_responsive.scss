@@ -106,7 +106,7 @@
             width: 100%;
 
             .item-content-title {
-                font-size: 2.5rem !important;
+                font-size: 2.25rem !important;
                 text-align: center;
                 max-height: 100%;
                 overflow-y: unset;
@@ -127,9 +127,9 @@
             }
         }
 
-        .btn {
-            margin: 10px 5px 0;
-        }
+        // .btn {
+        //     margin: 10px 5px 0;
+        // }
 
         .item-action {
             justify-content: center;
@@ -235,7 +235,7 @@
 
 @media only screen and (max-width: 768px) {
     html {
-        font-size: 80%;
+        font-size: 85%;
     }
 
     .nav {

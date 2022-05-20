@@ -129,7 +129,7 @@
                         <button class="see-more-btn"><i class="fas fa-chevron-down"></i></button>
                     </div>
                 </div>
-                <div class="item-action">
+                <div class="item-action gap-3">
                     <div class="dropdowncontain">
                         <div class="btn btn-hover downloadbtn">
                             <i class="fas fa-caret-right fa-md expand-icon"></i>
@@ -138,13 +138,13 @@
                         <div class="dropdown">
                             <ul>{% if obj.watch_link_main_source or obj.watch_link_alt1_name and obj.watch_link_alt1_url or obj.watch_link_alt2_name and obj.watch_link_alt2_url%}
                                 {% if obj.watch_link_main_source %}
-                                <li><a href="{{ obj.watch_link_main_source }}" data-featherlight="iframe">Main Source</a></li>
+                                <li><a href="{{ obj.watch_link_main_source }}">Main Source</a></li>
                                 {% endif %}
                                 {% if obj.watch_link_alt1_name and obj.watch_link_alt1_url %}
-                                <li><a href="{{ obj.watch_link_alt1_url }}" data-featherlight="iframe">{{ obj.watch_link_alt1_name }}</a></li>
+                                <li><a href="{{ obj.watch_link_alt1_url }}">{{ obj.watch_link_alt1_name }}</a></li>
                                 {% endif %}
                                 {% if obj.watch_link_alt2_name and obj.watch_link_alt2_url %}
-                                <li><a href="{{ obj.watch_link_alt2_url }}" data-featherlight="iframe">{{ obj.watch_link_alt2_name }}</a></li>
+                                <li><a href="{{ obj.watch_link_alt2_url }}">{{ obj.watch_link_alt2_name }}</a></li>
                                 {% endif %}
                                 {% else %}
                                 <li><a>No link available</a></li>
