@@ -19,6 +19,7 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
+    # 'admin_volt.apps.AdminVoltConfig',
     'jet.dashboard',
     'jet',
     'django.contrib.admin',
@@ -201,9 +202,7 @@ JET_SIDE_MENU_ITEMS = [  # A list of application or custom item dicts
     {'label': ('Extra'), 'items': [
         {'name': 'core.genremodel','label': ('Genres')},
         {'name': 'core.bsubcreatormodel','label': ('BSub Translator')},
-        {'name': 'core.linksource','label': ('Link Source')},
-        {'name': 'core.linkcategory','label': ('Link Category')},
-        {'name': 'core.linksubcategory','label': ('Link Sub Category')},
+        {'name': 'core.notice','label': ('Notices')},
     ]},
     {'label': ('user account and groups'), 'items': [
         {'name': 'auth.user'},

@@ -72,53 +72,37 @@
                                         {% if episode.direct_download_main or episode.direct_download_alt1_url or episode.direct_download_alt2_url %}
                                         <li>
                                             <a class="toogle-dropdown-sub"><i
-                                                    class="fas fa-caret-right fa-md expand-icon"></i>GDirect</a>
+                                                    class="fas fa-caret-right fa-md expand-icon"></i>G-Direct</a>
                                             <div class="dropdown-sub">
-                                                {% if episode.direct_download_main %}
-                                                <a href="{{episode.direct_download_main}}">Main Source</a>
+                                                
+                                                {% if episode.direct_download_alt2_name and episode.direct_download_alt2_url %}
+                                                <a
+                                                    href="{{episode.direct_download_alt2_url}}">{{episode.direct_download_alt2_name}}</a>
                                                 {% endif %}
                                                 {% if episode.direct_download_alt1_name and episode.direct_download_alt1_url %}
                                                 <a
                                                     href="{{episode.direct_download_alt1_url}}">{{episode.direct_download_alt1_name}}</a>
                                                 {% endif %}
-                                                {% if episode.direct_download_alt2_name and episode.direct_download_alt2_url %}
-                                                <a
-                                                    href="{{episode.direct_download_alt2_url}}">{{episode.direct_download_alt2_name}}</a>
+                                                {% if episode.direct_download_main %}
+                                                <a href="{{episode.direct_download_main}}">1080p</a>
                                                 {% endif %}
                                             </div>
                                         </li>
                                         {% endif %}
                                         {% if episode.gdrive_download_main or episode.gdrive_download_alt1_url or episode.gdrive_download_alt2_url %}
                                         <li><a class="toogle-dropdown-sub"><i
-                                                    class="fas fa-caret-right fa-md expand-icon"></i>GDShare</a>
+                                                    class="fas fa-caret-right fa-md expand-icon"></i>G-Drive</a>
                                             <div class="dropdown-sub">
-                                                {% if episode.gdrive_download_main %}
-                                                <a href="{{episode.gdrive_download_main}}">Main Source</a>
+                                                {% if episode.gdrive_download_alt2_name and episode.gdrive_download_alt2_url %}
+                                                <a
+                                                    href="{{episode.gdrive_download_alt2_url}}">{{episode.gdrive_download_alt2_name}}</a>
                                                 {% endif %}
                                                 {% if episode.gdrive_download_alt1_name and episode.gdrive_download_alt1_url %}
                                                 <a
                                                     href="{{episode.gdrive_download_alt1_url}}">{{episode.gdrive_download_alt1_name}}</a>
                                                 {% endif %}
-                                                {% if episode.gdrive_download_alt2_name and episode.gdrive_download_alt2_url %}
-                                                <a
-                                                    href="{{episode.gdrive_download_alt2_url}}">{{episode.gdrive_download_alt2_name}}</a>
-                                                {% endif %}
-                                                {% if episode.hevc_download_main or episode.hevc_download_alt1_url or episode.hevc_download_alt2_url %}
-                                                <a class="toogle-dropdown-sub"><i
-                                                        class="fas fa-caret-right fa-md expand-icon"></i>HEVC</a>
-                                                <div class="dropdown-sub">
-                                                    {% if episode.hevc_download_main %}
-                                                    <a href="{{episode.hevc_download_main}}">Main Source</a>
-                                                    {% endif %}
-                                                    {% if episode.hevc_download_alt1_name and episode.hevc_download_alt1_url %}
-                                                    <a
-                                                        href="{{episode.hevc_download_alt1_url}}">{{episode.hevc_download_alt1_name}}</a>
-                                                    {% endif %}
-                                                    {% if episode.hevc_download_alt2_name and episode.hevc_download_alt2_url %}
-                                                    <a
-                                                        href="{{episode.hevc_download_alt2_url}}">{{episode.hevc_download_alt2_name}}</a>
-                                                    {% endif %}
-                                                </div>
+                                                {% if episode.gdrive_download_main %}
+                                                <a href="{{episode.gdrive_download_main}}">1080p</a>
                                                 {% endif %}
                                             </div>
                                         </li>
@@ -127,19 +111,38 @@
                                         <li><a class="toogle-dropdown-sub"><i
                                                     class="fas fa-caret-right fa-md expand-icon"></i>One Drive</a>
                                             <div class="dropdown-sub">
-                                                {% if episode.onedrive_download_main %}
-                                                <a href="{{episode.onedrive_download_main}}">Main Source</a>
+                                                {% if episode.onedrive_download_alt2_name and episode.onedrive_download_alt2_url %}
+                                                <a
+                                                    href="{{episode.onedrive_download_alt2_url}}">{{episode.onedrive_download_alt2_name}}</a>
                                                 {% endif %}
                                                 {% if episode.onedrive_download_alt1_name and episode.onedrive_download_alt1_url %}
                                                 <a
                                                     href="{{episode.onedrive_download_alt1_url}}">{{episode.onedrive_download_alt1_name}}</a>
                                                 {% endif %}
-                                                {% if episode.onedrive_download_alt2_name and episode.onedrive_download_alt2_url %}
-                                                <a
-                                                    href="{{episode.onedrive_download_alt2_url}}">{{episode.onedrive_download_alt2_name}}</a>
-                                                {% endif %}
+                                                {% if episode.onedrive_download_main %}
+                                                <a href="{{episode.onedrive_download_main}}">1080p</a>
+                                                {% endif %}  
                                             </div>
                                         </li>
+                                        {% endif %}
+                                        {% if episode.linkepisodesource %}
+                                        {% for source in episode.linkepisodesource.all %}
+                                        <li>
+                                            <a class="toogle-dropdown-sub"><i
+                                                    class="fas fa-caret-right fa-md expand-icon"></i>{{source}}</a>
+                                            <div class="dropdown-sub">
+                                                {% for cat in source.linkepisodecat.all %}
+                                                <a class="toogle-dropdown-sub"><i
+                                                        class="fas fa-caret-right fa-md expand-icon"></i>{{cat.category}}</a>
+                                                <div class="dropdown-sub">
+                                                    {% for subcat in cat.linkepisodesubcat.all|sortSubCatQs %}
+                                                    <a href="{{subcat.link}}">{{subcat.subcategory}}</a>
+                                                    {% endfor %}
+                                                </div>
+                                                {% endfor %}
+                                            </div>
+                                        </li>
+                                        {% endfor %}
                                         {% endif %}
                                     </ul>
                                 </div>
@@ -174,14 +177,18 @@
                         <h2>Ep {{episode.episode}}</h2>
                     </div>
                     <div class="movie-infos">
+                        {% if episode.rating %}
                         <div class="movie-info">
                             <i class="fas fa-star"></i>
                             <span>{{episode.rating}}</span>
                         </div>
+                        {% endif %}
+                        {% if episode.runtime %}
                         <div class="movie-info">
                             <i class="fas fa-clock"></i>
                             <span>{{episode.runtime}}</span>
                         </div>
+                        {% endif %}
                     </div>
                 </li>
                 {% endfor %}
@@ -200,7 +207,7 @@
 
             <div class="dropdown" style="margin-right: 0;margin-left: 0;">
                 <ul>
-                    {% if obj.download_full_quality_480p or obj.download_full_quality_720p or obj.download_full_quality_1080p or obj.download_full_download_dual_audio or obj.download_full_download_hindi_dubbed %}
+                    {% if obj.download_full_quality_480p or obj.download_full_quality_720p or obj.download_full_quality_1080p or obj.download_full_quality_2160p or obj.download_full_download_dual_audio or obj.download_full_download_hindi_dubbed %}
                     {% if obj.download_full_quality_480p %}
                     <li>
                         <a href="{{obj.download_full_quality_480p}}">480p</a>
@@ -214,6 +221,11 @@
                     {% if obj.download_full_quality_1080p %}
                     <li>
                         <a href="{{obj.download_full_quality_1080p}}">1080p</a>
+                    </li>
+                    {% endif %}
+                    {% if obj.download_full_quality_2160p %}
+                    <li>
+                        <a href="{{obj.download_full_quality_2160p}}">2160p</a>
                     </li>
                     {% endif %}
                     {% if obj.download_full_download_dual_audio %}

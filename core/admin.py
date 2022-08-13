@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import BsubCreatorModel, GenreModel, MovieModel,SeriesModel,SeasonModel,EpisodeModel,SoftwaresGamesModel, SpecialModel, TopSlideModel , BSubModel,ClassicModel,DualAudioModel,SatyajitRayModel,FootageModel, JamesBondModel,HindiDubbedModel, IMDBTopModel,OscarWinningModel,SuperheroModel,LinkSource,LinkCategory,LinkSubCategory
+from .models import BsubCreatorModel, GenreModel, LinkEpisodeCategory, LinkEpisodeSource, LinkEpisodeSubCategory, MovieModel, Notice,SeriesModel,SeasonModel,EpisodeModel,SoftwaresGamesModel, SpecialModel, TopSlideModel , BSubModel,ClassicModel,DualAudioModel,SatyajitRayModel,FootageModel, JamesBondModel,HindiDubbedModel, IMDBTopModel,OscarWinningModel,SuperheroModel,LinkSource,LinkCategory,LinkSubCategory
 from django_summernote.admin import SummernoteModelAdmin
 import nested_admin
 admin.site.site_header = 'Flixmx Administration'
@@ -18,6 +18,10 @@ admin.site.register(BsubCreatorModel)
 admin.site.register(LinkSource)
 admin.site.register(LinkCategory)
 admin.site.register(LinkSubCategory)
+admin.site.register(LinkEpisodeSource)
+admin.site.register(LinkEpisodeCategory)
+admin.site.register(LinkEpisodeSubCategory)
+admin.site.register(Notice)
 
 
 class LinkSubCategoryInline(nested_admin.NestedStackedInline):
@@ -122,13 +126,30 @@ class SeasonModelAdmin(admin.ModelAdmin):
 admin.site.register(SeasonModel,SeasonModelAdmin)
 
 
-class EpisodeModelAdmin(admin.ModelAdmin):
+class LinkEpisodeSubCategoryInline(nested_admin.NestedStackedInline):
+    model = LinkEpisodeSubCategory
+    extra = 0
+
+class LinkEpisodeCategoryInline(nested_admin.NestedStackedInline):
+    model = LinkEpisodeCategory
+    inlines = [LinkEpisodeSubCategoryInline]
+    extra = 0
+
+class LinkEpisodeSourceInline(nested_admin.NestedStackedInline):
+    model = LinkEpisodeSource
+    inlines = [LinkEpisodeCategoryInline]
+    extra = 0
+class EpisodeModelAdmin(nested_admin.NestedModelAdmin):
     list_display=('season','title','episode','rating','created_at')
     list_filter=('season','episode')
     search_fields = ['season__series__title','title',]
     ordering = ['-created_at']
     add_form_template = 'custom_add_form/episode_add_form.html'
     change_form_template = 'custom_add_form/episode_add_form.html'
+    inlines = [
+        LinkEpisodeSourceInline,
+    ]
+
 admin.site.register(EpisodeModel,EpisodeModelAdmin)
 
 

@@ -130,3 +130,18 @@
      $menu.toggleClass('is-closed');
      e.preventDefault();
  });
+
+
+
+ $('.my-news-ticker').AcmeTicker({
+    controls: {
+      prev: $('.acme-news-ticker-prev'),
+      toggle: $('.acme-news-ticker-pause'),
+      next: $('.acme-news-ticker-next')
+    },
+    type:'horizontal',
+    autoplay: 3000,
+    speed: 500,
+    pauseOnHover:true,
+    pauseOnFocus:true,
+  });

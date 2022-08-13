@@ -57,18 +57,24 @@ class LinkSource(models.Model):
     source = models.CharField(max_length=255,null=True)
     def __str__(self):
         return f'{self.source}'
+    class Meta:
+        ordering = ('source', )
 
 class LinkCategory(models.Model):
     source = models.ForeignKey('LinkSource',on_delete=models.SET_NULL,null=True,related_name='linkcat')
     category = models.CharField(max_length=255,null=True)
     def __str__(self):
         return f'{self.category}'
+    class Meta:
+        ordering = ('category', )
 
 
 class LinkSubCategory(models.Model):
     category = models.ForeignKey('LinkCategory',on_delete=models.SET_NULL,null=True,related_name='linksubcat')
     subcategory = models.CharField(max_length=255,null=True)
     link = models.URLField(null=True)
+    class Meta:
+        ordering = ('subcategory', )
 
     def __str__(self):
         return f'{self.category}-{self.subcategory}'
@@ -132,12 +138,6 @@ class MovieModel(models.Model):
     onedrive_quality_4K = models.URLField(max_length=999,null=True,blank=True)
     onedrive_download_dual_audio = models.URLField(max_length=999,null=True,blank=True)
     onedrive_download_hindi_dubbed = models.URLField(max_length=999,null=True,blank=True)
-
-    hevc_quality_720p = models.URLField(max_length=999,null=True,blank=True)
-    hevc_quality_1080p = models.URLField(max_length=999,null=True,blank=True)
-    hevc_quality_4K = models.URLField(max_length=999,null=True,blank=True)
-    hevc_download_dual_audio = models.URLField(max_length=999,null=True,blank=True)
-    hevc_download_hindi_dubbed = models.URLField(max_length=999,null=True,blank=True)
 
     torrent = models.URLField(max_length=999,null=True,blank=True)
 
@@ -248,6 +248,7 @@ class SeasonModel(models.Model):
     download_full_quality_480p = models.URLField(max_length=999,null=True,blank=True)
     download_full_quality_720p = models.URLField(max_length=999,null=True,blank=True)
     download_full_quality_1080p = models.URLField(max_length=999,null=True,blank=True)
+    download_full_quality_2160p = models.URLField(max_length=999,null=True,blank=True)
     download_full_download_dual_audio = models.URLField(max_length=999,null=True,blank=True)
     download_full_download_hindi_dubbed = models.URLField(max_length=999,null=True,blank=True)
 
@@ -264,6 +265,31 @@ class SeasonModel(models.Model):
         return f"{self.series.title} (Season {self.season_number})"
 
 
+class LinkEpisodeSource(models.Model):
+    content = models.ForeignKey('EpisodeModel',on_delete=models.SET_NULL,null=True,related_name='linkepisodesource')
+    source = models.CharField(max_length=255,null=True)
+    def __str__(self):
+        return f'{self.source}'
+    class Meta:
+        ordering = ('source', )
+
+class LinkEpisodeCategory(models.Model):
+    source = models.ForeignKey('LinkEpisodeSource',on_delete=models.SET_NULL,null=True,related_name='linkepisodecat')
+    category = models.CharField(max_length=255,null=True)
+    def __str__(self):
+        return f'{self.category}'
+    class Meta:
+        ordering = ('category', )
+
+class LinkEpisodeSubCategory(models.Model):
+    category = models.ForeignKey('LinkEpisodeCategory',on_delete=models.SET_NULL,null=True,related_name='linkepisodesubcat')
+    subcategory = models.CharField(max_length=255,null=True)
+    link = models.URLField(null=True)
+    class Meta:
+        ordering = ('subcategory', )
+
+    def __str__(self):
+        return f'{self.category}-{self.subcategory}'
 class EpisodeModel(models.Model):
     title = models.CharField(max_length=250,null=True,blank=True)
     tmdb_thumbnail = models.URLField(max_length=999,null=True,blank=True)
@@ -297,12 +323,6 @@ class EpisodeModel(models.Model):
     onedrive_download_alt1_url = models.URLField(max_length=999,null=True,blank=True)
     onedrive_download_alt2_name = models.CharField(max_length=250,null=True,blank=True)
     onedrive_download_alt2_url = models.URLField(max_length=999,null=True,blank=True)
-
-    hevc_download_main = models.URLField(max_length=999,null=True,blank=True)
-    hevc_download_alt1_name = models.CharField(max_length=250,null=True,blank=True)
-    hevc_download_alt1_url = models.URLField(max_length=999,null=True,blank=True)
-    hevc_download_alt2_name = models.CharField(max_length=250,null=True,blank=True)
-    hevc_download_alt2_url = models.URLField(max_length=999,null=True,blank=True)
 
     subtitle_link = models.URLField(max_length=999,null=True,blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -486,4 +506,12 @@ class SpecialModel(models.Model):
         return f"{self.movie_content}" 
 
 
+class Notice(models.Model):
+    title = models.CharField(max_length=255,null=True)
+    link = models.URLField(max_length=255,null=True,blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    def __str__(self):
+        return f'{self.title}'
+    class Meta:
+        ordering = ('-id',)
 # uuid = models.UUIDField(default=uuid.uuid4,null=True,unique=True,editable=False)

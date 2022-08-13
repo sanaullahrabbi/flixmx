@@ -163,7 +163,7 @@
                             <ul>
                                 {% if obj.direct_download_480p or obj.direct_download_720p or obj.direct_download_1080p or obj.direct_download_4K or obj.direct_download_dual_audio or obj.direct_download_hindi_dubbed %}
                                 <li><a class="toogle-dropdown-sub"><i
-                                            class="fas fa-caret-right fa-md expand-icon"></i>GDirect</a>
+                                            class="fas fa-caret-right fa-md expand-icon"></i>G-Direct</a>
                                     <div class="dropdown-sub">
                                         {% if obj.direct_download_480p %}
                                         <a href="{{obj.direct_download_480p}}">480p</a>
@@ -189,7 +189,7 @@
                                 {% endif %}
                                 {% if obj.gdrive_quality_480p or obj.gdrive_quality_720p or obj.gdrive_quality_1080p or obj.gdrive_quality_4K or obj.gdrive_download_hindi_dubbed or obj.gdrive_download_dual_audio  %}
                                 <li><a class="toogle-dropdown-sub"><i
-                                            class="fas fa-caret-right fa-md expand-icon"></i>GDShare</a>
+                                            class="fas fa-caret-right fa-md expand-icon"></i>G-Drive</a>
                                     <div class="dropdown-sub">
                                         {% if obj.gdrive_quality_480p %}
                                         <a href="{{obj.gdrive_quality_480p}}">480p</a>
@@ -208,27 +208,6 @@
                                         {% endif %}
                                         {% if obj.gdrive_download_hindi_dubbed %}
                                         <a href="{{obj.gdrive_download_hindi_dubbed}}">Hindi Dubbed</a>
-                                        {% endif %}
-                                        {% if obj.hevc_quality_720p or obj.hevc_quality_1080p or obj.hevc_quality_4K or obj.hevc_download_hindi_dubbed or obj.hevc_download_dual_audio  %}
-                                        <a class="toogle-dropdown-sub"><i
-                                                class="fas fa-caret-right fa-md expand-icon"></i>HEVC</a>
-                                        <div class="dropdown-sub">
-                                            {% if obj.hevc_quality_720p %}
-                                            <a href="{{obj.hevc_quality_720p}}">720p</a>
-                                            {% endif %}
-                                            {% if obj.hevc_quality_1080p %}
-                                            <a href="{{obj.hevc_quality_1080p}}">1080p</a>
-                                            {% endif %}
-                                            {% if obj.hevc_quality_4K %}
-                                            <a href="{{obj.hevc_quality_4K}}">4K</a>
-                                            {% endif %}
-                                            {% if obj.hevc_download_dual_audio %}
-                                            <a href="{{obj.hevc_download_dual_audio}}">Dual Audio</a>
-                                            {% endif %}
-                                            {% if obj.hevc_download_hindi_dubbed %}
-                                            <a href="{{obj.hevc_download_hindi_dubbed}}">Hindi Dubbed</a>
-                                            {% endif %}
-                                        </div>
                                         {% endif %}
                                     </div>
                                 </li>
@@ -268,7 +247,7 @@
                                         <a class="toogle-dropdown-sub"><i
                                                 class="fas fa-caret-right fa-md expand-icon"></i>{{cat.category}}</a>
                                         <div class="dropdown-sub">
-                                            {% for subcat in cat.linksubcat.all %}
+                                            {% for subcat in cat.linksubcat.all|sortSubCatQs %}
                                             <a href="{{subcat.link}}">{{subcat.subcategory}}</a>
                                             {% endfor %}
                                         </div>
@@ -318,7 +297,7 @@
             </div>
             <div class="extrainfo-2 w-full md:w-1/3 whitespace-normal">
                 <div>
-                    Bangla Subtitle By: {% if obj.bsub_creator.all %} <a
+                    Bangla Subtitle By: {% if obj.bsub_creator.all %} <a style="color: #0A7CFF ;"
                         href="{% url 'bsubcreator_contents' creatorSlug=obj.bsub_creator.all.first.slug %}">{{ obj.bsub_creator.all.first }}</a>{% else %}N/A{% endif %}
                 </div>
                 <div>
@@ -334,8 +313,14 @@
                     {% if obj.last_update.last_name %}{{obj.last_update.last_name}}{% endif %}</div>
             </div>
         </div>
-        <div class="share-container">
-            <div class="addthis_inline_share_toolbox"></div>
+        <div class="review-container">
+            <a class="tbutton tbutton1" href="https://facebook.com/groups/flixmxofficial"><i
+                    class='bx bxl-facebook bx-burst'></i>Join
+                FB Group</a>
+            <a class="tbutton tbutton2" href="https://telegram.im/@flixmxchat"><i class='bx bxl-telegram bx-burst'></i>Join
+                TG Group</a>
+            <a class="tbutton tbutton3" href="https://www.youtube.com/watch?v=GiMBlRmCFIA"><i
+                    class='bx bxl-youtube bx-burst'></i>How To Download</a>
         </div>
     </div>
 </div>

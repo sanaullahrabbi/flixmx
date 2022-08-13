@@ -26,11 +26,12 @@ def index(request):
     animemovieobjs = MovieModel.objects.filter(type='anime').order_by('-release_date')
     animeseriesobjs = SeriesModel.objects.filter(type='anime').order_by('-release_date')
 
-    # softwaresobjs = SoftwaresGamesModel.objects.filter(category='softwares').order_by('-release_date')
-    # gamesobjs = SoftwaresGamesModel.objects.filter(category='games').order_by('-release_date')
+    softwaresobjs = SoftwaresGamesModel.objects.filter(category='softwares').order_by('-release_date')
+    gamesobjs = SoftwaresGamesModel.objects.filter(category='games').order_by('-release_date')
 
     bsubmakerobjs = BsubCreatorModel.objects.all()
     specialobj = SpecialModel.objects.first().movie_content
+    noticeqs = Notice.objects.all()[:5]
     context = {
         'topsliderobjs':topsliderobjs,
         'topmovieobjs':topmovieobjs,
@@ -49,10 +50,11 @@ def index(request):
         'animemovieobjs':animemovieobjs,
         'animeseriesobjs':animeseriesobjs,
 
-        # 'softwaresobjs':softwaresobjs,
-        # 'gamesobjs':gamesobjs,
+        'softwaresobjs':softwaresobjs,
+        'gamesobjs':gamesobjs,
         'specialobj':specialobj,
         'bsubmakerobjs':bsubmakerobjs,
+        'notices':noticeqs,
     }
     return render(request,'core/index.html',context)
 

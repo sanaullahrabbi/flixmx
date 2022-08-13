@@ -210,9 +210,26 @@
     <!-- END TOP MOVIES SLIDE -->
 </div>
 <!-- END HERO SECTION -->
+<div class="container">
+    <div class="acme-news-ticker">
+        <div class="acme-news-ticker-label">Updates</div>
+        <div class="acme-news-ticker-box">
+          <ul class="my-news-ticker">
+            {% for notice in notices %}
+           <li><a {% if notice.link %}href="{{notice.link}}"{% endif %}>{{notice.title}}</a></li>
+           {% endfor %}
+          </ul>
+        </div>
+        <div class="acme-news-ticker-controls acme-news-ticker-horizontal-controls">
+          <button class="acme-news-ticker-arrow acme-news-ticker-prev"></button>
+          <button class="acme-news-ticker-pause"></button>
+          <button class="acme-news-ticker-arrow acme-news-ticker-next"></button>
+        </div>
+      </div>
+</div>
 
 <!-- BsubMaker SECTION -->
-<div class="section">
+<!-- <div class="section">
     <div class="container bsubmaker-container">
         <div class="section-header">
             <div> BSub Translators</div>
@@ -223,9 +240,9 @@
         </div>
         <div class="splide" id="bsubmaker">
             <div class="splide__track">
-                <ul class="splide__list">
+                <ul class="splide__list"> -->
                     <!-- ITEM -->
-                    {% for i in bsubmakerobjs %}
+                    <!-- {% for i in bsubmakerobjs %}
                     <li class="splide__slide">
                         <a href="{% url 'bsubcreator_contents' creatorSlug=i.slug %}" class="">
                             <div class="bsub-logo">
@@ -235,13 +252,13 @@
                             <span>{{i.name}}</span>
                         </a>
                     </li>
-                    {% endfor %}
+                    {% endfor %} -->
                     <!-- END ITEM -->
-                </ul>
+                <!-- </ul>
             </div>
         </div>
     </div>
-</div>
+</div> -->
 <!-- END BsubMaker SECTION -->
 <!-- ENGLISH MOVIES SECTION -->
 <div class="section">
@@ -1423,7 +1440,7 @@
 </div>
 <!-- END SERIES SECTION -->
 <!-- SOFTWARES SECTION -->
-<!-- <div class="section">
+<div class="section">
     <div class="container">
         <div class="section-header">
             softwares
@@ -1432,7 +1449,53 @@
                 <a href="{% url 'softwaresGames' category='softwares' %}">see all</a>
             </div>
         </div>
-        <div class="splide slider__content" id="">
+        <div class="splide shimmer-content" id="">
+            <div class="splide__track">
+                <ul class="splide__list">
+                    <li class="splide__slide">
+                        <a class="movie-item">
+                        </a>
+                    </li>
+                    <li class="splide__slide">
+                        <a class="movie-item">
+                        </a>
+                    </li>
+                    <li class="splide__slide">
+                        <a class="movie-item">
+                        </a>
+                    </li>
+                    <li class="splide__slide">
+                        <a class="movie-item">
+                        </a>
+                    </li>
+                    <li class="splide__slide">
+                        <a class="movie-item">
+                        </a>
+                    </li>
+                    <li class="splide__slide">
+                        <a class="movie-item">
+                        </a>
+                    </li>
+                    <li class="splide__slide">
+                        <a class="movie-item">
+                        </a>
+                    </li>
+                    <li class="splide__slide">
+                        <a class="movie-item">
+                        </a>
+                    </li>
+                    <li class="splide__slide">
+                        <a class="movie-item">
+                        </a>
+                    </li>
+                    <li class="splide__slide">
+                        <a class="movie-item">
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="splide slider__content animate__animated" id="">
             <div class="splide__track">
                 <ul class="splide__list">
                     {% for i in softwaresobjs|slice:":50" %}
@@ -1488,10 +1551,10 @@
             </div>
         </div>
     </div>
-</div> -->
+</div>
 <!-- END SOFTWARES SECTION -->
 <!-- GAMES SECTION -->
-<!-- <div class="section">
+<div class="section">
     <div class="container">
         <div class="section-header">
             Games
@@ -1500,7 +1563,53 @@
                 <a href="{% url 'softwaresGames' category='games' %}">see all</a>
             </div>
         </div>
-        <div class="splide slider__content" id="">
+        <div class="splide shimmer-content" id="">
+            <div class="splide__track">
+                <ul class="splide__list">
+                    <li class="splide__slide">
+                        <a class="movie-item">
+                        </a>
+                    </li>
+                    <li class="splide__slide">
+                        <a class="movie-item">
+                        </a>
+                    </li>
+                    <li class="splide__slide">
+                        <a class="movie-item">
+                        </a>
+                    </li>
+                    <li class="splide__slide">
+                        <a class="movie-item">
+                        </a>
+                    </li>
+                    <li class="splide__slide">
+                        <a class="movie-item">
+                        </a>
+                    </li>
+                    <li class="splide__slide">
+                        <a class="movie-item">
+                        </a>
+                    </li>
+                    <li class="splide__slide">
+                        <a class="movie-item">
+                        </a>
+                    </li>
+                    <li class="splide__slide">
+                        <a class="movie-item">
+                        </a>
+                    </li>
+                    <li class="splide__slide">
+                        <a class="movie-item">
+                        </a>
+                    </li>
+                    <li class="splide__slide">
+                        <a class="movie-item">
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="splide slider__content animate__animated" id="">
             <div class="splide__track">
                 <ul class="splide__list">
                     {% for i in gamesobjs|slice:":50" %}
@@ -1556,7 +1665,7 @@
             </div>
         </div>
     </div>
-</div> -->
+</div>
 <!-- END GAMES SECTION -->
 <!-- SPECIAL MOVIE SECTION -->
 <div class="section">
