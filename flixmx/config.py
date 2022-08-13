@@ -1,5 +1,5 @@
 from pathlib import Path
-DEBUG = True
+DEBUG = False
 ROOT = Path.home()
 DOMAIN_ROOT = 'flixmx.com'
 SITE_URL = 'https://flixmx.com'

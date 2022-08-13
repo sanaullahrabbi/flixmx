@@ -1,6 +1,6 @@
 ---
 deployment:
   tasks:
-    - export DEPLOYPATH=/home/searchev/flixmxroot/
+    - export DEPLOYPATH=/home/flixserv/flixmxroot/
     - /bin/cp -r * $DEPLOYPATH
     
